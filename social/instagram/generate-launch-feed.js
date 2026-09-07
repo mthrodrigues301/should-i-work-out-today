@@ -3,7 +3,9 @@ const path = require("path");
 const sharp = require("sharp");
 
 const outputDirectory = path.join(__dirname, "launch-feed");
+const bilingualDirectory = path.join(__dirname, "bilingual-feed");
 fs.mkdirSync(outputDirectory, { recursive: true });
+fs.mkdirSync(bilingualDirectory, { recursive: true });
 
 const palette = {
   lime: "#eaff38",
@@ -22,6 +24,18 @@ const posts = [
   { file: "07-consistency", background: "cream", foreground: "ink", kicker: "REMEMBER", lines: ["ONE DAY", "BECOMES", "A HABIT."], accent: "SHOWING UP IS THE WIN." },
   { file: "08-your-pace", background: "lime", foreground: "ink", kicker: "TODAY'S ANSWER", lines: ["YES."], accent: "YOUR PACE. YOUR WORKOUT. YOUR WIN." },
   { file: "09-community", background: "ink", foreground: "cream", kicker: "YOUR TURN", lines: ["WHAT MADE", "YOU SAY", "YES TODAY?"], accent: "TELL US IN THE COMMENTS." },
+];
+
+const portuguesePosts = [
+  { file: "01-welcome", background: "cream", foreground: "ink", kicker: "BEM-VINDO AO", lines: ["DEVO", "TREINAR", "HOJE?"], accent: "A RESPOSTA É SEMPRE SIM." },
+  { file: "02-five-minutes", background: "lime", foreground: "ink", kicker: "RESPOSTA DE HOJE", lines: ["SIM."], accent: "CINCO MINUTOS TAMBÉM CONTAM." },
+  { file: "03-start-first", background: "ink", foreground: "cream", kicker: "SEU MOTIVO PARA SE MOVER", lines: ["COMECE", "PRIMEIRO."], accent: "A MOTIVAÇÃO COSTUMA APARECER DEPOIS." },
+  { file: "04-start-small", background: "cream", foreground: "ink", kicker: "SEM ENERGIA?", lines: ["COMECE", "DEVAGAR."], accent: "CUMPRA A PROMESSA QUE FEZ A SI MESMO." },
+  { file: "05-future-self", background: "lime", foreground: "ink", kicker: "RESPOSTA DE HOJE", lines: ["SIM."], accent: "SEU EU DO FUTURO JÁ ESTÁ AGRADECENDO." },
+  { file: "06-visit-site", background: "ink", foreground: "cream", kicker: "PRECISA DE UM MOTIVO?", lines: ["ENCONTRE", "O SEU."], accent: "SHOULDIWORKOUT.TODAY" },
+  { file: "07-consistency", background: "cream", foreground: "ink", kicker: "LEMBRE-SE", lines: ["UM DIA", "VIRA UM", "HÁBITO."], accent: "TER COMEÇADO JÁ É UMA VITÓRIA." },
+  { file: "08-your-pace", background: "lime", foreground: "ink", kicker: "RESPOSTA DE HOJE", lines: ["SIM."], accent: "SEU RITMO. SEU TREINO. SUA VITÓRIA." },
+  { file: "09-community", background: "ink", foreground: "cream", kicker: "SUA VEZ", lines: ["O QUE FEZ", "VOCÊ DIZER", "SIM HOJE?"], accent: "CONTE PARA A GENTE NOS COMENTÁRIOS." },
 ];
 
 function escapeXml(value) {
@@ -45,7 +59,12 @@ function renderPost(post, index) {
   const foreground = palette[post.foreground];
   const invertedAccent = post.background === "lime" ? palette.ink : palette.lime;
   const lineCount = post.lines.length;
-  const fontSize = lineCount === 1 ? 330 : lineCount === 2 ? 190 : 150;
+  const longestLine = Math.max(...post.lines.map((line) => Array.from(line).length));
+  const fontSize = lineCount === 1
+    ? 330
+    : lineCount === 2
+      ? (longestLine >= 8 ? 165 : 190)
+      : (longestLine >= 10 ? 140 : 150);
   const lineHeight = fontSize * 0.86;
   const totalHeight = (lineCount - 1) * lineHeight;
   const firstY = 600 - totalHeight / 2;
@@ -89,8 +108,15 @@ async function generate() {
     const pngPath = path.join(outputDirectory, `${post.file}.png`);
     fs.writeFileSync(svgPath, svg);
     await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(pngPath);
+
+    const bilingualEnglishPath = path.join(bilingualDirectory, `${post.file}-01-en.png`);
+    await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(bilingualEnglishPath);
+
+    const portugueseSvg = renderPost(portuguesePosts[index], index);
+    const bilingualPortuguesePath = path.join(bilingualDirectory, `${post.file}-02-pt.png`);
+    await sharp(Buffer.from(portugueseSvg)).png({ compressionLevel: 9 }).toFile(bilingualPortuguesePath);
   }
-  console.log(`Generated ${posts.length} Instagram posts in ${outputDirectory}`);
+  console.log(`Generated ${posts.length} English posts and ${posts.length} bilingual carousel pairs.`);
 }
 
 generate().catch((error) => {

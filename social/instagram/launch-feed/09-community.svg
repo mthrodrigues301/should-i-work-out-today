@@ -5,7 +5,7 @@
     text { font-family: Arial, Helvetica, sans-serif; fill: #f1efe8; }
     .brand { font-size: 25px; font-weight: 900; letter-spacing: 1.5px; }
     .kicker { font-size: 28px; font-weight: 800; letter-spacing: 4px; }
-    .main { font-size: 150px; font-weight: 900; letter-spacing: -8px; }
+    .main { font-size: 140px; font-weight: 900; letter-spacing: -8px; }
     .accent { font-size: 34px; font-weight: 900; letter-spacing: 1px; fill: #f1efe8; }
     .footer { font-size: 22px; font-weight: 800; letter-spacing: 1px; }
     .number { font-size: 20px; font-weight: 900; }
@@ -17,9 +17,9 @@
   <text x="164" y="106" class="brand">SHOULD I WORK OUT TODAY?</text>
   <line x1="72" y1="164" x2="1008" y2="164" stroke="#f1efe8" stroke-width="2" opacity=".35"/>
   <text x="72" y="250" class="kicker">YOUR TURN</text>
-  <text x="72" y="471" class="main">WHAT MADE</text>
+  <text x="72" y="479.6" class="main">WHAT MADE</text>
 <text x="72" y="600" class="main">YOU SAY</text>
-<text x="72" y="729" class="main">YES TODAY?</text>
+<text x="72" y="720.4" class="main">YES TODAY?</text>
   <rect x="72" y="985" width="12" height="86" fill="#eaff38"/>
   <text x="112" y="1038" class="accent">TELL US IN THE COMMENTS.</text>
   <line x1="72" y1="1172" x2="1008" y2="1172" stroke="#f1efe8" stroke-width="2" opacity=".35"/>
