@@ -232,8 +232,10 @@ async function createStoryImage(transparent = false) {
   const context = canvas.getContext("2d");
   const isDark = document.body.classList.contains("dark");
   const background = isDark ? "#0c0d0b" : "#f1efe8";
-  const foreground = transparent ? "#ffffff" : isDark ? "#f0eee7" : "#11110f";
-  const muted = transparent ? "#ffffff" : isDark ? "#999a92" : "#77766f";
+  // A transparent export removes only the card background. Keep every
+  // foreground color identical to the selected site theme.
+  const foreground = isDark ? "#f0eee7" : "#11110f";
+  const muted = isDark ? "#999a92" : "#77766f";
 
   if (!transparent) {
     context.fillStyle = background;
