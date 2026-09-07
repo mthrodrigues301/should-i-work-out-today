@@ -156,6 +156,21 @@ h1 {
   text-transform: uppercase;
 }
 
+:is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) h1 {
+  font-family: "Arial Black", "Noto Sans CJK JP", "Noto Sans CJK KR", "Noto Sans CJK SC", sans-serif;
+  font-size: clamp(110px, 20vw, 300px);
+  line-height: .9;
+  letter-spacing: -.08em;
+}
+
+:is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) #message {
+  margin-top: 24px;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
 .next-button {
   align-self: flex-start;
   display: flex;
@@ -231,6 +246,8 @@ body.dark .noise { mix-blend-mode: screen; opacity: .08; }
   .hero { padding: 110px 20px 105px; }
   h1 { font-size: clamp(116px, 46vw, 220px); }
   #message { margin-top: 28px; font-size: clamp(27px, 9vw, 42px); }
+  :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) h1 { font-size: clamp(92px, 30vw, 160px); }
+  :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) #message { margin-top: 18px; }
   .footer-actions { gap: 10px; }
   footer p { display: none; }
   footer { justify-content: flex-end; }

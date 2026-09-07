@@ -55,7 +55,7 @@ Then visit [http://localhost:3000](http://localhost:3000).
 
 ## How it works
 
-All motivational messages and translations live in the `localeData` object inside `script.js`. The application randomly selects a message in the active language and avoids showing the same one twice in a row.
+Each language lives in its own file inside `locales/`. The application loads the translations, randomly selects one of 50 messages in the active language, and avoids showing the same one twice in a row.
 
 The sharing feature draws the current answer, label, message, and attribution onto an HTML canvas. On compatible mobile browsers, the generated PNG is passed to the native share menu. On unsupported browsers, the image is downloaded instead.
 
@@ -64,7 +64,7 @@ The sharing feature draws the current answer, label, message, and attribution on
 ## Add a translation
 
 1. Add a new option to the language selector in `index.html`.
-2. Add the matching locale entry to `localeData` in `script.js`.
+2. Create the matching translation file inside `locales/`, using an existing locale as a template.
 3. Translate the interface labels, feedback messages, main “yes” answer, and motivational messages.
 4. Test the regular layout and the generated Story image with both themes.
 
@@ -74,7 +74,8 @@ The sharing feature draws the current answer, label, message, and attribution on
 .
 ├── index.html    # Page structure and accessibility markup
 ├── styles.css    # Responsive design, animations, and themes
-├── script.js     # Messages, translations, interactions, and sharing
+├── script.js     # Interactions, preferences, and sharing
+├── locales/      # One translation file per language
 └── README.md
 ```
 
@@ -92,3 +93,7 @@ For GitHub Pages, open the repository settings, go to **Pages**, choose **Deploy
 ## Contributing
 
 Suggestions, translation improvements, and new motivational messages are welcome. Open an issue or submit a pull request with your proposal.
+
+## License
+
+The original source code is available under the [MIT License](LICENSE). Third-party names, quotations, film references, and attributed material are excluded from that license and remain the property of their respective rights holders. See [NOTICE](NOTICE) for details.
