@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2ff3b" />
+    <meta
+      name="description"
+      content="Precisa de um empurrão para treinar? A resposta é sempre sim."
+    />
+    <title>Should I Work Out Today?</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Should I Work Out Today — início">
+        <span class="brand-mark" aria-hidden="true">↗</span>
+        <span>SHOULD I<br />WORK OUT<br />TODAY?</span>
+      </a>
+
+      <div class="top-actions">
+        <label class="language-picker">
+          <span class="sr-only">Idioma</span>
+          <select id="languageSelect" aria-label="Selecionar idioma">
+            <option value="pt">PT</option>
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+            <option value="de">DE</option>
+            <option value="it">IT</option>
+            <option value="fr">FR</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="zh">中文</option>
+          </select>
+        </label>
+        <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="soundText">SOM</span> <span id="soundLabel">OFF</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero" tabindex="0" aria-label="Gerar nova motivação">
+        <p class="eyebrow"><span id="eyebrowText">SEU MOTIVO PARA TREINAR</span></p>
+
+        <div class="answer-wrap" aria-live="polite" aria-atomic="true">
+          <h1 id="answer">SIM.</h1>
+          <p id="message">Você não precisa estar com vontade. Só precisa começar.</p>
+          <p id="source">— O treino de hoje</p>
+        </div>
+
+        <button class="next-button" id="nextButton" type="button">
+          <span id="nextText">ME DÊ OUTRO MOTIVO</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <p><span id="instructionText">CLIQUE OU APERTE</span> <kbd id="spaceText">ESPAÇO</kbd></p>
+      <div class="footer-actions">
+        <button id="shareButton" type="button"><span id="shareText">COMPARTILHAR</span> ↗</button>
+        <div class="theme-switch" role="group" aria-label="Tema">
+          <button id="lightThemeButton" type="button" aria-pressed="true">LIGHT</button>
+          <button id="darkThemeButton" type="button" aria-pressed="false">DARK</button>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status">FRASE COPIADA ✓</div>
+    <script src="script.js"></script>
+  </body>
+</html>
