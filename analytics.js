@@ -1,7 +1,9 @@
 import { inject } from "@vercel/analytics";
+import { injectSpeedInsights } from "@vercel/speed-insights";
 
 const CONSENT_KEY = "workout-consent-v1";
 let analyticsInjected = false;
+let speedInsightsInjected = false;
 
 function hasAnalyticsConsent() {
   try {
@@ -21,8 +23,22 @@ function enableAnalytics() {
   });
 }
 
+function enableSpeedInsights() {
+  if (speedInsightsInjected || !hasAnalyticsConsent()) return;
+  speedInsightsInjected = true;
+  injectSpeedInsights({
+    beforeSend(event) {
+      return hasAnalyticsConsent() ? event : null;
+    }
+  });
+}
+
 enableAnalytics();
+enableSpeedInsights();
 
 window.addEventListener("workout:consent", (event) => {
-  if (event.detail?.analytics) enableAnalytics();
+  if (event.detail?.analytics) {
+    enableAnalytics();
+    enableSpeedInsights();
+  }
 });

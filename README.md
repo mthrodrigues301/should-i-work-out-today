@@ -80,7 +80,7 @@ The sharing feature draws the current answer, label, message, and attribution on
 ├── index.html          # Page structure, metadata, and accessibility
 ├── styles.css          # Responsive design, animations, and themes
 ├── script.js           # Interactions, consent, preferences, and sharing
-├── analytics.js        # Consent-gated Vercel Web Analytics
+├── analytics.js        # Consent-gated Vercel Analytics and Speed Insights
 ├── build.mjs           # Generates one indexable HTML page per language
 ├── language-redirect.html # Selects a language on first visit
 ├── locales/            # One translation file per language
@@ -110,9 +110,9 @@ Import the repository into Vercel and keep the framework preset as **Other**. Ve
 - XML sitemap and `robots.txt`
 - Semantic HTML and responsive design
 - Pre-rendered HTML for every supported language
-- Consent-gated Vercel Web Analytics
+- Consent-gated Vercel Web Analytics and Speed Insights
 
-Before collecting traffic data, enable **Web Analytics** in the Vercel project dashboard and deploy the site again. The application only injects Vercel Analytics after the visitor grants Analytics consent. Advertising integrations remain disabled and must use the existing `data-consent="ads"` mechanism.
+Before collecting traffic or performance data, enable **Web Analytics** and **Speed Insights** in the Vercel project dashboard and deploy the site again. The application only injects these services after the visitor grants Analytics consent. Advertising integrations remain disabled and must use the existing `data-consent="ads"` mechanism.
 
 ## Credits
 
