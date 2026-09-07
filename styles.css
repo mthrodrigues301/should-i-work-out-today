@@ -226,6 +226,40 @@ kbd { padding: 4px 7px; border: 1px solid var(--line); border-radius: 3px; font-
 }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+.consent-panel {
+  position: fixed;
+  right: 24px;
+  bottom: 76px;
+  z-index: 30;
+  width: min(560px, calc(100vw - 48px));
+  padding: 24px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 10px 10px 0 var(--acid);
+}
+.consent-panel[hidden], .consent-preferences[hidden], .consent-actions [hidden] { display: none; }
+.consent-kicker { margin: 0 0 10px; color: var(--muted); font-size: 9px; font-weight: 900; letter-spacing: .16em; }
+.consent-panel h2 { margin: 0; font-size: clamp(22px, 4vw, 34px); line-height: .95; letter-spacing: -.04em; }
+.consent-copy > p:not(.consent-kicker) { margin: 14px 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.consent-copy a { color: inherit; font-size: 9px; font-weight: 900; letter-spacing: .12em; }
+.consent-preferences { margin-top: 20px; border-top: 1px solid var(--line); }
+.consent-preferences label { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.consent-preferences strong, .consent-preferences small { display: block; }
+.consent-preferences strong { font-size: 10px; letter-spacing: .1em; }
+.consent-preferences small { margin-top: 4px; color: var(--muted); font-size: 10px; }
+.consent-preferences input { width: 18px; height: 18px; accent-color: var(--ink); }
+.consent-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 22px; }
+.consent-actions button { padding: 10px 12px; border: 1px solid var(--ink); background: transparent; color: inherit; cursor: pointer; font-size: 9px; font-weight: 900; letter-spacing: .09em; }
+.consent-actions .consent-primary { background: var(--ink); color: var(--paper); }
+
+.privacy-page { min-height: 100vh; padding: 56px 24px; }
+.privacy-document { width: min(760px, 100%); margin: 0 auto; }
+.privacy-document h1 { margin: 36px 0 28px; font-size: clamp(54px, 10vw, 110px); line-height: .8; }
+.privacy-document h2 { margin-top: 38px; font-size: 22px; }
+.privacy-document p, .privacy-document li { color: var(--muted); font-size: 15px; line-height: 1.65; }
+.privacy-document a { color: inherit; }
+.privacy-back { font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+
 body.dark {
   --ink: #f0eee7;
   --paper: #0c0d0b;
@@ -249,8 +283,12 @@ body.dark .noise { mix-blend-mode: screen; opacity: .08; }
   :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) h1 { font-size: clamp(92px, 30vw, 160px); }
   :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) #message { margin-top: 18px; }
   .footer-actions { gap: 10px; }
+  .footer-actions { flex-wrap: wrap; justify-content: flex-end; }
   footer p { display: none; }
   footer { justify-content: flex-end; }
+  .consent-panel { right: 12px; bottom: 88px; width: calc(100vw - 24px); padding: 18px; box-shadow: 6px 6px 0 var(--acid); }
+  .consent-actions { justify-content: stretch; }
+  .consent-actions button { flex: 1 1 30%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

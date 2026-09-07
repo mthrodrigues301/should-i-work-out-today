@@ -16,7 +16,7 @@ The project is inspired by the simple and playful concept behind [shouldideploy.
 - Optional interaction sound
 - Native mobile sharing when supported
 - Automatic 1080 × 1920 image generation for Instagram Stories, WhatsApp, and other platforms
-- No frameworks, dependencies, build step, or tracking
+- No frameworks, runtime dependencies, or tracking
 
 ## Languages
 
@@ -72,18 +72,40 @@ The sharing feature draws the current answer, label, message, and attribution on
 
 ```text
 .
-├── index.html    # Page structure and accessibility markup
-├── styles.css    # Responsive design, animations, and themes
-├── script.js     # Interactions, preferences, and sharing
-├── locales/      # One translation file per language
+├── index.html          # Page structure, metadata, and accessibility
+├── styles.css          # Responsive design, animations, and themes
+├── script.js           # Interactions, consent, preferences, and sharing
+├── build.mjs           # Generates one indexable HTML page per language
+├── locales/            # One translation file per language
+├── privacy.html        # Privacy policy
+├── robots.txt          # Search crawler rules
+├── sitemap.xml         # Localized production URLs
+├── manifest.webmanifest
+├── vercel.json         # Vercel build, routing, and security headers
 └── README.md
 ```
 
 ## Deployment
 
-This is a static website and can be deployed directly to GitHub Pages, Netlify, Vercel, Cloudflare Pages, or any other static hosting provider.
+This static website is configured for Vercel through `vercel.json`, including localized pre-rendering, clean URLs, security headers, and production redirects.
 
-For GitHub Pages, open the repository settings, go to **Pages**, choose **Deploy from a branch**, and select the `main` branch and the root folder.
+Import the repository into Vercel and keep the framework preset as **Other**. Vercel reads the build and output settings from `vercel.json`. The production domain used by canonical URLs, social metadata, `robots.txt`, and the sitemap is [shouldiworkout.today](https://shouldiworkout.today).
+
+> Vercel's Hobby plan is intended for non-commercial personal use. Review the current Vercel plan terms before enabling advertising, affiliate links, sponsorships, or paid features.
+
+## SEO
+
+- Localized URLs and `hreflang` annotations for all nine languages
+- Unique titles and descriptions for each language
+- Canonical URLs
+- Open Graph and X/Twitter social cards
+- `WebSite` structured data
+- XML sitemap and `robots.txt`
+- Semantic HTML, responsive design, and no external runtime dependencies
+- Pre-rendered HTML for every supported language
+- Privacy preferences ready for consent-gated analytics and advertising
+
+Optional tracking is disabled by default. When adding analytics or advertising, set `OPTIONAL_SERVICES_ENABLED` to `true` in `script.js` and add third-party tags as inert script placeholders with `type="text/plain"` and either `data-consent="analytics"` or `data-consent="ads"`. The application only activates them after the matching consent is granted.
 
 ## Credits
 
