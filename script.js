@@ -327,6 +327,12 @@ async function createStoryImage() {
   context.letterSpacing = "2px";
   context.fillText("SHOULD I WORK OUT TODAY?", 72, 135);
 
+  context.fillStyle = muted;
+  context.font = "800 24px Arial, sans-serif";
+  context.fillText(localeData[currentLanguage].eyebrow.toUpperCase(), 72, 285);
+  context.fillRect(72, 320, 936, 2);
+
+  context.fillStyle = foreground;
   context.font = "900 500px Impact, Arial Black, sans-serif";
   context.fillText(localeData[currentLanguage].yes, 55, 800);
 
