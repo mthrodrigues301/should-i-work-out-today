@@ -186,6 +186,18 @@ h1 {
 .next-button:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
 .arrow { font-size: 18px; line-height: .5; }
 
+.instagram-cta {
+  align-self: flex-start;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.instagram-cta:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
 footer p { margin: 0; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .14em; }
 kbd { padding: 4px 7px; border: 1px solid var(--line); border-radius: 3px; font-family: inherit; }
 .footer-actions { display: flex; align-items: center; gap: 20px; }
