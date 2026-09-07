@@ -48,10 +48,10 @@ cd should-i-work-out-today
 Open `index.html` directly in your browser, or run a local static server:
 
 ```bash
-python3 -m http.server 8000
+npx serve .
 ```
 
-Then visit [http://localhost:8000](http://localhost:8000).
+Then visit [http://localhost:3000](http://localhost:3000).
 
 ## How it works
 
