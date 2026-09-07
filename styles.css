@@ -19,6 +19,7 @@ body {
   font-family: Inter, Arial, Helvetica, sans-serif;
   transition: background 240ms ease, color 240ms ease;
 }
+body:not(.privacy-page) { overflow-y: hidden; }
 
 button, a { color: inherit; }
 button { font: inherit; }
@@ -102,13 +103,22 @@ footer { bottom: 0; align-items: flex-end; }
 main { min-height: 100svh; }
 
 .hero {
-  min-height: 100svh;
+  height: 100svh;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
   padding: 120px max(32px, 8vw) 110px;
   outline: none;
 }
+
+.hero.compact { padding-top: 92px; padding-bottom: 86px; }
+.hero.compact .eyebrow { margin-bottom: 16px; }
+.hero.compact #message { margin-top: 18px; }
+.hero.compact #source { margin-top: 10px; }
+.hero.compact .next-button { margin-top: 20px; padding-block: 10px; }
+.hero.compact .instagram-cta { margin-top: 10px; }
 
 .eyebrow {
   display: flex;
@@ -302,6 +312,9 @@ body.dark .noise { mix-blend-mode: screen; opacity: .08; }
   #message { margin-top: 28px; font-size: clamp(27px, 9vw, 42px); }
   :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) h1 { font-size: clamp(92px, 30vw, 160px); }
   :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) #message { margin-top: 18px; }
+  .hero.compact { padding: 88px 20px 78px; }
+  .hero.compact h1 { font-size: clamp(82px, 34vw, 150px); }
+  .hero.compact :is(#message, #source) { max-width: 100%; }
   .footer-actions {
     width: 100%;
     flex-wrap: wrap;

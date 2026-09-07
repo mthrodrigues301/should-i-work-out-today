@@ -5,6 +5,7 @@ const CONSENT_KEY = "workout-consent-v1";
 const OPTIONAL_SERVICES_ENABLED = true;
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
+const hero = document.querySelector("#hero");
 const answerWrap = document.querySelector(".answer-wrap");
 const message = document.querySelector("#message");
 const source = document.querySelector("#source");
@@ -62,6 +63,25 @@ function playClick() {
   oscillator.stop(context.currentTime + .1);
 }
 
+function fitHeroContent() {
+  hero.classList.remove("compact");
+  message.style.removeProperty("font-size");
+
+  if (hero.scrollHeight <= hero.clientHeight + 1) return;
+  hero.classList.add("compact");
+
+  let fontSize = Number.parseFloat(getComputedStyle(message).fontSize);
+  const minimumFontSize = window.innerWidth <= 640 ? 20 : 24;
+  while (hero.scrollHeight > hero.clientHeight + 1 && fontSize > minimumFontSize) {
+    fontSize -= 1;
+    message.style.fontSize = `${fontSize}px`;
+  }
+}
+
+function scheduleHeroFit() {
+  window.requestAnimationFrame(fitHeroContent);
+}
+
 function nextMotivation() {
   const motivations = localeData[currentLanguage].motivations;
   let next;
@@ -71,6 +91,7 @@ function nextMotivation() {
   const [text, attribution] = motivations[currentIndex];
   message.textContent = text;
   source.textContent = `— ${attribution}`;
+  scheduleHeroFit();
   answerWrap.classList.remove("switching");
   void answerWrap.offsetWidth;
   answerWrap.classList.add("switching");
@@ -340,7 +361,7 @@ async function shareTextOnly() {
 }
 
 nextButton.addEventListener("click", nextMotivation);
-document.querySelector("#hero").addEventListener("click", (event) => {
+hero.addEventListener("click", (event) => {
   if (!event.target.closest("button")) nextMotivation();
 });
 document.addEventListener("keydown", (event) => {
@@ -415,4 +436,5 @@ window.addEventListener("popstate", () => {
     : window.location.pathname.split("/").filter(Boolean)[0];
   applyLanguage(language || "pt");
 });
+window.addEventListener("resize", scheduleHeroFit);
 applyLanguage(currentLanguage);
