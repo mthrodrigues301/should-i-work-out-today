@@ -117,6 +117,7 @@ function applyLanguage(language, updateUrl = false) {
   document.querySelector("#instructionText").textContent = copy.instruction;
   document.querySelector("#spaceText").textContent = copy.space;
   document.querySelector("#shareText").textContent = copy.share;
+  document.querySelector("#instagramCtaText").textContent = copy.instagramCta;
   document.querySelector("#soundText").textContent = copy.sound;
   privacyButton.textContent = copy.privacy;
   document.querySelector("#consentTitle").textContent = copy.consentTitle;

@@ -30,6 +30,7 @@ window.WORKOUT_LOCALES.ko = {
   "instruction": "클릭 또는",
   "space": "스페이스",
   "share": "공유",
+  "instagramCta": "INSTAGRAM에서 더 많은 동기부여 받기",
   "dark": "다크 모드 ◐",
   "light": "라이트 모드 ◐",
   "sound": "소리",

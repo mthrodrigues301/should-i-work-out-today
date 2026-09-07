@@ -30,6 +30,7 @@ window.WORKOUT_LOCALES.it = {
   "instruction": "CLICCA O PREMI",
   "space": "SPAZIO",
   "share": "CONDIVIDI",
+  "instagramCta": "PIÙ MOTIVAZIONE SU INSTAGRAM",
   "dark": "MODALITÀ SCURA ◐",
   "light": "MODALITÀ CHIARA ◐",
   "sound": "SUONO",

@@ -73,6 +73,7 @@ for (const language of languages) {
   html = replaceContent(html, "answer", locale.yes);
   html = replaceContent(html, "message", initialMessage);
   html = replaceContent(html, "source", `— ${initialSource}`);
+  html = replaceContent(html, "instagramCtaText", locale.instagramCta);
   html = html.replace(`<option value="${language}">`, `<option value="${language}" selected>`);
 
   await writeFile(path.join(output, `${language}.html`), html);

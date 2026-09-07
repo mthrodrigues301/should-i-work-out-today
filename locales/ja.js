@@ -30,6 +30,7 @@ window.WORKOUT_LOCALES.ja = {
   "instruction": "クリック または",
   "space": "スペース",
   "share": "シェア",
+  "instagramCta": "INSTAGRAMでもっとモチベーションを",
   "dark": "ダークモード ◐",
   "light": "ライトモード ◐",
   "sound": "サウンド",

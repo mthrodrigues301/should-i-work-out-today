@@ -30,6 +30,7 @@ window.WORKOUT_LOCALES.de = {
   "instruction": "KLICKEN ODER",
   "space": "LEERTASTE",
   "share": "TEILEN",
+  "instagramCta": "MEHR MOTIVATION AUF INSTAGRAM",
   "dark": "DUNKEL ◐",
   "light": "HELL ◐",
   "sound": "TON",

@@ -30,6 +30,7 @@ window.WORKOUT_LOCALES.zh = {
   "instruction": "点击或按",
   "space": "空格键",
   "share": "分享",
+  "instagramCta": "在INSTAGRAM获取更多动力",
   "dark": "深色模式 ◐",
   "light": "浅色模式 ◐",
   "sound": "声音",
