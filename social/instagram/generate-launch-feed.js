@@ -52,7 +52,7 @@ function renderPost(post, index) {
   const mainLines = post.lines.map((line, lineIndex) =>
     `<text x="72" y="${firstY + lineIndex * lineHeight}" class="main">${escapeXml(line)}</text>`
   ).join("\n");
-  const accentFill = post.background === "lime" ? palette.ink : invertedAccent;
+  const accentFill = foreground;
   const markTile = post.background !== "lime";
   const markStroke = palette.ink;
 
