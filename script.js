@@ -3,6 +3,7 @@ const SITE_URL = "https://shouldiworkout.today";
 const supportedLanguages = Object.keys(localeData);
 const CONSENT_KEY = "workout-consent-v1";
 const OPTIONAL_SERVICES_ENABLED = false;
+const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
 const answerWrap = document.querySelector(".answer-wrap");
 const message = document.querySelector("#message");
@@ -142,10 +143,12 @@ function updateThemeButtons() {
   darkThemeButton.setAttribute("aria-pressed", String(dark));
 }
 
-function setTheme(theme) {
+function setTheme(theme, savePreference = true) {
   const dark = theme === "dark";
   document.body.classList.toggle("dark", dark);
-  localStorage.setItem("workout-theme", dark ? "dark" : "light");
+  document.documentElement.style.colorScheme = dark ? "dark" : "light";
+  document.querySelector('meta[name="theme-color"]').content = dark ? "#0c0d0b" : "#f1efe8";
+  if (savePreference) localStorage.setItem("workout-theme", dark ? "dark" : "light");
   updateThemeButtons();
 }
 
@@ -392,10 +395,14 @@ soundToggle.addEventListener("click", () => {
   playClick();
 });
 
-if (localStorage.getItem("workout-theme") === "dark") {
-  document.body.classList.add("dark");
-}
-updateThemeButtons();
+const savedTheme = localStorage.getItem("workout-theme");
+setTheme(savedTheme || (systemTheme.matches ? "dark" : "light"), false);
+
+systemTheme.addEventListener("change", (event) => {
+  if (!localStorage.getItem("workout-theme")) {
+    setTheme(event.matches ? "dark" : "light", false);
+  }
+});
 
 const savedConsent = readConsent();
 if (savedConsent) applyConsent(savedConsent);
