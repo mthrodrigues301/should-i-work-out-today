@@ -362,7 +362,7 @@ async function shareTextOnly() {
 
 nextButton.addEventListener("click", nextMotivation);
 hero.addEventListener("click", (event) => {
-  if (!event.target.closest("button")) nextMotivation();
+  if (!event.target.closest("button, a")) nextMotivation();
 });
 document.addEventListener("keydown", (event) => {
   if (event.code === "Space" && !event.repeat) {

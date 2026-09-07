@@ -117,7 +117,8 @@ main { min-height: 100svh; }
 .hero.compact .eyebrow { margin-bottom: 16px; }
 .hero.compact #message { margin-top: 18px; }
 .hero.compact #source { margin-top: 10px; }
-.hero.compact .next-button { margin-top: 20px; padding-block: 10px; }
+.hero.compact .hero-actions { margin-top: 20px; }
+.hero.compact :is(.next-button, .share-cta) { padding-block: 10px; }
 .hero.compact .instagram-cta { margin-top: 10px; }
 
 .eyebrow {
@@ -177,15 +178,21 @@ h1 {
   overflow-wrap: anywhere;
 }
 
-.next-button {
-  align-self: flex-start;
+.hero-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 38px;
+}
+
+.next-button, .share-cta {
+  min-height: 45px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 26px;
-  margin-top: 38px;
   padding: 14px 16px;
   border: 1px solid var(--ink);
-  background: transparent;
   cursor: pointer;
   font-size: 10px;
   font-weight: 900;
@@ -193,7 +200,20 @@ h1 {
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
+.next-button { background: transparent; }
 .next-button:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+.share-cta-wrap { display: flex; flex-direction: column; }
+.share-cta { background: var(--acid); color: #11110f; }
+.share-cta:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+.share-channels {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-align: center;
+  white-space: nowrap;
+}
 .arrow { font-size: 18px; line-height: .5; }
 
 .instagram-cta {
@@ -297,6 +317,7 @@ body.dark {
   --line: rgba(240, 238, 231, .2);
 }
 body.dark .next-button:hover { background: var(--acid); color: #11110f; border-color: var(--acid); }
+body.dark .share-cta:hover { background: var(--paper); color: var(--ink); }
 body.dark .noise { mix-blend-mode: screen; opacity: .08; }
 
 .answer-wrap.switching { animation: punch .42s cubic-bezier(.2,.85,.3,1); }
@@ -315,6 +336,11 @@ body.dark .noise { mix-blend-mode: screen; opacity: .08; }
   .hero.compact { padding: 88px 20px 78px; }
   .hero.compact h1 { font-size: clamp(82px, 34vw, 150px); }
   .hero.compact :is(#message, #source) { max-width: 100%; }
+  .hero-actions { width: 100%; flex-wrap: wrap; }
+  .next-button { flex: 1 1 150px; }
+  .share-cta-wrap { flex: 1 1 170px; }
+  .share-cta { width: 100%; }
+  :is(.next-button, .share-cta) { gap: 10px; font-size: clamp(7.5px, 2.2vw, 10px); }
   .footer-actions {
     width: 100%;
     flex-wrap: wrap;
