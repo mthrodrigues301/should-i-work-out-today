@@ -1,6 +1,7 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import vm from "node:vm";
+import { build } from "esbuild";
 
 const root = process.cwd();
 const output = path.join(root, "dist");
@@ -34,7 +35,17 @@ function replaceContent(html, id, value) {
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 
-const template = await readFile(path.join(root, "index.html"), "utf8");
+await build({
+  entryPoints: [path.join(root, "analytics.js")],
+  bundle: true,
+  format: "esm",
+  minify: true,
+  outfile: path.join(output, "analytics.js"),
+  target: ["es2020"]
+});
+
+const template = (await readFile(path.join(root, "index.html"), "utf8"))
+  .replace(/\s*<script type="importmap">[\s\S]*?<\/script>/, "");
 const context = vm.createContext({ window: {} });
 
 for (const language of languages) {

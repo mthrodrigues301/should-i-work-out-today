@@ -49,10 +49,11 @@ git clone git@github.com:mthrodrigues301/should-i-work-out-today.git
 cd should-i-work-out-today
 ```
 
-Open `index.html` directly in your browser, or run a local static server:
+Install the dependencies and run a local static server:
 
 ```bash
-npx serve .
+npm install
+npm start
 ```
 
 Then visit [http://localhost:3000](http://localhost:3000).
@@ -79,6 +80,7 @@ The sharing feature draws the current answer, label, message, and attribution on
 ├── index.html          # Page structure, metadata, and accessibility
 ├── styles.css          # Responsive design, animations, and themes
 ├── script.js           # Interactions, consent, preferences, and sharing
+├── analytics.js        # Consent-gated Vercel Web Analytics
 ├── build.mjs           # Generates one indexable HTML page per language
 ├── language-redirect.html # Selects a language on first visit
 ├── locales/            # One translation file per language
@@ -106,11 +108,11 @@ Import the repository into Vercel and keep the framework preset as **Other**. Ve
 - Open Graph and X/Twitter social cards
 - `WebSite` structured data
 - XML sitemap and `robots.txt`
-- Semantic HTML, responsive design, and no external runtime dependencies
+- Semantic HTML and responsive design
 - Pre-rendered HTML for every supported language
-- Privacy preferences ready for consent-gated analytics and advertising
+- Consent-gated Vercel Web Analytics
 
-Optional tracking is disabled by default. When adding analytics or advertising, set `OPTIONAL_SERVICES_ENABLED` to `true` in `script.js` and add third-party tags as inert script placeholders with `type="text/plain"` and either `data-consent="analytics"` or `data-consent="ads"`. The application only activates them after the matching consent is granted.
+Before collecting traffic data, enable **Web Analytics** in the Vercel project dashboard and deploy the site again. The application only injects Vercel Analytics after the visitor grants Analytics consent. Advertising integrations remain disabled and must use the existing `data-consent="ads"` mechanism.
 
 ## Credits
 
