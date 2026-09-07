@@ -188,9 +188,11 @@ h1 {
 
 footer p { margin: 0; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .14em; }
 kbd { padding: 4px 7px; border: 1px solid var(--line); border-radius: 3px; font-family: inherit; }
-.footer-actions { display: flex; gap: 20px; }
+.footer-actions { display: flex; align-items: center; gap: 20px; }
+.footer-actions > button { white-space: nowrap; }
 .theme-switch {
   display: flex;
+  flex: 0 0 auto;
   padding: 2px;
   border: 1px solid var(--line);
 }
@@ -288,8 +290,14 @@ body.dark .noise { mix-blend-mode: screen; opacity: .08; }
   #message { margin-top: 28px; font-size: clamp(27px, 9vw, 42px); }
   :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) h1 { font-size: clamp(92px, 30vw, 160px); }
   :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) #message { margin-top: 18px; }
-  .footer-actions { gap: 10px; }
-  .footer-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .footer-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px 10px;
+  }
+  .footer-actions > button { padding-inline: 2px; font-size: clamp(8px, 2.3vw, 10px); }
+  .theme-switch button { min-width: 44px; padding-inline: 7px; font-size: clamp(8px, 2.3vw, 10px); }
   footer p { display: none; }
   footer { justify-content: flex-end; }
   .consent-panel, .share-panel { right: 12px; bottom: 88px; width: calc(100vw - 24px); padding: 18px; box-shadow: 6px 6px 0 var(--acid); }
