@@ -1,10 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#f1efe8"/>
-  <rect x="72" y="62" width="92" height="12" fill="#eaff38"/>
-  <text x="72" y="120" fill="#11110f" font-family="Arial, sans-serif" font-size="24" font-weight="900" letter-spacing="2">SHOULD I WORK OUT TODAY?</text>
+  <g transform="translate(72 50) scale(1.125)">
+    <rect width="64" height="64" rx="14" fill="#eaff38"/>
+    <path d="M17 45 45 17M26 17h19v19" fill="none" stroke="#11110f" stroke-width="8"/>
+  </g>
+  <text x="164" y="96" fill="#11110f" font-family="Arial, sans-serif" font-size="24" font-weight="900" letter-spacing="2">SHOULD I WORK OUT TODAY?</text>
   <line x1="72" y1="174" x2="1128" y2="174" stroke="#aaa99f" stroke-width="2"/>
-  <text x="72" y="220" fill="#77766f" font-family="Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="3">THE ANSWER IS</text>
+  <text x="72" y="220" fill="#77766f" font-family="Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="3">SHOULD I WORK OUT TODAY?</text>
   <text x="56" y="560" fill="#11110f" font-family="Impact, Arial Black, Arial, sans-serif" font-size="340" font-weight="900" letter-spacing="-15">YES.</text>
-  <circle cx="1090" cy="528" r="40" fill="#11110f"/>
-  <path d="M1073 545 1107 511M1082 511h25v25" fill="none" stroke="#eaff38" stroke-width="7"/>
+  <text x="1128" y="510" text-anchor="end" fill="#11110f" font-family="Arial, sans-serif" font-size="22" font-weight="900">SHOULDIWORKOUT.TODAY</text>
+  <text x="1128" y="548" text-anchor="end" fill="#77766f" font-family="Arial, sans-serif" font-size="18" font-weight="700">@SHOULDIWORKOUT.TODAY</text>
 </svg>

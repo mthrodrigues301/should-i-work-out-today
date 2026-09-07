@@ -24,6 +24,11 @@ const acceptConsent = document.querySelector("#acceptConsent");
 const rejectConsent = document.querySelector("#rejectConsent");
 const customizeConsent = document.querySelector("#customizeConsent");
 const saveConsent = document.querySelector("#saveConsent");
+const sharePanel = document.querySelector("#sharePanel");
+const shareStoryButton = document.querySelector("#shareStoryButton");
+const shareTransparentButton = document.querySelector("#shareTransparentButton");
+const shareTextButton = document.querySelector("#shareTextButton");
+const closeSharePanel = document.querySelector("#closeSharePanel");
 
 let currentIndex = -1;
 let soundOn = false;
@@ -31,11 +36,14 @@ const pathLanguage = window.location.protocol === "file:"
   ? null
   : window.location.pathname.split("/").filter(Boolean)[0];
 const queryLanguage = new URLSearchParams(window.location.search).get("lang");
+const browserLanguage = (navigator.languages || [navigator.language])
+  .map((language) => language.toLowerCase().split("-")[0])
+  .find((language) => supportedLanguages.includes(language));
 let currentLanguage = supportedLanguages.includes(pathLanguage)
   ? pathLanguage
   : supportedLanguages.includes(queryLanguage)
     ? queryLanguage
-    : localStorage.getItem("workout-language") || "pt";
+    : localStorage.getItem("workout-language") || browserLanguage || "en";
 
 function playClick() {
   if (!soundOn) return;
@@ -102,6 +110,13 @@ function applyLanguage(language, updateUrl = false) {
   document.querySelector("#necessaryDescription").textContent = copy.necessaryDescription;
   document.querySelector("#analyticsDescription").textContent = copy.analyticsDescription;
   document.querySelector("#adsDescription").textContent = copy.adsDescription;
+  document.querySelector("#sharePanelTitle").textContent = copy.sharePanelTitle;
+  shareStoryButton.querySelector("strong").textContent = copy.storyOption;
+  shareStoryButton.querySelector("small").textContent = copy.storyDescription;
+  shareTransparentButton.querySelector("strong").textContent = copy.transparentOption;
+  shareTransparentButton.querySelector("small").textContent = copy.transparentDescription;
+  shareTextButton.querySelector("strong").textContent = copy.textOption;
+  shareTextButton.querySelector("small").textContent = copy.textDescription;
   const brandLink = document.querySelector(".brand");
   brandLink.href = window.location.protocol === "file:" ? "#" : `/${currentLanguage}`;
   document.querySelector("#privacyPolicyLink").href = window.location.protocol === "file:" ? "privacy.html" : "/privacy";
@@ -182,6 +197,7 @@ function saveConsentChoice(analytics, ads) {
 }
 
 function openConsentPanel(showPreferences = false) {
+  sharePanel.hidden = true;
   const saved = readConsent();
   analyticsConsent.checked = Boolean(saved?.analytics);
   adsConsent.checked = Boolean(saved?.ads);
@@ -194,11 +210,12 @@ function openConsentPanel(showPreferences = false) {
 }
 
 function wrapCanvasText(context, text, maxWidth) {
-  const words = text.split(" ");
+  const usesSpaces = text.includes(" ");
+  const words = usesSpaces ? text.split(" ") : Array.from(text);
   const lines = [];
   let line = "";
   words.forEach((word) => {
-    const testLine = line ? `${line} ${word}` : word;
+    const testLine = line ? `${line}${usesSpaces ? " " : ""}${word}` : word;
     if (context.measureText(testLine).width > maxWidth && line) {
       lines.push(line);
       line = word;
@@ -208,62 +225,113 @@ function wrapCanvasText(context, text, maxWidth) {
   return lines;
 }
 
-async function createStoryImage() {
+async function createStoryImage(transparent = false) {
   const canvas = document.createElement("canvas");
   canvas.width = 1080;
   canvas.height = 1920;
   const context = canvas.getContext("2d");
   const isDark = document.body.classList.contains("dark");
   const background = isDark ? "#0c0d0b" : "#f1efe8";
-  const foreground = isDark ? "#f0eee7" : "#11110f";
-  const muted = isDark ? "#999a92" : "#77766f";
+  const foreground = transparent ? "#ffffff" : isDark ? "#f0eee7" : "#11110f";
+  const muted = transparent ? "#ffffff" : isDark ? "#999a92" : "#77766f";
 
-  context.fillStyle = background;
-  context.fillRect(0, 0, canvas.width, canvas.height);
+  if (!transparent) {
+    context.fillStyle = background;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function drawText(text, x, y, outlineWidth = 5) {
+    if (transparent) {
+      context.strokeStyle = "rgba(0, 0, 0, .9)";
+      context.lineWidth = outlineWidth;
+      context.lineJoin = "round";
+      context.strokeText(text, x, y);
+    }
+    context.fillText(text, x, y);
+  }
+
   context.fillStyle = "#eaff38";
   context.fillRect(72, 70, 70, 12);
 
   context.fillStyle = foreground;
   context.font = "900 28px Arial, sans-serif";
   context.letterSpacing = "2px";
-  context.fillText("SHOULD I WORK OUT TODAY?", 72, 135);
+  const logo = new Image();
+  logo.src = document.querySelector('link[rel="icon"]').href;
+  try { await logo.decode(); context.drawImage(logo, 72, 70, 64, 64); } catch { /* Brand text remains as fallback. */ }
+  drawText("SHOULD I WORK OUT TODAY?", 158, 116, 4);
 
   context.fillStyle = muted;
   context.font = "800 24px Arial, sans-serif";
-  context.fillText(localeData[currentLanguage].eyebrow.toUpperCase(), 72, 285);
+  drawText(localeData[currentLanguage].eyebrow.toUpperCase(), 72, 285, 4);
   context.fillRect(72, 320, 936, 2);
 
   context.fillStyle = foreground;
   context.font = "900 500px Impact, Arial Black, sans-serif";
-  context.fillText(localeData[currentLanguage].yes, 55, 800);
+  drawText(localeData[currentLanguage].yes, 55, 800, 14);
 
   context.font = "900 76px Arial, sans-serif";
   const lines = wrapCanvasText(context, message.textContent, 930);
-  lines.slice(0, 6).forEach((line, index) => context.fillText(line, 72, 1030 + index * 88));
+  lines.slice(0, 6).forEach((line, index) => drawText(line, 72, 1030 + index * 88, 7));
 
   const sourceY = Math.min(1640, 1080 + lines.slice(0, 6).length * 88);
   context.fillStyle = muted;
   context.font = "700 26px Arial, sans-serif";
-  context.fillText(source.textContent.toUpperCase(), 72, sourceY);
+  drawText(source.textContent.toUpperCase(), 72, sourceY, 4);
 
   context.fillStyle = foreground;
-  context.fillRect(72, 1765, 936, 2);
-  context.font = "800 24px Arial, sans-serif";
-  context.fillText(`SHOULD I WORK OUT TODAY?  →  ${localeData[currentLanguage].yes}`, 72, 1825);
+  context.fillRect(72, 1705, 936, 2);
+  context.font = "900 34px Arial, sans-serif";
+  drawText("SHOULDIWORKOUT.TODAY", 72, 1780, 5);
+  context.font = "800 27px Arial, sans-serif";
+  drawText("INSTAGRAM  ·  @SHOULDIWORKOUT.TODAY", 72, 1835, 5);
 
   return new Promise((resolve, reject) => {
     canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("Image generation failed")), "image/png");
   });
 }
 
-function downloadStoryImage(blob) {
+function downloadStoryImage(blob, transparent = false) {
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = "should-i-work-out-today-story.png";
+  link.download = transparent ? "should-i-work-out-today-transparent.png" : "should-i-work-out-today-story.png";
   document.body.appendChild(link);
   link.click();
   link.remove();
   window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+}
+
+async function shareImage(transparent = false) {
+  const text = `Should I Work Out Today? ${localeData[currentLanguage].yes} ${message.textContent}`;
+  const blob = await createStoryImage(transparent);
+  const filename = transparent ? "should-i-work-out-today-transparent.png" : "should-i-work-out-today-story.png";
+  const file = new File([blob], filename, { type: "image/png" });
+  const shareData = { title: "Should I Work Out Today?", text, files: [file] };
+  if (navigator.share && navigator.canShare?.(shareData)) await navigator.share(shareData);
+  else {
+    downloadStoryImage(blob, transparent);
+    showToast(localeData[currentLanguage].downloaded);
+  }
+}
+
+async function shareTextOnly() {
+  const canonicalUrl = `${SITE_URL}/${currentLanguage}`;
+  const text = `Should I Work Out Today? ${localeData[currentLanguage].yes} ${message.textContent}`;
+  if (navigator.share) return navigator.share({ title: "Should I Work Out Today?", text, url: canonicalUrl });
+  const completeText = `${text} — ${canonicalUrl}`;
+  try {
+    await navigator.clipboard.writeText(completeText);
+  } catch {
+    const field = document.createElement("textarea");
+    field.value = completeText;
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.appendChild(field);
+    field.select();
+    document.execCommand("copy");
+    field.remove();
+  }
+  showToast(localeData[currentLanguage].copied);
 }
 
 nextButton.addEventListener("click", nextMotivation);
@@ -277,19 +345,32 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-shareButton.addEventListener("click", async () => {
-  const text = `Should I Work Out Today? ${localeData[currentLanguage].yes} ${message.textContent}`;
-  try {
-    const blob = await createStoryImage();
-    const file = new File([blob], "should-i-work-out-today-story.png", { type: "image/png" });
-    const shareData = { title: "Should I Work Out Today?", text, files: [file] };
-    if (navigator.share && navigator.canShare?.(shareData)) {
-      await navigator.share(shareData);
-      return;
-    }
-    downloadStoryImage(blob);
-    showToast(localeData[currentLanguage].downloaded);
-  } catch (error) {
+shareButton.addEventListener("click", () => {
+  consentPanel.hidden = true;
+  sharePanel.hidden = false;
+});
+closeSharePanel.addEventListener("click", () => { sharePanel.hidden = true; });
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    sharePanel.hidden = true;
+    consentPanel.hidden = true;
+  }
+});
+shareStoryButton.addEventListener("click", async () => {
+  sharePanel.hidden = true;
+  try { await shareImage(false); } catch (error) {
+    if (error.name !== "AbortError") showToast(localeData[currentLanguage].error);
+  }
+});
+shareTransparentButton.addEventListener("click", async () => {
+  sharePanel.hidden = true;
+  try { await shareImage(true); } catch (error) {
+    if (error.name !== "AbortError") showToast(localeData[currentLanguage].error);
+  }
+});
+shareTextButton.addEventListener("click", async () => {
+  sharePanel.hidden = true;
+  try { await shareTextOnly(); } catch (error) {
     if (error.name !== "AbortError") showToast(localeData[currentLanguage].error);
   }
 });

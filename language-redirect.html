@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Workout motivation in your language. The answer is always yes." />
+    <link rel="canonical" href="https://shouldiworkout.today/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://shouldiworkout.today/pt" />
+    <link rel="alternate" hreflang="en" href="https://shouldiworkout.today/en" />
+    <link rel="alternate" hreflang="es" href="https://shouldiworkout.today/es" />
+    <link rel="alternate" hreflang="de" href="https://shouldiworkout.today/de" />
+    <link rel="alternate" hreflang="it" href="https://shouldiworkout.today/it" />
+    <link rel="alternate" hreflang="fr" href="https://shouldiworkout.today/fr" />
+    <link rel="alternate" hreflang="ja" href="https://shouldiworkout.today/ja" />
+    <link rel="alternate" hreflang="ko" href="https://shouldiworkout.today/ko" />
+    <link rel="alternate" hreflang="zh-CN" href="https://shouldiworkout.today/zh" />
+    <link rel="alternate" hreflang="x-default" href="https://shouldiworkout.today/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <title>Should I Work Out Today?</title>
+    <script>
+      (function () {
+        const supported = ["pt", "en", "es", "de", "it", "fr", "ja", "ko", "zh"];
+        const saved = localStorage.getItem("workout-language");
+        const browserLanguage = (navigator.languages || [navigator.language])
+          .map((language) => language.toLowerCase().split("-")[0])
+          .find((language) => supported.includes(language));
+        const language = supported.includes(saved) ? saved : browserLanguage || "en";
+        window.location.replace(`/${language}`);
+      }());
+    </script>
+  </head>
+  <body>
+    <noscript><a href="/en">Continue to Should I Work Out Today?</a></noscript>
+  </body>
+</html>

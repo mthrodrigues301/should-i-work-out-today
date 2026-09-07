@@ -12,10 +12,13 @@ The project is inspired by the simple and playful concept behind [shouldideploy.
 - Keyboard interaction with the space bar
 - Light and dark themes
 - Language preference saved in the browser
+- Browser-language detection on the first visit
+- Indexable language URLs such as `/pt`, `/en`, and `/ja`
 - Responsive layout for mobile and desktop
 - Optional interaction sound
 - Native mobile sharing when supported
 - Automatic 1080 × 1920 image generation for Instagram Stories, WhatsApp, and other platforms
+- Story card, transparent PNG, and text-only sharing modes
 - No frameworks, runtime dependencies, or tracking
 
 ## Languages
@@ -35,6 +38,7 @@ The complete interface and motivational message collection are available in:
 | Simplified Chinese | `zh` |
 
 The selected language and theme are stored locally and restored on the next visit.
+Opening the root domain automatically selects the closest supported browser language. A language chosen manually is reflected in the URL and takes priority on future visits.
 
 ## Getting started
 
@@ -76,6 +80,7 @@ The sharing feature draws the current answer, label, message, and attribution on
 ├── styles.css          # Responsive design, animations, and themes
 ├── script.js           # Interactions, consent, preferences, and sharing
 ├── build.mjs           # Generates one indexable HTML page per language
+├── language-redirect.html # Selects a language on first visit
 ├── locales/            # One translation file per language
 ├── privacy.html        # Privacy policy
 ├── robots.txt          # Search crawler rules

@@ -73,5 +73,6 @@ const files = [
 ];
 for (const file of files) await cp(path.join(root, file), path.join(output, file));
 await cp(path.join(root, "locales"), path.join(output, "locales"), { recursive: true });
+await cp(path.join(root, "language-redirect.html"), path.join(output, "index.html"));
 
 console.log(`Built ${languages.length} localized pages in dist/.`);

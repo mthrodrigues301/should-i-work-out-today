@@ -4,9 +4,6 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    { "source": "/", "destination": "/pt", "permanent": true }
-  ],
   "headers": [
     {
       "source": "/(.*)",

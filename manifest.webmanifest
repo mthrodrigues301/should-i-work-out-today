@@ -2,7 +2,7 @@
   "name": "Should I Work Out Today?",
   "short_name": "Work Out?",
   "description": "A multilingual motivational website that always says yes to working out.",
-  "start_url": "/pt",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#f1efe8",
   "theme_color": "#eaff38",
