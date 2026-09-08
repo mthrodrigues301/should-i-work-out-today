@@ -140,7 +140,11 @@ main { min-height: 100svh; }
 }
 .eyebrow span { width: 100%; }
 
-.answer-wrap { width: 100%; max-width: 1160px; }
+.answer-wrap {
+  width: 100%;
+  max-width: 1160px;
+  padding-top: 10px;
+}
 
 h1 {
   display: block;
@@ -149,8 +153,8 @@ h1 {
   font-family: "Anton", "Arial Narrow", sans-serif;
   font-weight: 400;
   font-size: clamp(132px, 28vw, 390px);
-  line-height: .7;
-  letter-spacing: -.055em;
+  line-height: .78;
+  letter-spacing: -.015em;
   text-transform: uppercase;
   white-space: nowrap;
   word-break: normal;
@@ -357,6 +361,7 @@ body.dark .noise { mix-blend-mode: screen; opacity: .08; }
   :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) h1 { font-size: clamp(92px, 30vw, 160px); }
   :is(html:lang(ja), html:lang(ko), html:lang(zh-CN)) #message { margin-top: 18px; }
   .hero.compact { padding: 88px 20px 78px; }
+  .hero.compact .answer-wrap { padding-top: 6px; }
   .hero.compact h1 { font-size: clamp(82px, 34vw, 150px); }
   .hero.compact :is(#message, #source) { max-width: 100%; }
   .hero-actions { width: 100%; flex-wrap: wrap; }
