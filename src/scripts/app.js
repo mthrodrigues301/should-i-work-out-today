@@ -35,6 +35,7 @@ const closeSharePanel = document.querySelector("#closeSharePanel");
 
 let currentIndex = -1;
 let soundOn = false;
+const preparedShareImages = new Map();
 const pathLanguage = window.location.protocol === "file:"
   ? null
   : window.location.pathname.split("/").filter(Boolean)[0];
@@ -98,6 +99,7 @@ function scheduleHeroFit() {
 }
 
 function nextMotivation() {
+  preparedShareImages.clear();
   const motivations = localeData[currentLanguage].motivations;
   let next;
   do next = Math.floor(Math.random() * motivations.length);
@@ -181,6 +183,7 @@ function updateThemeButtons() {
 }
 
 function setTheme(theme, savePreference = true) {
+  preparedShareImages.clear();
   const dark = theme === "dark";
   document.body.classList.toggle("dark", dark);
   document.documentElement.style.colorScheme = dark ? "dark" : "light";
@@ -333,6 +336,24 @@ async function createStoryImage(transparent = false) {
   });
 }
 
+function getShareImageKey(transparent) {
+  const theme = document.body.classList.contains("dark") ? "dark" : "light";
+  return [currentLanguage, currentIndex, theme, transparent ? "transparent" : "story"].join(":");
+}
+
+async function prepareShareImage(transparent, button) {
+  const key = getShareImageKey(transparent);
+  if (preparedShareImages.has(key)) return;
+  button.disabled = true;
+  button.setAttribute("aria-busy", "true");
+  try {
+    preparedShareImages.set(key, await createStoryImage(transparent));
+  } finally {
+    button.disabled = false;
+    button.removeAttribute("aria-busy");
+  }
+}
+
 function downloadStoryImage(blob, transparent = false) {
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
@@ -345,11 +366,12 @@ function downloadStoryImage(blob, transparent = false) {
 
 async function shareImage(transparent = false) {
   const text = `Should I Work Out Today? ${localeData[currentLanguage].yes} ${message.textContent}`;
-  const blob = await createStoryImage(transparent);
+  const key = getShareImageKey(transparent);
+  const blob = preparedShareImages.get(key) || await createStoryImage(transparent);
   const filename = transparent ? "should-i-work-out-today-transparent.png" : "should-i-work-out-today-story.png";
   const file = new File([blob], filename, { type: "image/png" });
   const shareData = { title: "Should I Work Out Today?", text, files: [file] };
-  if (navigator.share && navigator.canShare?.(shareData)) await navigator.share(shareData);
+  if (navigator.share && navigator.canShare?.(shareData)) return navigator.share(shareData);
   else {
     downloadStoryImage(blob, transparent);
     showToast(localeData[currentLanguage].downloaded);
@@ -390,6 +412,8 @@ document.addEventListener("keydown", (event) => {
 shareButton.addEventListener("click", () => {
   consentPanel.hidden = true;
   sharePanel.hidden = false;
+  void prepareShareImage(false, shareStoryButton).catch(() => showToast(localeData[currentLanguage].error));
+  void prepareShareImage(true, shareTransparentButton).catch(() => showToast(localeData[currentLanguage].error));
 });
 closeSharePanel.addEventListener("click", () => { sharePanel.hidden = true; });
 document.addEventListener("keydown", (event) => {
