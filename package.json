@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node build.mjs",
-    "start": "npx serve ."
+    "build": "node scripts/build.mjs",
+    "start": "npm run build && npx serve dist",
+    "preview": "npm run start"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -19,7 +19,8 @@ The project is inspired by the simple and playful concept behind [shouldideploy.
 - Native mobile sharing when supported
 - Automatic 1080 × 1920 image generation for Instagram Stories, WhatsApp, and other platforms
 - Story card, transparent PNG, and text-only sharing modes
-- No frameworks, runtime dependencies, or tracking
+- No frontend framework
+- Privacy-first, consent-gated analytics and performance monitoring
 
 ## Languages
 
@@ -60,7 +61,7 @@ Then visit [http://localhost:3000](http://localhost:3000).
 
 ## How it works
 
-Each language lives in its own file inside `locales/`. The application loads the translations, randomly selects one of 50 messages in the active language, and avoids showing the same one twice in a row.
+Each language lives in its own file inside `src/locales/`. The application loads the translations, randomly selects one of 50 messages in the active language, and avoids showing the same one twice in a row.
 
 The sharing feature draws the current answer, label, message, and attribution onto an HTML canvas. On compatible mobile browsers, the generated PNG is passed to the native share menu. On unsupported browsers, the image is downloaded instead.
 
@@ -68,8 +69,8 @@ The sharing feature draws the current answer, label, message, and attribution on
 
 ## Add a translation
 
-1. Add a new option to the language selector in `index.html`.
-2. Create the matching translation file inside `locales/`, using an existing locale as a template.
+1. Add a new option to the language selector in `src/index.html`.
+2. Create the matching translation file inside `src/locales/`, using an existing locale as a template.
 3. Translate the interface labels, feedback messages, main “yes” answer, and motivational messages.
 4. Test the regular layout and the generated Story image with both themes.
 
@@ -77,18 +78,21 @@ The sharing feature draws the current answer, label, message, and attribution on
 
 ```text
 .
-├── index.html          # Page structure, metadata, and accessibility
-├── styles.css          # Responsive design, animations, and themes
-├── script.js           # Interactions, consent, preferences, and sharing
-├── analytics.js        # Consent-gated Vercel Analytics and Speed Insights
-├── build.mjs           # Generates one indexable HTML page per language
-├── language-redirect.html # Selects a language on first visit
-├── locales/            # One translation file per language
-├── privacy.html        # Privacy policy
-├── robots.txt          # Search crawler rules
-├── sitemap.xml         # Localized production URLs
-├── assets/images/      # Essential SVG sources (favicon and social card)
-├── manifest.webmanifest
+├── src/                 # Application source code
+│   ├── index.html       # Page template, metadata, and accessibility
+│   ├── privacy.html     # Privacy policy
+│   ├── language-redirect.html
+│   ├── styles/          # Responsive design, animations, and themes
+│   ├── scripts/         # Interactions and consent-gated analytics
+│   ├── locales/         # One translation file per language
+│   └── assets/          # Source files transformed during the build
+├── public/              # Static files copied directly to production
+│   ├── assets/          # Public brand assets and favicon
+│   ├── manifest.webmanifest
+│   ├── robots.txt
+│   └── sitemap.xml
+├── scripts/build.mjs    # Generates the production site in dist/
+├── dist/                # Generated output (not committed)
 ├── vercel.json         # Vercel build, routing, and security headers
 └── README.md
 ```
@@ -97,7 +101,7 @@ The sharing feature draws the current answer, label, message, and attribution on
 
 This static website is configured for Vercel through `vercel.json`, including localized pre-rendering, clean URLs, security headers, and production redirects.
 
-The Open Graph PNG is generated from `assets/images/og-image.svg` during the build and is intentionally not committed to the repository.
+The Open Graph PNG is generated from `src/assets/og-image.svg` during the build and is intentionally not committed to the repository.
 
 Import the repository into Vercel and keep the framework preset as **Other**. Vercel reads the build and output settings from `vercel.json`. The production domain used by canonical URLs, social metadata, `robots.txt`, and the sitemap is [shouldiworkout.today](https://shouldiworkout.today).
 

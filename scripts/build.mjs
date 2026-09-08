@@ -5,6 +5,8 @@ import { build } from "esbuild";
 import sharp from "sharp";
 
 const root = process.cwd();
+const source = path.join(root, "src");
+const publicDirectory = path.join(root, "public");
 const output = path.join(root, "dist");
 const languages = ["pt", "en", "es", "de", "it", "fr", "ja", "ko", "zh"];
 const ogLocales = {
@@ -37,7 +39,7 @@ await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 
 await build({
-  entryPoints: [path.join(root, "analytics.js")],
+  entryPoints: [path.join(source, "scripts", "analytics.js")],
   bundle: true,
   format: "esm",
   minify: true,
@@ -45,16 +47,16 @@ await build({
   target: ["es2020"]
 });
 
-await sharp(path.join(root, "assets", "images", "og-image.svg"))
+await sharp(path.join(source, "assets", "og-image.svg"))
   .png({ compressionLevel: 9 })
   .toFile(path.join(output, "og-image.png"));
 
-const template = (await readFile(path.join(root, "index.html"), "utf8"))
+const template = (await readFile(path.join(source, "index.html"), "utf8"))
   .replace(/\s*<script type="importmap">[\s\S]*?<\/script>/, "");
 const context = vm.createContext({ window: {} });
 
 for (const language of languages) {
-  const localeScript = await readFile(path.join(root, "locales", `${language}.js`), "utf8");
+  const localeScript = await readFile(path.join(source, "locales", `${language}.js`), "utf8");
   vm.runInContext(localeScript, context);
 }
 
@@ -84,14 +86,13 @@ for (const language of languages) {
   await writeFile(path.join(output, `${language}.html`), html);
 }
 
-const files = [
-  "styles.css", "script.js", "robots.txt", "sitemap.xml", "manifest.webmanifest",
-  "privacy.html", "LICENSE", "NOTICE"
-];
-for (const file of files) await cp(path.join(root, file), path.join(output, file));
-await mkdir(path.join(output, "assets", "images"), { recursive: true });
-await cp(path.join(root, "assets", "images", "favicon.svg"), path.join(output, "assets", "images", "favicon.svg"));
-await cp(path.join(root, "locales"), path.join(output, "locales"), { recursive: true });
-await cp(path.join(root, "language-redirect.html"), path.join(output, "index.html"));
+await cp(publicDirectory, output, { recursive: true });
+await cp(path.join(source, "styles", "main.css"), path.join(output, "styles.css"));
+await cp(path.join(source, "scripts", "app.js"), path.join(output, "script.js"));
+await cp(path.join(source, "privacy.html"), path.join(output, "privacy.html"));
+await cp(path.join(source, "locales"), path.join(output, "locales"), { recursive: true });
+await cp(path.join(source, "language-redirect.html"), path.join(output, "index.html"));
+await cp(path.join(root, "LICENSE"), path.join(output, "LICENSE"));
+await cp(path.join(root, "NOTICE"), path.join(output, "NOTICE"));
 
 console.log(`Built ${languages.length} localized pages in dist/.`);
