@@ -72,7 +72,7 @@ function fitHeroContent() {
   const fitAnswer = () => {
     answer.style.removeProperty("font-size");
     let answerFontSize = Number.parseFloat(getComputedStyle(answer).fontSize);
-    const minimumAnswerSize = window.innerWidth <= 640 ? 72 : 110;
+    const minimumAnswerSize = window.innerWidth <= 640 ? 56 : 80;
     while (answer.scrollWidth > answerWrap.clientWidth && answerFontSize > minimumAnswerSize) {
       answerFontSize -= 2;
       answer.style.fontSize = `${answerFontSize}px`;
@@ -453,4 +453,5 @@ window.addEventListener("popstate", () => {
   applyLanguage(language || "pt");
 });
 window.addEventListener("resize", scheduleHeroFit);
+if (document.fonts?.ready) document.fonts.ready.then(scheduleHeroFit);
 applyLanguage(currentLanguage);

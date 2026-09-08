@@ -6,6 +6,14 @@
   --line: rgba(17, 17, 15, 0.2);
 }
 
+@font-face {
+  font-family: "Anton";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2");
+}
+
 * { box-sizing: border-box; }
 
 html { color-scheme: light; }
@@ -132,17 +140,21 @@ main { min-height: 100svh; }
 }
 .eyebrow span { width: 100%; }
 
-.answer-wrap { max-width: 1160px; }
+.answer-wrap { width: 100%; max-width: 1160px; }
 
 h1 {
+  display: block;
+  width: max-content;
   margin: 0;
-  max-width: 100%;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: "Anton", "Arial Narrow", sans-serif;
+  font-weight: 400;
   font-size: clamp(132px, 28vw, 390px);
   line-height: .7;
   letter-spacing: -.055em;
   text-transform: uppercase;
   white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 #message {

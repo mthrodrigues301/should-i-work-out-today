@@ -89,6 +89,15 @@ for (const language of languages) {
 await cp(publicDirectory, output, { recursive: true });
 await cp(path.join(source, "styles", "main.css"), path.join(output, "styles.css"));
 await cp(path.join(source, "scripts", "app.js"), path.join(output, "script.js"));
+await mkdir(path.join(output, "assets", "fonts"), { recursive: true });
+await cp(
+  path.join(root, "node_modules", "@fontsource", "anton", "files", "anton-latin-400-normal.woff2"),
+  path.join(output, "assets", "fonts", "anton-latin-400-normal.woff2")
+);
+await cp(
+  path.join(root, "node_modules", "@fontsource", "anton", "LICENSE"),
+  path.join(output, "assets", "fonts", "OFL.txt")
+);
 await cp(path.join(source, "privacy.html"), path.join(output, "privacy.html"));
 await cp(path.join(source, "locales"), path.join(output, "locales"), { recursive: true });
 await cp(path.join(source, "language-redirect.html"), path.join(output, "index.html"));
