@@ -7,6 +7,7 @@ const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
 const hero = document.querySelector("#hero");
 const answerWrap = document.querySelector(".answer-wrap");
+const answer = document.querySelector("#answer");
 const message = document.querySelector("#message");
 const source = document.querySelector("#source");
 const nextButton = document.querySelector("#nextButton");
@@ -65,10 +66,24 @@ function playClick() {
 
 function fitHeroContent() {
   hero.classList.remove("compact");
+  answer.style.removeProperty("font-size");
   message.style.removeProperty("font-size");
+
+  const fitAnswer = () => {
+    answer.style.removeProperty("font-size");
+    let answerFontSize = Number.parseFloat(getComputedStyle(answer).fontSize);
+    const minimumAnswerSize = window.innerWidth <= 640 ? 72 : 110;
+    while (answer.scrollWidth > answerWrap.clientWidth && answerFontSize > minimumAnswerSize) {
+      answerFontSize -= 2;
+      answer.style.fontSize = `${answerFontSize}px`;
+    }
+  };
+
+  fitAnswer();
 
   if (hero.scrollHeight <= hero.clientHeight + 1) return;
   hero.classList.add("compact");
+  fitAnswer();
 
   let fontSize = Number.parseFloat(getComputedStyle(message).fontSize);
   const minimumFontSize = window.innerWidth <= 640 ? 20 : 24;

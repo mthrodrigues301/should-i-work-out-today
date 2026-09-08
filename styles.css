@@ -136,11 +136,13 @@ main { min-height: 100svh; }
 
 h1 {
   margin: 0;
+  max-width: 100%;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: clamp(132px, 28vw, 390px);
   line-height: .7;
   letter-spacing: -.055em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 #message {

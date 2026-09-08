@@ -15,7 +15,7 @@
       ]
     },
     {
-      "source": "/(favicon.svg|og-image.png|manifest.webmanifest)",
+      "source": "/(assets/images/favicon.svg|og-image.png|manifest.webmanifest)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]

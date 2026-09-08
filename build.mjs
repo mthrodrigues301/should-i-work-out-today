@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import vm from "node:vm";
 import { build } from "esbuild";
+import sharp from "sharp";
 
 const root = process.cwd();
 const output = path.join(root, "dist");
@@ -44,6 +45,10 @@ await build({
   target: ["es2020"]
 });
 
+await sharp(path.join(root, "assets", "images", "og-image.svg"))
+  .png({ compressionLevel: 9 })
+  .toFile(path.join(output, "og-image.png"));
+
 const template = (await readFile(path.join(root, "index.html"), "utf8"))
   .replace(/\s*<script type="importmap">[\s\S]*?<\/script>/, "");
 const context = vm.createContext({ window: {} });
@@ -81,9 +86,11 @@ for (const language of languages) {
 
 const files = [
   "styles.css", "script.js", "robots.txt", "sitemap.xml", "manifest.webmanifest",
-  "favicon.svg", "og-image.svg", "og-image.png", "privacy.html", "LICENSE", "NOTICE"
+  "privacy.html", "LICENSE", "NOTICE"
 ];
 for (const file of files) await cp(path.join(root, file), path.join(output, file));
+await mkdir(path.join(output, "assets", "images"), { recursive: true });
+await cp(path.join(root, "assets", "images", "favicon.svg"), path.join(output, "assets", "images", "favicon.svg"));
 await cp(path.join(root, "locales"), path.join(output, "locales"), { recursive: true });
 await cp(path.join(root, "language-redirect.html"), path.join(output, "index.html"));
 

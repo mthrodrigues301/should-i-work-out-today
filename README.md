@@ -87,6 +87,7 @@ The sharing feature draws the current answer, label, message, and attribution on
 ├── privacy.html        # Privacy policy
 ├── robots.txt          # Search crawler rules
 ├── sitemap.xml         # Localized production URLs
+├── assets/images/      # Essential SVG sources (favicon and social card)
 ├── manifest.webmanifest
 ├── vercel.json         # Vercel build, routing, and security headers
 └── README.md
@@ -95,6 +96,8 @@ The sharing feature draws the current answer, label, message, and attribution on
 ## Deployment
 
 This static website is configured for Vercel through `vercel.json`, including localized pre-rendering, clean URLs, security headers, and production redirects.
+
+The Open Graph PNG is generated from `assets/images/og-image.svg` during the build and is intentionally not committed to the repository.
 
 Import the repository into Vercel and keep the framework preset as **Other**. Vercel reads the build and output settings from `vercel.json`. The production domain used by canonical URLs, social metadata, `robots.txt`, and the sitemap is [shouldiworkout.today](https://shouldiworkout.today).
 

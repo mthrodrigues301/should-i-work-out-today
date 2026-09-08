@@ -1,4 +1,8 @@
 dist/
 .vercel/
 node_modules/
+social/
+content/
+assets/brand/
+og-image.png
 .DS_Store
