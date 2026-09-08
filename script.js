@@ -2,7 +2,7 @@ const localeData = window.WORKOUT_LOCALES;
 const SITE_URL = "https://shouldiworkout.today";
 const supportedLanguages = Object.keys(localeData);
 const CONSENT_KEY = "workout-consent-v1";
-const OPTIONAL_SERVICES_ENABLED = true;
+const OPTIONAL_SERVICES_ENABLED = false;
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
 const hero = document.querySelector("#hero");

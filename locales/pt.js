@@ -26,7 +26,7 @@ window.WORKOUT_LOCALES.pt = {
   "transparentDescription": "Para colocar sobre uma foto",
   "textOption": "Somente texto",
   "textDescription": "Compartilhar ou copiar a frase",
-  "next": "ME DÊ OUTRO MOTIVO",
+  "next": "OUTRO MOTIVO",
   "instruction": "CLIQUE OU APERTE",
   "space": "ESPAÇO",
   "share": "COMPARTILHAR",
