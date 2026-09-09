@@ -16,6 +16,7 @@ The project is inspired by the simple and playful concept behind [shouldideploy.
 - Indexable language URLs such as `/pt`, `/en`, and `/ja`
 - Responsive layout for mobile and desktop
 - Optional interaction sound
+- Opt-in daily motivational push notifications
 - Native mobile sharing when supported
 - Automatic 1080 × 1920 image generation for Instagram Stories, WhatsApp, and other platforms
 - Story card, transparent PNG, and text-only sharing modes
@@ -104,6 +105,12 @@ This static website is configured for Vercel through `vercel.json`, including lo
 The Open Graph PNG is generated from `src/assets/og-image.svg` during the build and is intentionally not committed to the repository.
 
 Import the repository into Vercel and keep the framework preset as **Other**. Vercel reads the build and output settings from `vercel.json`. The production domain used by canonical URLs, social metadata, `robots.txt`, and the sitemap is [shouldiworkout.today](https://shouldiworkout.today).
+
+### Daily notifications
+
+Daily Web Push is sent at 12:00 UTC (09:00 in São Paulo) by a Vercel Cron job. Configure an Upstash Redis database and copy `.env.example` to `.env.local` for local development. Generate VAPID keys with `npx web-push generate-vapid-keys` and add all six variables to the Vercel project.
+
+On iPhone and iPad, Web Push requires iOS/iPadOS 16.4 or newer and the website must first be added to the Home Screen. Notification permission is requested only after the visitor presses the daily reminder button.
 
 > Vercel's Hobby plan is intended for non-commercial personal use. Review the current Vercel plan terms before enabling advertising, affiliate links, sponsorships, or paid features.
 

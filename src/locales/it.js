@@ -34,6 +34,7 @@ window.WORKOUT_LOCALES.it = {
   "dark": "MODALITÀ SCURA ◐",
   "light": "MODALITÀ CHIARA ◐",
   "sound": "SUONO",
+  "notifications": "PROMEMORIA GIORNALIERO", "notificationsOn": "PROMEMORIA ATTIVATO ✓", "notificationsOff": "PROMEMORIA DISATTIVATO", "notificationsDenied": "ATTIVA LE NOTIFICHE NELLE IMPOSTAZIONI", "notificationsUnsupported": "AGGIUNGI IL SITO ALLA SCHERMATA HOME", "notificationsUnavailable": "PROMEMORIA DISPONIBILI SUL SITO PUBBLICATO",
   "copied": "FRASE COPIATA ✓",
   "downloaded": "IMMAGINE PER LE STORIE SCARICATA ✓",
   "error": "IMPOSSIBILE CONDIVIDERE",

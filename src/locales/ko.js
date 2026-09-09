@@ -34,6 +34,7 @@ window.WORKOUT_LOCALES.ko = {
   "dark": "다크 모드 ◐",
   "light": "라이트 모드 ◐",
   "sound": "소리",
+  "notifications": "매일 알림", "notificationsOn": "매일 알림이 켜졌습니다 ✓", "notificationsOff": "매일 알림이 꺼졌습니다", "notificationsDenied": "설정에서 알림을 허용하세요", "notificationsUnsupported": "홈 화면에 사이트를 추가하세요", "notificationsUnavailable": "알림은 공개된 사이트에서 사용할 수 있습니다",
   "copied": "문구 복사 완료 ✓",
   "downloaded": "스토리 이미지 저장 완료 ✓",
   "error": "공유할 수 없습니다",

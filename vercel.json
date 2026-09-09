@@ -4,6 +4,9 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "crons": [
+    { "path": "/api/notifications/send", "schedule": "0 12 * * *" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -15,7 +18,7 @@
       ]
     },
     {
-      "source": "/(assets/images/favicon.svg|og-image.png|manifest.webmanifest)",
+      "source": "/(assets/images/favicon.svg|assets/images/icon-180.png|assets/images/icon-192.png|assets/images/icon-512.png|og-image.png|manifest.webmanifest)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]

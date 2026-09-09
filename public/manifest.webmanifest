@@ -2,11 +2,15 @@
   "name": "Should I Work Out Today?",
   "short_name": "Work Out?",
   "description": "A multilingual motivational website that always says yes to working out.",
+  "id": "/",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f1efe8",
   "theme_color": "#eaff38",
   "icons": [
-    { "src": "/assets/images/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    { "src": "/assets/images/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ]
 }

@@ -34,6 +34,7 @@ window.WORKOUT_LOCALES.es = {
   "dark": "MODO OSCURO ◐",
   "light": "MODO CLARO ◐",
   "sound": "SONIDO",
+  "notifications": "RECORDATORIO DIARIO", "notificationsOn": "RECORDATORIO ACTIVADO ✓", "notificationsOff": "RECORDATORIO DESACTIVADO", "notificationsDenied": "ACTIVA LAS NOTIFICACIONES EN AJUSTES", "notificationsUnsupported": "AÑADE EL SITIO A TU PANTALLA DE INICIO", "notificationsUnavailable": "RECORDATORIOS DISPONIBLES EN EL SITIO PUBLICADO",
   "copied": "FRASE COPIADA ✓",
   "downloaded": "IMAGEN PARA STORIES DESCARGADA ✓",
   "error": "NO SE PUDO COMPARTIR",

@@ -51,6 +51,14 @@ await sharp(path.join(source, "assets", "og-image.svg"))
   .png({ compressionLevel: 9 })
   .toFile(path.join(output, "og-image.png"));
 
+await mkdir(path.join(output, "assets", "images"), { recursive: true });
+for (const size of [180, 192, 512]) {
+  await sharp(path.join(publicDirectory, "assets", "images", "favicon.svg"))
+    .resize(size, size)
+    .png({ compressionLevel: 9 })
+    .toFile(path.join(output, "assets", "images", `icon-${size}.png`));
+}
+
 const template = (await readFile(path.join(source, "index.html"), "utf8"))
   .replace(/\s*<script type="importmap">[\s\S]*?<\/script>/, "");
 const context = vm.createContext({ window: {} });
@@ -89,6 +97,7 @@ for (const language of languages) {
 await cp(publicDirectory, output, { recursive: true });
 await cp(path.join(source, "styles", "main.css"), path.join(output, "styles.css"));
 await cp(path.join(source, "scripts", "app.js"), path.join(output, "script.js"));
+await cp(path.join(source, "service-worker.js"), path.join(output, "service-worker.js"));
 await mkdir(path.join(output, "assets", "fonts"), { recursive: true });
 await cp(
   path.join(root, "node_modules", "@fontsource", "anton", "files", "anton-latin-400-normal.woff2"),

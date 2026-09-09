@@ -34,6 +34,7 @@ window.WORKOUT_LOCALES.de = {
   "dark": "DUNKEL ◐",
   "light": "HELL ◐",
   "sound": "TON",
+  "notifications": "TÄGLICHE ERINNERUNG", "notificationsOn": "ERINNERUNG AKTIVIERT ✓", "notificationsOff": "ERINNERUNG DEAKTIVIERT", "notificationsDenied": "BENACHRICHTIGUNGEN IN DEN EINSTELLUNGEN AKTIVIEREN", "notificationsUnsupported": "ZUM STARTBILDSCHIRM HINZUFÜGEN", "notificationsUnavailable": "ERINNERUNGEN SIND AUF DER LIVE-WEBSITE VERFÜGBAR",
   "copied": "SPRUCH KOPIERT ✓",
   "downloaded": "STORY-BILD HERUNTERGELADEN ✓",
   "error": "TEILEN NICHT MÖGLICH",

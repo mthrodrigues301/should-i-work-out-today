@@ -34,6 +34,7 @@ window.WORKOUT_LOCALES.zh = {
   "dark": "深色模式 ◐",
   "light": "浅色模式 ◐",
   "sound": "声音",
+  "notifications": "每日提醒", "notificationsOn": "每日提醒已开启 ✓", "notificationsOff": "每日提醒已关闭", "notificationsDenied": "请在设置中开启通知", "notificationsUnsupported": "请将网站添加到主屏幕", "notificationsUnavailable": "提醒功能可在已发布的网站使用",
   "copied": "文案已复制 ✓",
   "downloaded": "故事图片已下载 ✓",
   "error": "无法分享",
