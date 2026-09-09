@@ -34,6 +34,7 @@ window.WORKOUT_LOCALES.en = {
   "dark": "DARK MODE ◐",
   "light": "LIGHT MODE ◐",
   "sound": "SOUND",
+  "notifications": "DAILY REMINDER", "notificationsOn": "DAILY REMINDER ENABLED ✓", "notificationsOff": "DAILY REMINDER DISABLED", "notificationsDenied": "ENABLE NOTIFICATIONS IN SETTINGS", "notificationsUnsupported": "ADD THIS SITE TO YOUR HOME SCREEN", "notificationsUnavailable": "REMINDERS ARE AVAILABLE ON THE LIVE SITE",
   "copied": "QUOTE COPIED ✓",
   "downloaded": "STORY IMAGE DOWNLOADED ✓",
   "error": "COULD NOT SHARE",

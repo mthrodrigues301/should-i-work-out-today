@@ -34,6 +34,7 @@ window.WORKOUT_LOCALES.ja = {
   "dark": "ダークモード ◐",
   "light": "ライトモード ◐",
   "sound": "サウンド",
+  "notifications": "毎日のリマインダー", "notificationsOn": "リマインダーを有効にしました ✓", "notificationsOff": "リマインダーを無効にしました", "notificationsDenied": "設定で通知を有効にしてください", "notificationsUnsupported": "ホーム画面に追加してください", "notificationsUnavailable": "リマインダーは公開サイトで利用できます",
   "copied": "コピーしました ✓",
   "downloaded": "ストーリー画像を保存しました ✓",
   "error": "シェアできませんでした",

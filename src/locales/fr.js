@@ -34,6 +34,7 @@ window.WORKOUT_LOCALES.fr = {
   "dark": "MODE SOMBRE ◐",
   "light": "MODE CLAIR ◐",
   "sound": "SON",
+  "notifications": "RAPPEL QUOTIDIEN", "notificationsOn": "RAPPEL ACTIVÉ ✓", "notificationsOff": "RAPPEL DÉSACTIVÉ", "notificationsDenied": "ACTIVEZ LES NOTIFICATIONS DANS LES RÉGLAGES", "notificationsUnsupported": "AJOUTEZ LE SITE À L’ÉCRAN D’ACCUEIL", "notificationsUnavailable": "RAPPELS DISPONIBLES SUR LE SITE PUBLIÉ",
   "copied": "PHRASE COPIÉE ✓",
   "downloaded": "IMAGE POUR STORY TÉLÉCHARGÉE ✓",
   "error": "PARTAGE IMPOSSIBLE",

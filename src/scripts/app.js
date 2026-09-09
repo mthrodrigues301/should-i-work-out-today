@@ -32,6 +32,8 @@ const shareStoryButton = document.querySelector("#shareStoryButton");
 const shareTransparentButton = document.querySelector("#shareTransparentButton");
 const shareTextButton = document.querySelector("#shareTextButton");
 const closeSharePanel = document.querySelector("#closeSharePanel");
+const notificationButton = document.querySelector("#notificationButton");
+const notificationLabel = document.querySelector("#notificationLabel");
 
 let currentIndex = -1;
 let soundOn = false;
@@ -136,6 +138,7 @@ function applyLanguage(language, updateUrl = false) {
   document.querySelector("#shareText").textContent = copy.share;
   document.querySelector("#instagramCtaText").textContent = copy.instagramCta;
   document.querySelector("#soundText").textContent = copy.sound;
+  document.querySelector("#notificationText").textContent = copy.notifications;
   privacyButton.textContent = copy.privacy;
   document.querySelector("#consentTitle").textContent = copy.consentTitle;
   document.querySelector("#consentText").textContent = copy.consentText;
@@ -186,8 +189,11 @@ function setTheme(theme, savePreference = true) {
   preparedShareImages.clear();
   const dark = theme === "dark";
   document.body.classList.toggle("dark", dark);
+  document.documentElement.classList.toggle("dark", dark);
   document.documentElement.style.colorScheme = dark ? "dark" : "light";
   document.querySelector('meta[name="theme-color"]').content = dark ? "#0c0d0b" : "#f1efe8";
+  const statusBarStyle = document.querySelector("#appleStatusBarStyle");
+  if (statusBarStyle) statusBarStyle.content = dark ? "black-translucent" : "default";
   if (savePreference) localStorage.setItem("workout-theme", dark ? "dark" : "light");
   updateThemeButtons();
 }
@@ -455,6 +461,81 @@ soundToggle.addEventListener("click", () => {
   soundLabel.textContent = soundOn ? "ON" : "OFF";
   playClick();
 });
+
+function urlBase64ToUint8Array(value) {
+  const padding = "=".repeat((4 - value.length % 4) % 4);
+  const base64 = (value + padding).replaceAll("-", "+").replaceAll("_", "/");
+  return Uint8Array.from(atob(base64), (character) => character.charCodeAt(0));
+}
+
+async function getPushRegistration() {
+  if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) return null;
+  return navigator.serviceWorker.register("/service-worker.js");
+}
+
+async function updateNotificationState() {
+  const registration = await getPushRegistration();
+  const subscription = await registration?.pushManager.getSubscription();
+  notificationButton.setAttribute("aria-pressed", String(Boolean(subscription)));
+  notificationLabel.textContent = subscription ? "ON" : "OFF";
+}
+
+async function toggleNotifications() {
+  notificationButton.disabled = true;
+  try {
+    const registration = await getPushRegistration();
+    if (!registration) {
+      showToast(localeData[currentLanguage].notificationsUnsupported);
+      return;
+    }
+    const existing = await registration.pushManager.getSubscription();
+    if (existing) {
+      await fetch("/api/notifications/subscribe", {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ endpoint: existing.endpoint })
+      });
+      await existing.unsubscribe();
+      showToast(localeData[currentLanguage].notificationsOff);
+    } else {
+      const permission = await Notification.requestPermission();
+      if (permission !== "granted") {
+        showToast(localeData[currentLanguage].notificationsDenied);
+        return;
+      }
+      const keyResponse = await fetch("/api/notifications/public-key");
+      if (keyResponse.status === 503 || keyResponse.status === 404) {
+        showToast(localeData[currentLanguage].notificationsUnavailable);
+        return;
+      }
+      if (!keyResponse.ok) throw new Error("Could not load push configuration");
+      const { publicKey } = await keyResponse.json();
+      const subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(publicKey)
+      });
+      const response = await fetch("/api/notifications/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ subscription: subscription.toJSON(), language: currentLanguage })
+      });
+      if (!response.ok) {
+        await subscription.unsubscribe();
+        throw new Error("Could not save push subscription");
+      }
+      showToast(localeData[currentLanguage].notificationsOn);
+    }
+  } catch (error) {
+    console.error(error);
+    showToast(localeData[currentLanguage].error);
+  } finally {
+    notificationButton.disabled = false;
+    await updateNotificationState().catch(() => {});
+  }
+}
+
+notificationButton.addEventListener("click", toggleNotifications);
+void updateNotificationState();
 
 const savedTheme = localStorage.getItem("workout-theme");
 setTheme(savedTheme || (systemTheme.matches ? "dark" : "light"), false);

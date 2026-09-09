@@ -34,6 +34,7 @@ window.WORKOUT_LOCALES.pt = {
   "dark": "MODO ESCURO ◐",
   "light": "MODO CLARO ◐",
   "sound": "SOM",
+  "notifications": "LEMBRETE DIÁRIO", "notificationsOn": "LEMBRETE DIÁRIO ATIVADO ✓", "notificationsOff": "LEMBRETE DIÁRIO DESATIVADO", "notificationsDenied": "ATIVE AS NOTIFICAÇÕES NOS AJUSTES", "notificationsUnsupported": "INSTALE O SITE NA TELA DE INÍCIO", "notificationsUnavailable": "LEMBRETES DISPONÍVEIS NO SITE PUBLICADO",
   "copied": "FRASE COPIADA ✓",
   "downloaded": "IMAGEM PARA STORIES BAIXADA ✓",
   "error": "NÃO FOI POSSÍVEL COMPARTILHAR",
