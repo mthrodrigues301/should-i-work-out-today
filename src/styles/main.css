@@ -300,6 +300,7 @@ kbd {
   white-space: nowrap;
 }
 #notificationButton[aria-pressed="true"] { color: var(--ink); }
+#notificationButton { gap: 7px; }
 #notificationButton[aria-pressed="true"] #notificationLabel { color: #557000; }
 body.dark #notificationButton[aria-pressed="true"] #notificationLabel { color: var(--acid); }
 .theme-switch {
