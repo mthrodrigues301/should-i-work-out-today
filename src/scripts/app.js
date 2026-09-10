@@ -370,13 +370,17 @@ function downloadStoryImage(blob, transparent = false) {
   window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }
 
+function getShareText() {
+  const motivation = `Should I Work Out Today? ${localeData[currentLanguage].yes} ${message.textContent}`;
+  return `${motivation}\n\n${SITE_URL}\n@shouldiworkout.today`;
+}
+
 async function shareImage(transparent = false) {
-  const text = `Should I Work Out Today? ${localeData[currentLanguage].yes} ${message.textContent}`;
   const key = getShareImageKey(transparent);
   const blob = preparedShareImages.get(key) || await createStoryImage(transparent);
   const filename = transparent ? "should-i-work-out-today-transparent.png" : "should-i-work-out-today-story.png";
   const file = new File([blob], filename, { type: "image/png" });
-  const shareData = { title: "Should I Work Out Today?", text, files: [file] };
+  const shareData = { title: "Should I Work Out Today?", text: getShareText(), files: [file] };
   if (navigator.share && navigator.canShare?.(shareData)) return navigator.share(shareData);
   else {
     downloadStoryImage(blob, transparent);
@@ -385,10 +389,8 @@ async function shareImage(transparent = false) {
 }
 
 async function shareTextOnly() {
-  const canonicalUrl = `${SITE_URL}/${currentLanguage}`;
-  const text = `Should I Work Out Today? ${localeData[currentLanguage].yes} ${message.textContent}`;
-  if (navigator.share) return navigator.share({ title: "Should I Work Out Today?", text, url: canonicalUrl });
-  const completeText = `${text} — ${canonicalUrl}`;
+  const completeText = getShareText();
+  if (navigator.share) return navigator.share({ title: "Should I Work Out Today?", text: completeText });
   try {
     await navigator.clipboard.writeText(completeText);
   } catch {
