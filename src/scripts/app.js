@@ -285,6 +285,7 @@ async function createStoryImage(transparent = false) {
   // foreground color identical to the selected site theme.
   const foreground = isDark ? "#f0eee7" : "#11110f";
   const muted = isDark ? "#999a92" : "#77766f";
+  const isAndroid = /Android/i.test(navigator.userAgent);
 
   if (!transparent) {
     context.fillStyle = background;
@@ -319,9 +320,11 @@ async function createStoryImage(transparent = false) {
 
   context.fillStyle = foreground;
   context.font = "900 500px Impact, Arial Black, sans-serif";
+  context.letterSpacing = isAndroid ? "-8px" : "2px";
   drawText(localeData[currentLanguage].yes, 55, 800, 14);
 
   context.font = "900 76px Arial, sans-serif";
+  context.letterSpacing = "2px";
   const lines = wrapCanvasText(context, message.textContent, 930);
   lines.slice(0, 6).forEach((line, index) => drawText(line, 72, 1030 + index * 88, 7));
 
