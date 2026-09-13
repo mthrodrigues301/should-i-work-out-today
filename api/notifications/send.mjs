@@ -1,22 +1,41 @@
+import { createHash } from "node:crypto";
 import { configureWebPush, getRedis, json, SUBSCRIPTIONS_KEY } from "../_lib/push.mjs";
+import { getMotivations } from "../_lib/motivations.mjs";
 import webpush from "web-push";
 
-const messages = {
-  pt: ["Você não precisa estar com vontade. Só precisa começar.", "Hoje não precisa ser recorde. Precisa ser presença.", "Um treino curto ainda é uma vitória completa."],
-  en: ["You don't need to feel ready. You just need to start.", "Today doesn't need to be a record. Just show up.", "A short workout is still a complete victory."],
-  es: ["No necesitas tener ganas. Solo necesitas empezar.", "Hoy no tiene que ser un récord. Solo tienes que aparecer.", "Un entrenamiento corto sigue siendo una victoria."],
-  de: ["Du musst nicht motiviert sein. Du musst nur anfangen.", "Heute zählt kein Rekord, sondern dass du da bist.", "Auch ein kurzes Training ist ein voller Erfolg."],
-  it: ["Non devi averne voglia. Devi solo iniziare.", "Oggi non serve un record. Basta esserci.", "Anche un allenamento breve è una vittoria."],
-  fr: ["Pas besoin d'en avoir envie. Il suffit de commencer.", "Aujourd'hui, pas besoin de record. Sois simplement présent.", "Même un entraînement court est une vraie victoire."],
-  ja: ["やる気を待たなくていい。まず始めよう。", "今日は記録より、やることに意味がある。", "短いトレーニングでも立派な一歩。"],
-  ko: ["의욕을 기다리지 마세요. 그냥 시작하세요.", "오늘은 기록보다 참여가 중요합니다.", "짧은 운동도 완전한 승리입니다."],
-  zh: ["不必等到有动力，现在就开始。", "今天不必破纪录，只要行动。", "短暂的锻炼也是完整的胜利。"]
-};
+const notificationHours = [8, 18];
+const fallbackTimeZone = "America/Sao_Paulo";
 
-function dailyMessage(language) {
-  const list = messages[language] || messages.en;
-  const day = Math.floor(Date.now() / 86400000);
-  return list[day % list.length];
+function localDateParts(timeZone, scheduledHour) {
+  const scheduledTime = new Date();
+  scheduledTime.setUTCHours(scheduledHour, 0, 0, 0);
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(scheduledTime);
+  return Object.fromEntries(parts.map(({ type, value }) => [type, value]));
+}
+
+function messageForSlot(messages, language, dateParts, localHour) {
+  const day = Math.floor(Date.UTC(
+    Number(dateParts.year),
+    Number(dateParts.month) - 1,
+    Number(dateParts.day)
+  ) / 86400000);
+  const slot = notificationHours.indexOf(localHour);
+  const languageOffset = ["pt", "en", "es", "de", "it", "fr", "ja", "ko", "zh"].indexOf(language);
+  const sequence = day * notificationHours.length + slot;
+  const index = ((sequence * 17) + Math.max(languageOffset, 0) * 7) % messages.length;
+  return messages[index];
+}
+
+function deliveryKey(endpoint, dateParts, localHour) {
+  const subscriptionId = createHash("sha256").update(endpoint).digest("hex").slice(0, 24);
+  return `workout:push-delivery:${subscriptionId}:${dateParts.year}-${dateParts.month}-${dateParts.day}:${localHour}`;
 }
 
 export default async function handler(req, res) {
@@ -24,18 +43,42 @@ export default async function handler(req, res) {
   if (!process.env.CRON_SECRET || req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
     return json(res, { error: "Unauthorized" }, 401);
   }
+  const scheduledHour = Number(req.query?.hour);
+  if (!Number.isInteger(scheduledHour) || scheduledHour < 0 || scheduledHour > 23) {
+    return json(res, { error: "Invalid scheduled hour" }, 400);
+  }
   try {
     configureWebPush();
     const redis = getRedis();
+    const motivations = await getMotivations();
     const records = await redis.hgetall(SUBSCRIPTIONS_KEY) || {};
     let sent = 0;
+    let skipped = 0;
     let removed = 0;
     for (const [endpoint, stored] of Object.entries(records)) {
       const record = typeof stored === "string" ? JSON.parse(stored) : stored;
-      const language = record.language || "en";
+      const language = motivations[record.language] ? record.language : "en";
+      const timeZone = record.timeZone || fallbackTimeZone;
+      let dateParts;
+      try {
+        dateParts = localDateParts(timeZone, scheduledHour);
+      } catch {
+        dateParts = localDateParts(fallbackTimeZone, scheduledHour);
+      }
+      const localHour = Number(dateParts.hour);
+      if (!notificationHours.includes(localHour)) {
+        skipped += 1;
+        continue;
+      }
+      const key = deliveryKey(endpoint, dateParts, localHour);
+      const acquired = await redis.set(key, "1", { nx: true, ex: 172800 });
+      if (!acquired) {
+        skipped += 1;
+        continue;
+      }
       const payload = JSON.stringify({
         title: "Should I Work Out Today?",
-        body: dailyMessage(language),
+        body: messageForSlot(motivations[language], language, dateParts, localHour),
         url: `https://shouldiworkout.today/${language}`,
         icon: "/assets/images/icon-192.png",
         badge: "/assets/images/icon-192.png"
@@ -47,10 +90,13 @@ export default async function handler(req, res) {
         if ([404, 410].includes(error.statusCode)) {
           await redis.hdel(SUBSCRIPTIONS_KEY, endpoint);
           removed += 1;
-        } else console.error("Push delivery failed", error);
+        } else {
+          await redis.del(key);
+          console.error("Push delivery failed", error);
+        }
       }
     }
-    return json(res, { sent, removed });
+    return json(res, { sent, skipped, removed, scheduledHour });
   } catch (error) {
     console.error("Daily push failed", error);
     return json(res, { error: "Could not send notifications" }, 500);

@@ -100,13 +100,9 @@ function scheduleHeroFit() {
   window.requestAnimationFrame(fitHeroContent);
 }
 
-function nextMotivation() {
-  preparedShareImages.clear();
+function showMotivation(index) {
   const motivations = localeData[currentLanguage].motivations;
-  let next;
-  do next = Math.floor(Math.random() * motivations.length);
-  while (next === currentIndex && motivations.length > 1);
-  currentIndex = next;
+  currentIndex = index;
   const [text, attribution] = motivations[currentIndex];
   message.textContent = text;
   source.textContent = `— ${attribution}`;
@@ -117,7 +113,17 @@ function nextMotivation() {
   playClick();
 }
 
+function nextMotivation() {
+  preparedShareImages.clear();
+  const motivations = localeData[currentLanguage].motivations;
+  let next;
+  do next = Math.floor(Math.random() * motivations.length);
+  while (next === currentIndex && motivations.length > 1);
+  showMotivation(next);
+}
+
 function applyLanguage(language, updateUrl = false) {
+  const previousIndex = currentIndex;
   currentLanguage = localeData[language] ? language : "pt";
   const copy = localeData[currentLanguage];
   document.documentElement.lang = copy.lang;
@@ -175,8 +181,9 @@ function applyLanguage(language, updateUrl = false) {
     }
   }
   updateThemeButtons();
-  currentIndex = -1;
-  nextMotivation();
+  preparedShareImages.clear();
+  if (previousIndex >= 0 && previousIndex < copy.motivations.length) showMotivation(previousIndex);
+  else nextMotivation();
 }
 
 function updateThemeButtons() {
@@ -478,11 +485,26 @@ async function getPushRegistration() {
   return navigator.serviceWorker.register("/service-worker.js");
 }
 
+function pushSubscriptionPayload(subscription) {
+  return {
+    subscription: subscription.toJSON(),
+    language: currentLanguage,
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+  };
+}
+
 async function updateNotificationState() {
   const registration = await getPushRegistration();
   const subscription = await registration?.pushManager.getSubscription();
   notificationButton.setAttribute("aria-pressed", String(Boolean(subscription)));
   notificationLabel.textContent = subscription ? "ON" : "OFF";
+  if (subscription) {
+    await fetch("/api/notifications/subscribe", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(pushSubscriptionPayload(subscription))
+    }).catch(() => {});
+  }
 }
 
 async function toggleNotifications() {
@@ -522,7 +544,7 @@ async function toggleNotifications() {
       const response = await fetch("/api/notifications/subscribe", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ subscription: subscription.toJSON(), language: currentLanguage })
+        body: JSON.stringify(pushSubscriptionPayload(subscription))
       });
       if (!response.ok) {
         await subscription.unsubscribe();
@@ -555,7 +577,10 @@ const savedConsent = readConsent();
 if (savedConsent) applyConsent(savedConsent);
 else if (OPTIONAL_SERVICES_ENABLED) openConsentPanel();
 
-languageSelect.addEventListener("change", (event) => applyLanguage(event.target.value, true));
+languageSelect.addEventListener("change", (event) => {
+  applyLanguage(event.target.value, true);
+  void updateNotificationState().catch(() => {});
+});
 window.addEventListener("popstate", () => {
   const language = window.location.protocol === "file:"
     ? new URLSearchParams(window.location.search).get("lang")

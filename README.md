@@ -16,7 +16,7 @@ The project is inspired by the simple and playful concept behind [shouldideploy.
 - Indexable language URLs such as `/pt`, `/en`, and `/ja`
 - Responsive layout for mobile and desktop
 - Optional interaction sound
-- Opt-in daily motivational push notifications
+- Opt-in motivational push notifications at 08:00 and 18:00 local time
 - Native mobile sharing when supported
 - Automatic 1080 × 1920 image generation for Instagram Stories, WhatsApp, and other platforms
 - Story card, transparent PNG, and text-only sharing modes
@@ -106,9 +106,9 @@ The Open Graph PNG is generated from `src/assets/og-image.svg` during the build 
 
 Import the repository into Vercel and keep the framework preset as **Other**. Vercel reads the build and output settings from `vercel.json`. The production domain used by canonical URLs, social metadata, `robots.txt`, and the sitemap is [shouldiworkout.today](https://shouldiworkout.today).
 
-### Daily notifications
+### Motivational notifications
 
-Daily Web Push is sent at 12:00 UTC (09:00 in São Paulo) by a Vercel Cron job. Configure an Upstash Redis database and copy `.env.example` to `.env.local` for local development. Generate VAPID keys with `npx web-push generate-vapid-keys` and add all six variables to the Vercel project.
+Web Push is sent at 08:00 and 18:00 in each subscriber's local time zone. The dispatcher uses the same 50-message catalog as the website for the subscriber's selected language and cycles through every message before repeating. Separate daily Vercel Cron entries cover all UTC hours while remaining compatible with the Hobby plan's once-per-day minimum interval per job. Configure an Upstash Redis database and copy `.env.example` to `.env.local` for local development. Generate VAPID keys with `npx web-push generate-vapid-keys` and add all six variables to the Vercel project.
 
 On iPhone and iPad, Web Push requires iOS/iPadOS 16.4 or newer and the website must first be added to the Home Screen. Notification permission is requested only after the visitor presses the daily reminder button.
 

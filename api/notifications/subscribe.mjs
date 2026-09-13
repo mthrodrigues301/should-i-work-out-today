@@ -2,6 +2,16 @@ import { getRedis, json, SUBSCRIPTIONS_KEY } from "../_lib/push.mjs";
 
 const supportedLanguages = new Set(["pt", "en", "es", "de", "it", "fr", "ja", "ko", "zh"]);
 
+function validTimeZone(timeZone) {
+  if (!timeZone || typeof timeZone !== "string" || timeZone.length > 100) return null;
+  try {
+    new Intl.DateTimeFormat("en", { timeZone }).format();
+    return timeZone;
+  } catch {
+    return null;
+  }
+}
+
 export default async function handler(req, res) {
   if (!["POST", "DELETE"].includes(req.method)) return json(res, { error: "Method not allowed" }, 405);
   try {
@@ -11,13 +21,14 @@ export default async function handler(req, res) {
       await getRedis().hdel(SUBSCRIPTIONS_KEY, endpoint);
       return json(res, { subscribed: false });
     }
-    const { subscription, language } = req.body || {};
+    const { subscription, language, timeZone } = req.body || {};
     if (!subscription?.endpoint || !subscription?.keys?.p256dh || !subscription?.keys?.auth) {
       return json(res, { error: "Invalid push subscription" }, 400);
     }
     const record = {
       subscription,
       language: supportedLanguages.has(language) ? language : "en",
+      timeZone: validTimeZone(timeZone),
       createdAt: new Date().toISOString()
     };
     await getRedis().hset(SUBSCRIPTIONS_KEY, { [subscription.endpoint]: record });
