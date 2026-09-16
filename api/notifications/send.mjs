@@ -5,6 +5,17 @@ import webpush from "web-push";
 
 const notificationHours = [8, 18];
 const fallbackTimeZone = "America/Sao_Paulo";
+const notificationTitles = {
+  pt: { 8: "SIM. COMECE O DIA EM MOVIMENTO.", 18: "SIM. AINDA DÁ TEMPO DE TREINAR." },
+  en: { 8: "YES. START THE DAY MOVING.", 18: "YES. THERE’S STILL TIME TO WORK OUT." },
+  es: { 8: "SÍ. EMPIEZA EL DÍA EN MOVIMIENTO.", 18: "SÍ. AÚN HAY TIEMPO PARA ENTRENAR." },
+  de: { 8: "JA. STARTE AKTIV IN DEN TAG.", 18: "JA. ES IST NOCH ZEIT FÜRS TRAINING." },
+  it: { 8: "SÌ. INIZIA LA GIORNATA IN MOVIMENTO.", 18: "SÌ. C’È ANCORA TEMPO PER ALLENARTI." },
+  fr: { 8: "OUI. COMMENCE LA JOURNÉE EN BOUGEANT.", 18: "OUI. IL EST ENCORE TEMPS DE T’ENTRAÎNER." },
+  ja: { 8: "はい。体を動かして一日を始めよう。", 18: "はい。まだトレーニングする時間はあります。" },
+  ko: { 8: "네. 움직이며 하루를 시작하세요.", 18: "네. 아직 운동할 시간이 있습니다." },
+  zh: { 8: "是的。用运动开启新的一天。", 18: "是的。现在锻炼还来得及。" }
+};
 
 function localDateParts(timeZone, scheduledHour) {
   const scheduledTime = new Date();
@@ -77,7 +88,7 @@ export default async function handler(req, res) {
         continue;
       }
       const payload = JSON.stringify({
-        title: "Should I Work Out Today?",
+        title: notificationTitles[language][localHour],
         body: messageForSlot(motivations[language], language, dateParts, localHour),
         url: `https://shouldiworkout.today/${language}`,
         icon: "/assets/images/icon-192.png",

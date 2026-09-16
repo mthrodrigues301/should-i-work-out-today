@@ -1,6 +1,6 @@
 self.addEventListener("push", (event) => {
   const data = event.data?.json() || {};
-  event.waitUntil(self.registration.showNotification(data.title || "Should I Work Out Today?", {
+  event.waitUntil(self.registration.showNotification(data.title || "YES. TIME TO WORK OUT.", {
     body: data.body || "Your daily reason to move is here.",
     icon: data.icon || "/assets/images/icon-192.png",
     badge: data.badge || "/assets/images/icon-192.png",
