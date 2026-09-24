@@ -2,6 +2,10 @@ dist/
 .vercel/
 node_modules/
 social/
+!public/social/
+!public/social/instagram/
+!public/social/instagram/daily/
+!public/social/instagram/daily/**
 content/
 assets/brand/
 og-image.png

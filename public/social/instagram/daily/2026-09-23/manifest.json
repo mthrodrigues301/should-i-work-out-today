@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-23",
+  "account": "shouldiworkout.today",
+  "status": "prepared",
+  "publishing": "not_connected",
+  "posts": [
+    {
+      "language": "en",
+      "sequence": 1,
+      "coverColor": "#f1efe8",
+      "time": "12:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "en/01.jpg",
+        "en/02.jpg",
+        "en/03.jpg",
+        "en/04.jpg"
+      ],
+      "caption": "Your workout does not need to look like anyone else's to count. Someone else's pace, weight, distance, or routine cannot measure the effort it takes for you to show up today.\n\nUse other people for ideas, not as a scoreboard. Track the things you can own: your next rep, your form, your consistency, and how you feel afterward.\n\nWhat is one win that belongs to you today?\n\n#WorkoutMotivation #YourOwnPace #FitnessMindset"
+    },
+    {
+      "language": "bi",
+      "sequence": 2,
+      "coverColor": "#eaff38",
+      "time": "15:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "bi/01.jpg",
+        "bi/02.jpg",
+        "bi/03.jpg",
+        "bi/04.jpg"
+      ],
+      "caption": "Your pace is yours. Seu ritmo é seu.\n\nEN: Let other people inspire ideas, not decide your worth. Measure the effort and choices that belong to you.\n\nPT: Deixe outras pessoas inspirarem ideias, sem definir o seu valor. Observe o esforço e as escolhas que pertencem a você.\n\nWhat is your win today? Qual é a sua vitória hoje?\n\n#WorkoutMotivation #MotivaçãoParaTreinar #YourOwnPace"
+    },
+    {
+      "language": "pt",
+      "sequence": 3,
+      "coverColor": "#11110f",
+      "time": "18:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "pt/01.jpg",
+        "pt/02.jpg",
+        "pt/03.jpg",
+        "pt/04.jpg"
+      ],
+      "caption": "Seu treino não precisa parecer com o de outra pessoa para valer. O ritmo, a carga, a distância ou a rotina de alguém não medem o esforço que você faz para aparecer hoje.\n\nUse outras pessoas como fonte de ideias, não como placar. Observe o que depende de você: a próxima repetição, a execução, a constância e como você se sente depois.\n\nQual é uma vitória que pertence a você hoje?\n\n#MotivaçãoParaTreinar #SeuRitmo #MentalidadeFitness"
+    }
+  ]
+}

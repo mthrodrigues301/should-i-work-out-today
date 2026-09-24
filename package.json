@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/instagram/sync-public-assets.mjs && node scripts/build.mjs",
+    "instagram:sync-assets": "node scripts/instagram/sync-public-assets.mjs",
     "start": "npm run build && npx serve dist",
     "preview": "npm run start"
   },

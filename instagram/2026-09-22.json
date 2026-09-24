@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-22",
+  "en": {
+    "caption": "Consistency does not mean repeating the exact same workout every day. It means staying connected to the habit while adjusting the effort to the day you actually have.\n\nHigh energy? Push with intention. Low energy? Choose a lighter session, mobility, or a walk. Recovery day? Let recovery support your next workout.\n\nWhat kind of movement fits today? Save this for the days when your plan needs flexibility.\n\n#WorkoutMotivation #FitnessConsistency #SustainableFitness",
+    "slides": [
+      {"kicker": "CONSISTENCY CAN ADAPT", "title": ["SAME", "HABIT.", "NEW PACE."], "body": ["Your effort can change.", "Showing up has more than one form."]},
+      {"kicker": "CHECK YOUR ENERGY", "title": ["MEET", "TODAY", "WHERE IT IS."], "body": ["Strong day? Add a challenge.", "Slower day? Lower the intensity."]},
+      {"kicker": "KEEP THE CONNECTION", "title": ["MOVE.", "MOBILIZE.", "RECOVER."], "body": ["Choose what supports you today.", "The habit can stay flexible."]},
+      {"kicker": "YOUR TURN", "title": ["WHAT FITS", "TODAY?"], "body": ["Pick the version you can sustain.", "Save this reminder for later."]}
+    ]
+  },
+  "bi": {
+    "caption": "Consistency can adapt. A constância pode se adaptar.\n\nEN: Your effort can change without losing the habit. Choose the kind of movement that supports the day you actually have.\n\nPT: O esforço pode mudar sem quebrar o hábito. Escolha o movimento que combina com o dia que você realmente tem.\n\nWhat fits today? O que cabe no seu dia?\n\n#WorkoutMotivation #MotivaçãoParaTreinar #Consistency",
+    "slides": [
+      {"kicker": "ADAPT / ADAPTE", "title": ["SAME HABIT.", "MESMO", "HÁBITO."], "body": ["Your pace can change.", "Seu ritmo pode mudar."]},
+      {"kicker": "CHECK IN / PERCEBA", "title": ["HOW ARE YOU?", "COMO VOCÊ", "ESTÁ?"], "body": ["Start with the day you have.", "Comece com o dia que você tem."]},
+      {"kicker": "CHOOSE / ESCOLHA", "title": ["MOVE OR", "RECOVER.", "MOVIMENTE-SE", "OU RECUPERE."], "body": ["Both can support consistency.", "Os dois apoiam a constância."]},
+      {"kicker": "TODAY / HOJE", "title": ["WHAT FITS?", "O QUE", "CABE?"], "body": ["Choose a sustainable version.", "Escolha uma versão sustentável."]}
+    ]
+  },
+  "pt": {
+    "caption": "Constância não é repetir exatamente o mesmo treino todos os dias. É manter o vínculo com o hábito e ajustar o esforço ao dia que você realmente tem.\n\nMuita energia? Treine com intenção. Pouca energia? Escolha algo mais leve, mobilidade ou uma caminhada. Dia de recuperação? Deixe o descanso preparar o próximo treino.\n\nQue tipo de movimento cabe no seu dia? Salve este post para quando o plano precisar de flexibilidade.\n\n#MotivaçãoParaTreinar #Constância #TreinoSustentável",
+    "slides": [
+      {"kicker": "A CONSTÂNCIA SE ADAPTA", "title": ["MESMO", "HÁBITO.", "NOVO RITMO."], "body": ["O esforço pode mudar.", "Existem várias formas de continuar."]},
+      {"kicker": "PERCEBA SUA ENERGIA", "title": ["COMECE", "COM O DIA", "QUE VOCÊ", "TEM."], "body": ["Tem energia? Acrescente um desafio.", "Dia lento? Reduza a intensidade."]},
+      {"kicker": "MANTENHA O VÍNCULO", "title": ["MOVA-SE.", "ALONGUE-SE.", "RECUPERE-SE."], "body": ["Escolha o que ajuda você hoje.", "O hábito também pode ser flexível."]},
+      {"kicker": "SUA VEZ", "title": ["O QUE CABE", "HOJE?"], "body": ["Escolha uma versão sustentável.", "Salve este lembrete para depois."]}
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-22",
+  "account": "shouldiworkout.today",
+  "status": "prepared",
+  "publishing": "not_connected",
+  "posts": [
+    {
+      "language": "en",
+      "sequence": 1,
+      "coverColor": "#f1efe8",
+      "time": "12:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "en/01.jpg",
+        "en/02.jpg",
+        "en/03.jpg",
+        "en/04.jpg"
+      ],
+      "caption": "Consistency does not mean repeating the exact same workout every day. It means staying connected to the habit while adjusting the effort to the day you actually have.\n\nHigh energy? Push with intention. Low energy? Choose a lighter session, mobility, or a walk. Recovery day? Let recovery support your next workout.\n\nWhat kind of movement fits today? Save this for the days when your plan needs flexibility.\n\n#WorkoutMotivation #FitnessConsistency #SustainableFitness"
+    },
+    {
+      "language": "bi",
+      "sequence": 2,
+      "coverColor": "#eaff38",
+      "time": "15:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "bi/01.jpg",
+        "bi/02.jpg",
+        "bi/03.jpg",
+        "bi/04.jpg"
+      ],
+      "caption": "Consistency can adapt. A constância pode se adaptar.\n\nEN: Your effort can change without losing the habit. Choose the kind of movement that supports the day you actually have.\n\nPT: O esforço pode mudar sem quebrar o hábito. Escolha o movimento que combina com o dia que você realmente tem.\n\nWhat fits today? O que cabe no seu dia?\n\n#WorkoutMotivation #MotivaçãoParaTreinar #Consistency"
+    },
+    {
+      "language": "pt",
+      "sequence": 3,
+      "coverColor": "#11110f",
+      "time": "18:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "pt/01.jpg",
+        "pt/02.jpg",
+        "pt/03.jpg",
+        "pt/04.jpg"
+      ],
+      "caption": "Constância não é repetir exatamente o mesmo treino todos os dias. É manter o vínculo com o hábito e ajustar o esforço ao dia que você realmente tem.\n\nMuita energia? Treine com intenção. Pouca energia? Escolha algo mais leve, mobilidade ou uma caminhada. Dia de recuperação? Deixe o descanso preparar o próximo treino.\n\nQue tipo de movimento cabe no seu dia? Salve este post para quando o plano precisar de flexibilidade.\n\n#MotivaçãoParaTreinar #Constância #TreinoSustentável"
+    }
+  ]
+}

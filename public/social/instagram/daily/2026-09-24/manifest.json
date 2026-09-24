@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-24",
+  "account": "shouldiworkout.today",
+  "status": "prepared",
+  "publishing": "not_connected",
+  "posts": [
+    {
+      "language": "en",
+      "sequence": 1,
+      "coverColor": "#f1efe8",
+      "time": "12:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "en/01.jpg",
+        "en/02.jpg",
+        "en/03.jpg",
+        "en/04.jpg"
+      ],
+      "caption": "A workout can feel lighter when someone knows you are showing up. You do not need a crowd—one message, one shared plan, or one honest check-in can turn intention into action.\n\nChoose someone who supports your pace. Tell them what you plan to do, then come back and share the win. Accountability works best when it feels encouraging, not punishing.\n\nWho could be on your team today? Tag them or send this post.\n\n#WorkoutMotivation #WorkoutBuddy #FitnessCommunity"
+    },
+    {
+      "language": "bi",
+      "sequence": 2,
+      "coverColor": "#eaff38",
+      "time": "15:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "bi/01.jpg",
+        "bi/02.jpg",
+        "bi/03.jpg",
+        "bi/04.jpg"
+      ],
+      "caption": "You do not have to go solo. Você não precisa fazer tudo sozinho.\n\nEN: Share one clear plan with someone who supports your pace. A simple check-in can help turn intention into action.\n\nPT: Compartilhe um plano claro com alguém que respeita seu ritmo. Uma mensagem pode ajudar a transformar intenção em ação.\n\nWho is on your team? Quem está no seu time?\n\n#WorkoutBuddy #ParceiroDeTreino #FitnessCommunity"
+    },
+    {
+      "language": "pt",
+      "sequence": 3,
+      "coverColor": "#11110f",
+      "time": "18:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "pt/01.jpg",
+        "pt/02.jpg",
+        "pt/03.jpg",
+        "pt/04.jpg"
+      ],
+      "caption": "O treino pode parecer mais leve quando alguém sabe que você vai aparecer. Você não precisa de um grupo inteiro: uma mensagem, um plano compartilhado ou um check-in sincero podem transformar intenção em ação.\n\nEscolha alguém que respeite seu ritmo. Conte o que pretende fazer e depois volte para compartilhar a vitória. A parceria funciona melhor quando incentiva, sem punir.\n\nQuem pode estar no seu time hoje? Marque essa pessoa ou envie este post.\n\n#MotivaçãoParaTreinar #ParceiroDeTreino #ComunidadeFitness"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-24",
+  "en": {
+    "caption": "A workout can feel lighter when someone knows you are showing up. You do not need a crowd—one message, one shared plan, or one honest check-in can turn intention into action.\n\nChoose someone who supports your pace. Tell them what you plan to do, then come back and share the win. Accountability works best when it feels encouraging, not punishing.\n\nWho could be on your team today? Tag them or send this post.\n\n#WorkoutMotivation #WorkoutBuddy #FitnessCommunity",
+    "slides": [
+      {"kicker": "YOU DO NOT HAVE TO GO SOLO", "title": ["BUILD", "A SMALL", "TEAM."], "body": ["One supportive person can help.", "Connection can create momentum."]},
+      {"kicker": "MAKE IT SPECIFIC", "title": ["SAY", "WHAT.", "SAY WHEN."], "body": ["Share one clear plan.", "Make the next step visible."]},
+      {"kicker": "KEEP IT SUPPORTIVE", "title": ["CHECK IN.", "CHEER ON.", "COME BACK."], "body": ["Encouragement beats pressure.", "Celebrate the effort together."]},
+      {"kicker": "YOUR TURN", "title": ["WHO IS", "ON YOUR", "TEAM?"], "body": ["Send them your plan for today.", "Share this post with them."]}
+    ]
+  },
+  "bi": {
+    "caption": "You do not have to go solo. Você não precisa fazer tudo sozinho.\n\nEN: Share one clear plan with someone who supports your pace. A simple check-in can help turn intention into action.\n\nPT: Compartilhe um plano claro com alguém que respeita seu ritmo. Uma mensagem pode ajudar a transformar intenção em ação.\n\nWho is on your team? Quem está no seu time?\n\n#WorkoutBuddy #ParceiroDeTreino #FitnessCommunity",
+    "slides": [
+      {"kicker": "TOGETHER / JUNTOS", "title": ["YOUR TEAM.", "SEU TIME."], "body": ["One person can help you begin.", "Uma pessoa pode ajudar a começar."]},
+      {"kicker": "SHARE / COMPARTILHE", "title": ["WHAT.", "WHEN.", "O QUÊ.", "QUANDO."], "body": ["Make one clear plan.", "Faça um plano claro."]},
+      {"kicker": "SUPPORT / APOIO", "title": ["CHECK IN.", "MANDE", "MENSAGEM."], "body": ["Encourage without pressure.", "Incentive sem pressionar."]},
+      {"kicker": "TODAY / HOJE", "title": ["WHO?", "QUEM?"], "body": ["Send your plan to someone.", "Envie seu plano para alguém."]}
+    ]
+  },
+  "pt": {
+    "caption": "O treino pode parecer mais leve quando alguém sabe que você vai aparecer. Você não precisa de um grupo inteiro: uma mensagem, um plano compartilhado ou um check-in sincero podem transformar intenção em ação.\n\nEscolha alguém que respeite seu ritmo. Conte o que pretende fazer e depois volte para compartilhar a vitória. A parceria funciona melhor quando incentiva, sem punir.\n\nQuem pode estar no seu time hoje? Marque essa pessoa ou envie este post.\n\n#MotivaçãoParaTreinar #ParceiroDeTreino #ComunidadeFitness",
+    "slides": [
+      {"kicker": "VOCÊ NÃO PRECISA IR SOZINHO", "title": ["MONTE", "UM PEQUENO", "TIME."], "body": ["Uma pessoa pode ajudar você.", "A conexão cria movimento."]},
+      {"kicker": "SEJA ESPECÍFICO", "title": ["DIGA", "O QUÊ.", "DIGA QUANDO."], "body": ["Compartilhe um plano claro.", "Deixe o próximo passo visível."]},
+      {"kicker": "APOIO, NÃO PRESSÃO", "title": ["PERGUNTE.", "INCENTIVE.", "VOLTE."], "body": ["O incentivo vence a cobrança.", "Celebrem o esforço juntos."]},
+      {"kicker": "SUA VEZ", "title": ["QUEM ESTÁ", "NO SEU", "TIME?"], "body": ["Envie seu plano de hoje.", "Compartilhe este post com a pessoa."]}
+    ]
+  }
+}

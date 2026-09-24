@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-20",
+  "account": "shouldiworkout.today",
+  "status": "prepared",
+  "publishing": "not_connected",
+  "posts": [
+    {
+      "language": "en",
+      "sequence": 1,
+      "coverColor": "#f1efe8",
+      "time": "12:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "en/01.jpg",
+        "en/02.jpg",
+        "en/03.jpg",
+        "en/04.jpg"
+      ],
+      "caption": "Make tomorrow's start a little easier. Pick a time, set out your gear, and choose a first step that fits your day.\n\nWhat's the one thing you can prepare tonight? Save this for your next workout.\n\nMore motivation: shouldiworkout.today/en — link in bio.\n\n#WorkoutMotivation #FitnessHabits #ShowUpForYourself"
+    },
+    {
+      "language": "bi",
+      "sequence": 2,
+      "coverColor": "#eaff38",
+      "time": "15:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "bi/01.jpg",
+        "bi/02.jpg",
+        "bi/03.jpg",
+        "bi/04.jpg"
+      ],
+      "caption": "One small step. Um pequeno passo.\n\nEN: Set out what you need for your next workout. What can you prepare today?\n\nPT: Separe o que vai usar no próximo treino. O que você pode preparar hoje?\n\nshouldiworkout.today — link in bio / link na bio.\n\n#WorkoutMotivation #MotivaçãoParaTreinar"
+    },
+    {
+      "language": "pt",
+      "sequence": 3,
+      "coverColor": "#11110f",
+      "time": "18:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "pt/01.jpg",
+        "pt/02.jpg",
+        "pt/03.jpg",
+        "pt/04.jpg"
+      ],
+      "caption": "Facilite o começo de amanhã. Escolha um horário, separe o que vai usar e defina um primeiro passo que caiba no seu dia.\n\nO que você pode deixar pronto hoje? Salve este post para o próximo treino.\n\nMais motivação: shouldiworkout.today/pt — link na bio.\n\n#MotivaçãoParaTreinar #RotinaDeTreino #Constância"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-23",
+  "en": {
+    "caption": "Your workout does not need to look like anyone else's to count. Someone else's pace, weight, distance, or routine cannot measure the effort it takes for you to show up today.\n\nUse other people for ideas, not as a scoreboard. Track the things you can own: your next rep, your form, your consistency, and how you feel afterward.\n\nWhat is one win that belongs to you today?\n\n#WorkoutMotivation #YourOwnPace #FitnessMindset",
+    "slides": [
+      {"kicker": "YOUR WORKOUT IS YOURS", "title": ["NO ONE", "ELSE SETS", "YOUR PACE."], "body": ["Their journey is not your scoreboard.", "Your effort still counts."]},
+      {"kicker": "USE INSPIRATION WELL", "title": ["BORROW", "IDEAS.", "LOSE", "PRESSURE."], "body": ["Learn from others without shrinking.", "Keep what supports your progress."]},
+      {"kicker": "MEASURE WHAT YOU OWN", "title": ["YOUR FORM.", "YOUR REPS.", "YOUR RETURN."], "body": ["Notice the choices you can control.", "Let small wins become evidence."]},
+      {"kicker": "TODAY'S CHECK-IN", "title": ["WHAT IS", "YOUR WIN?"], "body": ["Name it before you scroll again.", "Save this for comparison days."]}
+    ]
+  },
+  "bi": {
+    "caption": "Your pace is yours. Seu ritmo é seu.\n\nEN: Let other people inspire ideas, not decide your worth. Measure the effort and choices that belong to you.\n\nPT: Deixe outras pessoas inspirarem ideias, sem definir o seu valor. Observe o esforço e as escolhas que pertencem a você.\n\nWhat is your win today? Qual é a sua vitória hoje?\n\n#WorkoutMotivation #MotivaçãoParaTreinar #YourOwnPace",
+    "slides": [
+      {"kicker": "YOUR PACE / SEU RITMO", "title": ["YOURS.", "É SEU."], "body": ["No one else sets the measure.", "Ninguém define a sua medida."]},
+      {"kicker": "IDEAS / IDEIAS", "title": ["BE INSPIRED.", "INSPIRE-SE."], "body": ["Keep the pressure out.", "Deixe a pressão de fora."]},
+      {"kicker": "NOTICE / PERCEBA", "title": ["YOUR EFFORT.", "SEU", "ESFORÇO."], "body": ["Track what you can control.", "Observe o que você controla."]},
+      {"kicker": "TODAY / HOJE", "title": ["YOUR WIN?", "SUA", "VITÓRIA?"], "body": ["Name one before you scroll.", "Diga uma antes de continuar."]}
+    ]
+  },
+  "pt": {
+    "caption": "Seu treino não precisa parecer com o de outra pessoa para valer. O ritmo, a carga, a distância ou a rotina de alguém não medem o esforço que você faz para aparecer hoje.\n\nUse outras pessoas como fonte de ideias, não como placar. Observe o que depende de você: a próxima repetição, a execução, a constância e como você se sente depois.\n\nQual é uma vitória que pertence a você hoje?\n\n#MotivaçãoParaTreinar #SeuRitmo #MentalidadeFitness",
+    "slides": [
+      {"kicker": "O TREINO É SEU", "title": ["NINGUÉM", "DEFINE", "SEU RITMO."], "body": ["A jornada alheia não é seu placar.", "Seu esforço continua valendo."]},
+      {"kicker": "USE BEM A INSPIRAÇÃO", "title": ["PEGUE", "IDEIAS.", "NÃO PRESSÃO."], "body": ["Aprenda sem diminuir seu caminho.", "Guarde o que apoia seu progresso."]},
+      {"kicker": "OBSERVE O QUE É SEU", "title": ["SUA FORMA.", "SUAS REPS.", "SEU RETORNO."], "body": ["Perceba as escolhas que você controla.", "Deixe pequenas vitórias virarem prova."]},
+      {"kicker": "CHECK-IN DE HOJE", "title": ["QUAL É", "SUA VITÓRIA?"], "body": ["Reconheça antes de continuar rolando.", "Salve para os dias de comparação."]}
+    ]
+  }
+}
