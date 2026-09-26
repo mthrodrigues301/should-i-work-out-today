@@ -24,7 +24,12 @@ function configured() {
   const token = process.env.INSTAGRAM_ACCESS_TOKEN;
   const baseUrl = process.env.INSTAGRAM_PUBLIC_BASE_URL;
   if (!token || !baseUrl) throw new Error("Instagram publishing is not configured");
-  return { token, baseUrl: baseUrl.replace(/\/$/, "") };
+  const assetBaseUrl = process.env.INSTAGRAM_ASSET_BASE_URL || baseUrl;
+  return {
+    token,
+    baseUrl: baseUrl.replace(/\/$/, ""),
+    assetBaseUrl: assetBaseUrl.replace(/\/$/, "")
+  };
 }
 
 async function graph(path, params, token) {
@@ -64,8 +69,8 @@ async function waitForContainer(containerId, token) {
   throw new Error("Instagram is still preparing the carousel; publication was not retried automatically");
 }
 
-async function loadPost(baseUrl, date, slot) {
-  const response = await fetch(`${baseUrl}/social/instagram/daily/${date}/manifest.json`, { cache: "no-store" });
+async function loadPost(assetBaseUrl, date, slot) {
+  const response = await fetch(`${assetBaseUrl}/social/instagram/daily/${date}/manifest.json`, { cache: "no-store" });
   if (!response.ok) throw new Error(`Prepared assets for ${date} are not publicly available`);
   const manifest = await response.json();
   const post = manifest?.posts?.find(item => item.language === slot);
@@ -88,17 +93,17 @@ export default async function handler(req, res) {
   const date = saoPauloDate();
   const key = publicationKey(date, slot);
   try {
-    const { token, baseUrl } = configured();
+    const { token, assetBaseUrl } = configured();
     const redis = getRedis();
     const acquired = await redis.set(key, JSON.stringify({ state: "preparing", startedAt: new Date().toISOString() }), { nx: true, ex: lockSeconds });
     if (!acquired) return json(res, { status: "skipped", date, slot, reason: "already_started_or_published" });
 
     try {
-      const post = await loadPost(baseUrl, date, slot);
+      const post = await loadPost(assetBaseUrl, date, slot);
       const children = [];
       for (const file of post.files) {
         const child = await graph(accountId, {
-          image_url: `${baseUrl}/social/instagram/daily/${date}/${file}`,
+          image_url: `${assetBaseUrl}/social/instagram/daily/${date}/${file}`,
           is_carousel_item: "true"
         }, token);
         if (!child.id) throw new Error("Instagram did not return a carousel item id");
