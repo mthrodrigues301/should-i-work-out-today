@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-26",
+  "en": {
+    "caption": "You do not need a perfect streak to make progress. The routine gets stronger each time you return, including after a missed day, a busy week, or a change of plans.\n\nDrop the scorecard for a moment. Choose the next kind step: put on your shoes, take a short walk, open your training plan, or decide when you will move next.\n\nWhat is your next return? Save this for the days you need a fresh start.\n\n#WorkoutMotivation #FitnessConsistency #StartAgain",
+    "slides": [
+      {"kicker": "CONSISTENCY IS FLEXIBLE", "title": ["RETURN", "TO YOUR", "RHYTHM."], "body": ["A missed day changes nothing.", "Coming back is the practice."]},
+      {"kicker": "DROP THE SCORECARD", "title": ["LESS", "PERFECT.", "MORE HERE."], "body": ["You do not need to make up for it.", "Begin from where you are."]},
+      {"kicker": "MAKE IT SMALL", "title": ["CHOOSE", "ONE NEXT", "MOVE."], "body": ["Shoes on, a walk, or a plan.", "Let one action open the day."]},
+      {"kicker": "YOUR TURN", "title": ["HOW", "WILL YOU", "RETURN?"], "body": ["Pick one kind step for today.", "Save this for a fresh start."]}
+    ]
+  },
+  "bi": {
+    "caption": "You can always return. Você sempre pode voltar.\n\nEN: Progress does not require a perfect streak. Choose one small next step and begin from where you are.\n\nPT: Progresso não pede uma sequência perfeita. Escolha um pequeno próximo passo e comece de onde está.\n\nWhat is your next return? Qual é a sua volta de hoje?\n\n#FitnessConsistency #ConstânciaNoTreino #StartAgain",
+    "slides": [
+      {"kicker": "RETURN / VOLTE", "title": ["YOUR", "RHYTHM.", "SEU", "RITMO."], "body": ["Coming back is the practice.", "Voltar também é praticar."]},
+      {"kicker": "NO PERFECT / SEM PERFEIÇÃO", "title": ["LESS", "PERFECT.", "MAIS", "PRESENTE."], "body": ["Begin from where you are.", "Comece de onde você está."]},
+      {"kicker": "ONE STEP / UM PASSO", "title": ["NEXT", "MOVE.", "PRÓXIMO", "PASSO."], "body": ["Let one action open the day.", "Deixe uma ação abrir o dia."]},
+      {"kicker": "TODAY / HOJE", "title": ["RETURN?", "VOLTAR?"], "body": ["Choose one kind step today.", "Escolha um passo gentil hoje."]}
+    ]
+  },
+  "pt": {
+    "caption": "Você não precisa de uma sequência perfeita para avançar. A rotina fica mais forte toda vez que você volta, inclusive depois de um dia perdido, uma semana corrida ou uma mudança de planos.\n\nDeixe a planilha de pontos de lado por um momento. Escolha o próximo passo gentil: calce o tênis, faça uma caminhada curta, abra seu plano de treino ou decida quando vai se movimentar.\n\nQual é a sua volta de hoje? Salve este post para os dias em que precisar recomeçar.\n\n#MotivaçãoParaTreinar #ConstânciaNoTreino #Recomeçar",
+    "slides": [
+      {"kicker": "CONSTÂNCIA É FLEXÍVEL", "title": ["VOLTE", "PARA O", "SEU RITMO."], "body": ["Um dia perdido não muda tudo.", "Voltar também é a prática."]},
+      {"kicker": "DEIXE A COBRANÇA", "title": ["MENOS", "PERFEIÇÃO.", "MAIS AGORA."], "body": ["Você não precisa compensar nada.", "Comece de onde está."]},
+      {"kicker": "DEIXE PEQUENO", "title": ["ESCOLHA", "UM PRÓXIMO", "PASSO."], "body": ["Tênis, caminhada ou um plano.", "Uma ação já abre o dia."]},
+      {"kicker": "SUA VEZ", "title": ["COMO", "VOCÊ VAI", "VOLTAR?"], "body": ["Escolha um passo gentil hoje.", "Salve para um novo começo."]}
+    ]
+  }
+}
