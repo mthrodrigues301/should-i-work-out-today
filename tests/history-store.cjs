@@ -21,3 +21,13 @@ test('an absence replaces only that date and limits the reason',()=>{
  assert.equal(entry.reason,'Viagem');
  assert.throws(()=>history.logAbsence('bad','',{title:'A'},1));
 });
+
+test('changing the mind removes only the recorded absence',()=>{
+ database={};
+ history.logAbsence('2026-10-15','Viagem',{title:'Full Body A'},1);
+ history.logAbsence('2026-10-16','Descanso',{title:'Full Body B'},2);
+ assert.equal(history.removeAbsence('2026-10-15'),true);
+ assert.equal(history.read()['2026-10-15'],undefined);
+ assert.equal(history.read()['2026-10-16'].reason,'Descanso');
+ assert.equal(history.removeAbsence('2026-10-15'),false);
+});

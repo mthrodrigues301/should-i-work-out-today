@@ -6,6 +6,7 @@ const WorkoutHistoryStore=(()=>{
  const write=value=>localStorage.setItem(KEY,JSON.stringify(value));
  const logCompletion=(session,workout,day)=>{if(!session?.finished||!Number.isFinite(session.completedAt))return;const all=read(),date=dateKey(session.completedAt);all[date]={kind:'trained',date,completedAt:session.completedAt,elapsed:Math.max(0,Math.floor(session.elapsed||0)),title:workout.title,day,exercises:workout.items.map((item,index)=>({name:item.name,sets:item.sets,reps:item.reps,completedSets:Math.max(0,Number(session.sets?.[index])||0)}))};write(all)};
  const logAbsence=(date,reason,workout,day)=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!reason.trim())throw Error('Motivo obrigatório');const all=read();all[date]={kind:'skipped',date,reason:reason.trim().slice(0,500),title:workout.title,day};write(all)};
- return {KEY,read,logCompletion,logAbsence,dateKey};
+ const removeAbsence=date=>{const all=read();if(all[date]?.kind!=='skipped')return false;delete all[date];write(all);return true};
+ return {KEY,read,logCompletion,logAbsence,removeAbsence,dateKey};
 })();
 if(typeof module!=='undefined')module.exports=WorkoutHistoryStore;
