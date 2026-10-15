@@ -13,6 +13,15 @@ test('a completed workout stores its completed date, duration and exercise snaps
  assert.deepEqual(entry.exercises,[{name:'Supino',sets:'3',reps:'8–12',completedSets:3}]);
 });
 
+test('a completed workout keeps an optional local location within valid coordinates',()=>{
+ database={};
+ const completedAt=new Date(2026,9,15,21,30).getTime(),workout={title:'Full Body A',items:[]};
+ history.logCompletion({finished:true,completedAt,elapsed:0,location:{latitude:-23.5505208,longitude:-46.633308,accuracy:14.7}},workout,1);
+ assert.deepEqual(history.read()['2026-10-15'].location,{latitude:-23.550521,longitude:-46.633308,accuracy:15});
+ history.logCompletion({finished:true,completedAt,elapsed:0,location:{latitude:100,longitude:0}},workout,1);
+ assert.equal(history.read()['2026-10-15'].location,undefined);
+});
+
 test('an absence replaces only that date and limits the reason',()=>{
  database={};
  history.logAbsence('2026-10-15','Viagem', {title:'Full Body A'},1);
