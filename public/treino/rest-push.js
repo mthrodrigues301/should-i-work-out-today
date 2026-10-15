@@ -1,7 +1,7 @@
 const RestPush=(()=>{
  const SETTINGS_KEY='mt-expiry-push',STATE_KEY='mt-rest-push';let currentRest=()=>null,queue=Promise.resolve();
  const read=key=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}};
- const enabled=()=>read(SETTINGS_KEY)?.enabled===true&&Notification.permission==='granted';
+ const enabled=()=>read(SETTINGS_KEY)?.enabled===true&&typeof Notification!=='undefined'&&Notification.permission==='granted';
  const token=()=>read(SETTINGS_KEY)?.token;
  const state=()=>read(STATE_KEY);
  const save=value=>localStorage.setItem(STATE_KEY,JSON.stringify(value));

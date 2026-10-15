@@ -10,3 +10,4 @@ content/
 assets/brand/
 og-image.png
 .DS_Store
+.vercel
