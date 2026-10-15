@@ -2,13 +2,13 @@ window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.ja = {
   "checkIn": {
     "action": "今日は運動した",
-    "done": "運動を記録しました ✓",
+    "done": "運動を記録しました",
     "undo": "取り消す",
     "week": "今週の記録",
     "one": "今週の運動：{count}回",
     "many": "今週の運動：{count}回",
     "local": "このブラウザにのみ保存されます。端末間の同期はありません。",
-    "celebrate": "今日も運動できました！ ✓",
+    "celebrate": "今日も運動できました！",
     "removed": "記録を取り消しました。",
     "error": "保存できませんでした。ブラウザのストレージを確認してください。",
     "logged": "運動を記録済み",
@@ -48,9 +48,9 @@ window.WORKOUT_LOCALES.ja = {
   "dark": "ダークモード ◐",
   "light": "ライトモード ◐",
   "sound": "サウンド",
-  "notifications": "毎日のリマインダー", "notificationsOn": "リマインダーを有効にしました ✓", "notificationsOff": "リマインダーを無効にしました", "notificationsDenied": "設定で通知を有効にしてください", "notificationsUnsupported": "ホーム画面に追加してください", "notificationsUnavailable": "リマインダーは公開サイトで利用できます",
-  "copied": "コピーしました ✓",
-  "downloaded": "ストーリー画像を保存しました ✓",
+  "notifications": "毎日のリマインダー", "notificationsOn": "リマインダーを有効にしました", "notificationsOff": "リマインダーを無効にしました", "notificationsDenied": "設定で通知を有効にしてください", "notificationsUnsupported": "ホーム画面に追加してください", "notificationsUnavailable": "リマインダーは公開サイトで利用できます",
+  "copied": "コピーしました",
+  "downloaded": "ストーリー画像を保存しました",
   "error": "シェアできませんでした",
   "motivations": [
     [

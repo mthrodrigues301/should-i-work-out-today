@@ -2,13 +2,13 @@ window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.zh = {
   "checkIn": {
     "action": "今天锻炼了",
-    "done": "锻炼已记录 ✓",
+    "done": "锻炼已记录",
     "undo": "撤销",
     "week": "本周记录",
     "one": "本周锻炼 {count} 次",
     "many": "本周锻炼 {count} 次",
     "local": "仅保存在此浏览器中，不会在设备之间同步。",
-    "celebrate": "又完成一次锻炼，真棒！ ✓",
+    "celebrate": "又完成一次锻炼，真棒！",
     "removed": "记录已撤销。",
     "error": "无法保存，请检查浏览器存储设置。",
     "logged": "已记录锻炼",
@@ -48,9 +48,9 @@ window.WORKOUT_LOCALES.zh = {
   "dark": "深色模式 ◐",
   "light": "浅色模式 ◐",
   "sound": "声音",
-  "notifications": "每日提醒", "notificationsOn": "每日提醒已开启 ✓", "notificationsOff": "每日提醒已关闭", "notificationsDenied": "请在设置中开启通知", "notificationsUnsupported": "请将网站添加到主屏幕", "notificationsUnavailable": "提醒功能可在已发布的网站使用",
-  "copied": "文案已复制 ✓",
-  "downloaded": "故事图片已下载 ✓",
+  "notifications": "每日提醒", "notificationsOn": "每日提醒已开启", "notificationsOff": "每日提醒已关闭", "notificationsDenied": "请在设置中开启通知", "notificationsUnsupported": "请将网站添加到主屏幕", "notificationsUnavailable": "提醒功能可在已发布的网站使用",
+  "copied": "文案已复制",
+  "downloaded": "故事图片已下载",
   "error": "无法分享",
   "motivations": [
     [

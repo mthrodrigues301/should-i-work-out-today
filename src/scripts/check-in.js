@@ -43,7 +43,7 @@
       const label = document.createElement("span");
       label.textContent = date.toLocaleDateString(copy.lang, { weekday: "short" });
       const mark = document.createElement("strong");
-      mark.textContent = logged ? "✓" : String(date.getDate());
+      mark.textContent = logged ? "OK" : String(date.getDate());
       label.setAttribute("aria-hidden", "true");
       mark.setAttribute("aria-hidden", "true");
       item.append(label, mark);

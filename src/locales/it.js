@@ -2,13 +2,13 @@ window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.it = {
   "checkIn": {
     "action": "MI SONO ALLENATO OGGI",
-    "done": "ALLENAMENTO REGISTRATO ✓",
+    "done": "ALLENAMENTO REGISTRATO",
     "undo": "ANNULLA",
     "week": "LA TUA SETTIMANA",
     "one": "{count} allenamento questa settimana",
     "many": "{count} allenamenti questa settimana",
     "local": "Salvato solo in questo browser. Nessuna sincronizzazione tra dispositivi.",
-    "celebrate": "Un altro allenamento. Bravo! ✓",
+    "celebrate": "Un altro allenamento. Bravo!",
     "removed": "Registrazione rimossa.",
     "error": "Impossibile salvare. Controlla lo spazio del browser.",
     "logged": "Allenamento registrato",
@@ -48,9 +48,9 @@ window.WORKOUT_LOCALES.it = {
   "dark": "MODALITÀ SCURA ◐",
   "light": "MODALITÀ CHIARA ◐",
   "sound": "SUONO",
-  "notifications": "PROMEMORIA GIORNALIERO", "notificationsOn": "PROMEMORIA ATTIVATO ✓", "notificationsOff": "PROMEMORIA DISATTIVATO", "notificationsDenied": "ATTIVA LE NOTIFICHE NELLE IMPOSTAZIONI", "notificationsUnsupported": "AGGIUNGI IL SITO ALLA SCHERMATA HOME", "notificationsUnavailable": "PROMEMORIA DISPONIBILI SUL SITO PUBBLICATO",
-  "copied": "FRASE COPIATA ✓",
-  "downloaded": "IMMAGINE PER LE STORIE SCARICATA ✓",
+  "notifications": "PROMEMORIA GIORNALIERO", "notificationsOn": "PROMEMORIA ATTIVATO", "notificationsOff": "PROMEMORIA DISATTIVATO", "notificationsDenied": "ATTIVA LE NOTIFICHE NELLE IMPOSTAZIONI", "notificationsUnsupported": "AGGIUNGI IL SITO ALLA SCHERMATA HOME", "notificationsUnavailable": "PROMEMORIA DISPONIBILI SUL SITO PUBBLICATO",
+  "copied": "FRASE COPIATA",
+  "downloaded": "IMMAGINE PER LE STORIE SCARICATA",
   "error": "IMPOSSIBILE CONDIVIDERE",
   "motivations": [
     [

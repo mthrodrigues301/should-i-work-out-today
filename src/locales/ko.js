@@ -2,13 +2,13 @@ window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.ko = {
   "checkIn": {
     "action": "오늘 운동 완료",
-    "done": "운동이 기록되었어요 ✓",
+    "done": "운동이 기록되었어요",
     "undo": "취소",
     "week": "이번 주",
     "one": "이번 주 운동 {count}회",
     "many": "이번 주 운동 {count}회",
     "local": "이 브라우저에만 저장돼요. 기기 간 동기화는 지원하지 않아요.",
-    "celebrate": "오늘도 해냈어요! ✓",
+    "celebrate": "오늘도 해냈어요!",
     "removed": "기록을 취소했어요.",
     "error": "저장할 수 없어요. 브라우저 저장 공간을 확인해 주세요.",
     "logged": "운동 기록됨",
@@ -48,9 +48,9 @@ window.WORKOUT_LOCALES.ko = {
   "dark": "다크 모드 ◐",
   "light": "라이트 모드 ◐",
   "sound": "소리",
-  "notifications": "매일 알림", "notificationsOn": "매일 알림이 켜졌습니다 ✓", "notificationsOff": "매일 알림이 꺼졌습니다", "notificationsDenied": "설정에서 알림을 허용하세요", "notificationsUnsupported": "홈 화면에 사이트를 추가하세요", "notificationsUnavailable": "알림은 공개된 사이트에서 사용할 수 있습니다",
-  "copied": "문구 복사 완료 ✓",
-  "downloaded": "스토리 이미지 저장 완료 ✓",
+  "notifications": "매일 알림", "notificationsOn": "매일 알림이 켜졌습니다", "notificationsOff": "매일 알림이 꺼졌습니다", "notificationsDenied": "설정에서 알림을 허용하세요", "notificationsUnsupported": "홈 화면에 사이트를 추가하세요", "notificationsUnavailable": "알림은 공개된 사이트에서 사용할 수 있습니다",
+  "copied": "문구 복사 완료",
+  "downloaded": "스토리 이미지 저장 완료",
   "error": "공유할 수 없습니다",
   "motivations": [
     [

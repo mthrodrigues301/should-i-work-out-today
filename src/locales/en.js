@@ -2,13 +2,13 @@ window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.en = {
   "checkIn": {
     "action": "I WORKED OUT TODAY",
-    "done": "WORKOUT LOGGED ✓",
+    "done": "WORKOUT LOGGED",
     "undo": "UNDO",
     "week": "YOUR WEEK",
     "one": "{count} workout this week",
     "many": "{count} workouts this week",
     "local": "Saved only in this browser. No syncing across devices.",
-    "celebrate": "Another workout. Well done! ✓",
+    "celebrate": "Another workout. Well done!",
     "removed": "Check-in removed.",
     "error": "Could not save. Check your browser storage.",
     "logged": "Workout logged",
@@ -48,9 +48,9 @@ window.WORKOUT_LOCALES.en = {
   "dark": "DARK MODE ◐",
   "light": "LIGHT MODE ◐",
   "sound": "SOUND",
-  "notifications": "DAILY REMINDER", "notificationsOn": "DAILY REMINDER ENABLED ✓", "notificationsOff": "DAILY REMINDER DISABLED", "notificationsDenied": "ENABLE NOTIFICATIONS IN SETTINGS", "notificationsUnsupported": "ADD THIS SITE TO YOUR HOME SCREEN", "notificationsUnavailable": "REMINDERS ARE AVAILABLE ON THE LIVE SITE",
-  "copied": "QUOTE COPIED ✓",
-  "downloaded": "STORY IMAGE DOWNLOADED ✓",
+  "notifications": "DAILY REMINDER", "notificationsOn": "DAILY REMINDER ENABLED", "notificationsOff": "DAILY REMINDER DISABLED", "notificationsDenied": "ENABLE NOTIFICATIONS IN SETTINGS", "notificationsUnsupported": "ADD THIS SITE TO YOUR HOME SCREEN", "notificationsUnavailable": "REMINDERS ARE AVAILABLE ON THE LIVE SITE",
+  "copied": "QUOTE COPIED",
+  "downloaded": "STORY IMAGE DOWNLOADED",
   "error": "COULD NOT SHARE",
   "motivations": [
     [

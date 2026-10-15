@@ -2,13 +2,13 @@ window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.es = {
   "checkIn": {
     "action": "ENTRENÉ HOY",
-    "done": "ENTRENAMIENTO REGISTRADO ✓",
+    "done": "ENTRENAMIENTO REGISTRADO",
     "undo": "DESHACER",
     "week": "TU SEMANA",
     "one": "{count} entrenamiento esta semana",
     "many": "{count} entrenamientos esta semana",
     "local": "Guardado solo en este navegador. Sin sincronización entre dispositivos.",
-    "celebrate": "¡Otro entrenamiento! ✓",
+    "celebrate": "¡Otro entrenamiento!",
     "removed": "Registro eliminado.",
     "error": "No se pudo guardar. Revisa el almacenamiento del navegador.",
     "logged": "Entrenamiento registrado",
@@ -48,9 +48,9 @@ window.WORKOUT_LOCALES.es = {
   "dark": "MODO OSCURO ◐",
   "light": "MODO CLARO ◐",
   "sound": "SONIDO",
-  "notifications": "RECORDATORIO DIARIO", "notificationsOn": "RECORDATORIO ACTIVADO ✓", "notificationsOff": "RECORDATORIO DESACTIVADO", "notificationsDenied": "ACTIVA LAS NOTIFICACIONES EN AJUSTES", "notificationsUnsupported": "AÑADE EL SITIO A TU PANTALLA DE INICIO", "notificationsUnavailable": "RECORDATORIOS DISPONIBLES EN EL SITIO PUBLICADO",
-  "copied": "FRASE COPIADA ✓",
-  "downloaded": "IMAGEN PARA STORIES DESCARGADA ✓",
+  "notifications": "RECORDATORIO DIARIO", "notificationsOn": "RECORDATORIO ACTIVADO", "notificationsOff": "RECORDATORIO DESACTIVADO", "notificationsDenied": "ACTIVA LAS NOTIFICACIONES EN AJUSTES", "notificationsUnsupported": "AÑADE EL SITIO A TU PANTALLA DE INICIO", "notificationsUnavailable": "RECORDATORIOS DISPONIBLES EN EL SITIO PUBLICADO",
+  "copied": "FRASE COPIADA",
+  "downloaded": "IMAGEN PARA STORIES DESCARGADA",
   "error": "NO SE PUDO COMPARTIR",
   "motivations": [
     [

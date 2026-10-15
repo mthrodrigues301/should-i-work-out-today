@@ -2,13 +2,13 @@ window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.pt = {
   "checkIn": {
     "action": "TREINEI HOJE",
-    "done": "TREINO REGISTRADO ✓",
+    "done": "TREINO REGISTRADO",
     "undo": "DESFAZER",
     "week": "SUA SEMANA",
     "one": "{count} treino nesta semana",
     "many": "{count} treinos nesta semana",
     "local": "Salvo só neste navegador. Sem sincronização entre aparelhos.",
-    "celebrate": "Mais um treino. Boa! ✓",
+    "celebrate": "Mais um treino. Boa!",
     "removed": "Registro desfeito.",
     "error": "Não foi possível salvar. Verifique o armazenamento do navegador.",
     "logged": "Treino registrado",
@@ -48,9 +48,9 @@ window.WORKOUT_LOCALES.pt = {
   "dark": "MODO ESCURO ◐",
   "light": "MODO CLARO ◐",
   "sound": "SOM",
-  "notifications": "LEMBRETE DIÁRIO", "notificationsOn": "LEMBRETE DIÁRIO ATIVADO ✓", "notificationsOff": "LEMBRETE DIÁRIO DESATIVADO", "notificationsDenied": "ATIVE AS NOTIFICAÇÕES NOS AJUSTES", "notificationsUnsupported": "INSTALE O SITE NA TELA DE INÍCIO", "notificationsUnavailable": "LEMBRETES DISPONÍVEIS NO SITE PUBLICADO",
-  "copied": "FRASE COPIADA ✓",
-  "downloaded": "IMAGEM PARA STORIES BAIXADA ✓",
+  "notifications": "LEMBRETE DIÁRIO", "notificationsOn": "LEMBRETE DIÁRIO ATIVADO", "notificationsOff": "LEMBRETE DIÁRIO DESATIVADO", "notificationsDenied": "ATIVE AS NOTIFICAÇÕES NOS AJUSTES", "notificationsUnsupported": "INSTALE O SITE NA TELA DE INÍCIO", "notificationsUnavailable": "LEMBRETES DISPONÍVEIS NO SITE PUBLICADO",
+  "copied": "FRASE COPIADA",
+  "downloaded": "IMAGEM PARA STORIES BAIXADA",
   "error": "NÃO FOI POSSÍVEL COMPARTILHAR",
   "motivations": [
     [

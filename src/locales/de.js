@@ -2,13 +2,13 @@ window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.de = {
   "checkIn": {
     "action": "HEUTE TRAINIERT",
-    "done": "TRAINING GESPEICHERT ✓",
+    "done": "TRAINING GESPEICHERT",
     "undo": "RÜCKGÄNGIG",
     "week": "DEINE WOCHE",
     "one": "{count} Training diese Woche",
     "many": "{count} Trainings diese Woche",
     "local": "Nur in diesem Browser gespeichert. Keine Synchronisierung zwischen Geräten.",
-    "celebrate": "Wieder trainiert. Gut gemacht! ✓",
+    "celebrate": "Wieder trainiert. Gut gemacht!",
     "removed": "Eintrag entfernt.",
     "error": "Speichern fehlgeschlagen. Prüfe den Browserspeicher.",
     "logged": "Training gespeichert",
@@ -48,9 +48,9 @@ window.WORKOUT_LOCALES.de = {
   "dark": "DUNKEL ◐",
   "light": "HELL ◐",
   "sound": "TON",
-  "notifications": "TÄGLICHE ERINNERUNG", "notificationsOn": "ERINNERUNG AKTIVIERT ✓", "notificationsOff": "ERINNERUNG DEAKTIVIERT", "notificationsDenied": "BENACHRICHTIGUNGEN IN DEN EINSTELLUNGEN AKTIVIEREN", "notificationsUnsupported": "ZUM STARTBILDSCHIRM HINZUFÜGEN", "notificationsUnavailable": "ERINNERUNGEN SIND AUF DER LIVE-WEBSITE VERFÜGBAR",
-  "copied": "SPRUCH KOPIERT ✓",
-  "downloaded": "STORY-BILD HERUNTERGELADEN ✓",
+  "notifications": "TÄGLICHE ERINNERUNG", "notificationsOn": "ERINNERUNG AKTIVIERT", "notificationsOff": "ERINNERUNG DEAKTIVIERT", "notificationsDenied": "BENACHRICHTIGUNGEN IN DEN EINSTELLUNGEN AKTIVIEREN", "notificationsUnsupported": "ZUM STARTBILDSCHIRM HINZUFÜGEN", "notificationsUnavailable": "ERINNERUNGEN SIND AUF DER LIVE-WEBSITE VERFÜGBAR",
+  "copied": "SPRUCH KOPIERT",
+  "downloaded": "STORY-BILD HERUNTERGELADEN",
   "error": "TEILEN NICHT MÖGLICH",
   "motivations": [
     [
