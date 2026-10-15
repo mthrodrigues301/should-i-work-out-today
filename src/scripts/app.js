@@ -600,3 +600,6 @@ window.addEventListener("popstate", () => {
 window.addEventListener("resize", scheduleHeroFit);
 if (document.fonts?.ready) document.fonts.ready.then(scheduleHeroFit);
 applyLanguage(currentLanguage);
+
+window.addEventListener("storage",event=>{if(event.key==="workout-theme"||event.key===null)setTheme(localStorage.getItem("workout-theme")||(systemTheme.matches?"dark":"light"),false)});
+window.addEventListener("pageshow",()=>setTheme(localStorage.getItem("workout-theme")||(systemTheme.matches?"dark":"light"),false));
