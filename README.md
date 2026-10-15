@@ -151,6 +151,10 @@ To migrate an existing routine, export JSON from the old Meu Treino and import i
 
 Validation: `npm test` and `npm run build`; local browser flow from motivation to training completion to weekly attendance. No deployment or push is required for the preview.
 
+### Local training history
+
+The workout menu includes **Histórico**. Completed sessions save the completion date, total time, workout title, and a snapshot of the exercises and completed sets. The “Não vou treinar” action is only available for the current day and requires a reason; it records an absence for that calendar date. The history is local to the browser, supports no cloud syncing, and preserves one final status per date: a subsequent completed workout replaces an earlier absence on the same day.
+
 ### Expiry push reminders (branch only)
 
 Opt-in from `/treino/`. The browser sends only unique expiry dates, timezone and push subscription to `/api/notifications/expiry`. A random 256-bit device capability token authorizes replacement/deletion; only its hash is stored server-side. There is no account sync. Schedule renewals need network access; failure is visible and retries on foreground/online. Do not clear browser data before disabling a reminder. Records retire after 120 days without updates.

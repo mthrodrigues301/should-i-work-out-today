@@ -24,7 +24,7 @@ function key(){return `${sessionWeek}:${day}`}
 function session(){const t=sessions[key()];return t&&Number.isFinite(t.elapsed)&&t.elapsed>=0&&(t.startedAt===null||Number.isFinite(t.startedAt))?t:null}
 function done(){const v=progress[key()];return Array.isArray(v)?[...new Set(v.filter(i=>Number.isInteger(i)&&i>=0&&i<plan[day].items.length))]:[]}
 function persist(){try{localStorage.setItem('mt-plan',JSON.stringify(plan));localStorage.setItem('mt-progress',JSON.stringify(progress));localStorage.setItem('mt-sessions',JSON.stringify(sessions));localStorage.setItem('mt-rest-seconds',JSON.stringify(restSeconds));localStorage.setItem('mt-sound',JSON.stringify(soundEnabled));$('save-status').textContent='Salvo neste aparelho';ExpiryPush.sync(plan)}catch{$('save-status').textContent='Não foi possível salvar neste navegador'}}
-function syncCompletion(){try{WorkoutHistory.update(key(),session(),plan[day]);}catch{$('save-status').textContent='Não foi possível atualizar a presença semanal'}}
+function syncCompletion(){try{WorkoutHistory.update(key(),session(),plan[day]);WorkoutHistoryStore.logCompletion(session(),plan[day],day)}catch{$('save-status').textContent='Não foi possível atualizar a presença semanal'}}
 function elapsed(t,now=Date.now()){return t?t.elapsed+(t.startedAt===null?0:Math.max(0,now-t.startedAt)):0}
 function formatTime(ms){const total=Math.floor(ms/1000),h=Math.floor(total/3600),m=Math.floor(total%3600/60),s=total%60;return (h?String(h).padStart(2,'0')+':':'')+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
 function pause(t){if(t&&t.startedAt!==null){t.elapsed=elapsed(t);if(t.rest&&t.rest.end!==null){t.rest.remaining=Training.restLeft(t);t.rest.end=null}t.startedAt=null}}
@@ -53,6 +53,9 @@ $('renew-close').onclick=()=>$('renew-dialog').close();
 $('renew-form').onsubmit=e=>{e.preventDefault();plan[day].validity=WorkoutValidity.create(Number($('renew-months').value));persist();renderValidity();$('renew-dialog').close()};
 setInterval(renderValidity,60000);
 $('reset').onclick=()=>{if(confirm('Recomeçar este treino? O tempo e as marcações deste dia serão zerados.')){progress[key()]=[];delete sessions[key()];syncCompletion();selected=null;persist();render();syncWake()}};
+$('skip-training').onclick=()=>{$('skip-error').textContent='';$('skip-reason').value='';$('skip-dialog').showModal()};
+$('skip-close').onclick=()=>$('skip-dialog').close();
+$('skip-form').onsubmit=event=>{event.preventDefault();try{const reason=$('skip-reason').value.trim();WorkoutHistoryStore.logAbsence(WorkoutHistoryStore.dateKey(Date.now()),reason,plan[day],day);progress[key()]=[];delete sessions[key()];selected=null;persist();render();$('skip-dialog').close()}catch{$('skip-error').textContent='Escreva um motivo para salvar este dia.'}};
 setInterval(tick,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){tick();renderValidity();syncWake()}});
 $('import-open').onclick=()=>{manualDrafts={};manualEditingDay=day;loadManualDay(day);setEntryMode('import');$('import-validity').value='';$('manual-validity').value='';$('import-dialog').showModal()};$('import-close').onclick=()=>$('import-dialog').close();
 $('file').onchange=async()=>{const f=$('file').files[0];if(!f)return;if(f.size>250000){$('import-error').textContent='Escolha um arquivo de até 250 KB.';return}$('import-text').value=await f.text();$('import-error').textContent=''};
@@ -98,3 +101,6 @@ $('notifications-open').onclick=()=>{renderValidity();$('notifications-dialog').
 $('notifications-close').onclick=()=>$('notifications-dialog').close();
 $('notifications-dialog').addEventListener('close',()=>$('notifications-open').focus());
 if(new URLSearchParams(location.search).has('expired'))$('notifications-dialog').showModal();
+const renderWorkout=render;
+render=()=>{renderWorkout();$('skip-training').hidden=day!==new Date().getDay()||!plan[day].items.length};
+$('skip-training').hidden=day!==new Date().getDay()||!plan[day].items.length;
