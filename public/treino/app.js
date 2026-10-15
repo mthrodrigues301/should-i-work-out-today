@@ -13,6 +13,7 @@ function read(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fa
 function valid(data){return data&&typeof data==='object'&&Object.entries(data).length>0&&Object.entries(data).every(([k,v])=>/^[0-6]$/.test(k)&&v&&typeof v.title==='string'&&v.title.length<160&&(v.validity===undefined||WorkoutValidity.valid(v.validity))&&Array.isArray(v.items)&&v.items.length<=80&&v.items.every(i=>i&&['name','sets','reps'].every(p=>typeof i[p]==='string'&&i[p].length>0&&i[p].length<=200)&&(i.restSeconds===undefined||(Number.isInteger(i.restSeconds)&&i.restSeconds>=0&&i.restSeconds<=1800))))}
 let saved=read('mt-plan',null),plan=valid(saved)?{...DEFAULT,...saved}:structuredClone(DEFAULT),progress=read('mt-progress',{});if(!progress||typeof progress!=='object'||Array.isArray(progress))progress={};
 let day=new Date().getDay(),selected=null;
+if(new URLSearchParams(location.search).has('expired')){const expired=Object.keys(plan).find(k=>WorkoutValidity.state(plan[k].validity)==='expired');if(expired!==undefined)day=Number(expired)}
 let restSeconds=Number(read('mt-rest-seconds',60));if(![0,30,60,90,120,180].includes(restSeconds))restSeconds=60;
 let soundEnabled=read('mt-sound',true)!==false;
 let wakeLock=null,storyFile=null,storyURL=null;
@@ -22,7 +23,7 @@ const sessionWeek=week();
 function key(){return `${sessionWeek}:${day}`}
 function session(){const t=sessions[key()];return t&&Number.isFinite(t.elapsed)&&t.elapsed>=0&&(t.startedAt===null||Number.isFinite(t.startedAt))?t:null}
 function done(){const v=progress[key()];return Array.isArray(v)?[...new Set(v.filter(i=>Number.isInteger(i)&&i>=0&&i<plan[day].items.length))]:[]}
-function persist(){try{localStorage.setItem('mt-plan',JSON.stringify(plan));localStorage.setItem('mt-progress',JSON.stringify(progress));localStorage.setItem('mt-sessions',JSON.stringify(sessions));localStorage.setItem('mt-rest-seconds',JSON.stringify(restSeconds));localStorage.setItem('mt-sound',JSON.stringify(soundEnabled));$('save-status').textContent='Salvo neste aparelho'}catch{$('save-status').textContent='Não foi possível salvar neste navegador'}}
+function persist(){try{localStorage.setItem('mt-plan',JSON.stringify(plan));localStorage.setItem('mt-progress',JSON.stringify(progress));localStorage.setItem('mt-sessions',JSON.stringify(sessions));localStorage.setItem('mt-rest-seconds',JSON.stringify(restSeconds));localStorage.setItem('mt-sound',JSON.stringify(soundEnabled));$('save-status').textContent='Salvo neste aparelho';ExpiryPush.sync(plan)}catch{$('save-status').textContent='Não foi possível salvar neste navegador'}}
 function syncCompletion(){try{WorkoutHistory.update(key(),session(),plan[day]);}catch{$('save-status').textContent='Não foi possível atualizar a presença semanal'}}
 function elapsed(t,now=Date.now()){return t?t.elapsed+(t.startedAt===null?0:Math.max(0,now-t.startedAt)):0}
 function formatTime(ms){const total=Math.floor(ms/1000),h=Math.floor(total/3600),m=Math.floor(total%3600/60),s=total%60;return (h?String(h).padStart(2,'0')+':':'')+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
@@ -84,3 +85,5 @@ standaloneMode.addEventListener('change',updateInstallVisibility);
 window.addEventListener('pageshow',updateInstallVisibility);
 updateInstallVisibility();
 let installPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e});$('install').onclick=async()=>{if(installPrompt){await installPrompt.prompt();installPrompt=null}else $('install-dialog').showModal()};$('install-close').onclick=()=>$('install-dialog').close();render();syncWake();if('serviceWorker'in navigator)navigator.serviceWorker.register('/service-worker.js').catch(()=>{$('save-status').textContent='Offline indisponível · progresso local'});
+
+ExpiryPush.init(()=>plan);

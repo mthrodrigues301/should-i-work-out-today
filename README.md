@@ -150,3 +150,11 @@ The existing root service worker retains its push handlers and caches workout as
 To migrate an existing routine, export JSON from the old Meu Treino and import it in `/treino/`. This transfers the plan only, not previous sessions. The old production app is unchanged.
 
 Validation: `npm test` and `npm run build`; local browser flow from motivation to training completion to weekly attendance. No deployment or push is required for the preview.
+
+### Expiry push reminders (branch only)
+
+Opt-in from `/treino/`. The browser sends only unique expiry dates, timezone and push subscription to `/api/notifications/expiry`. A random 256-bit device capability token authorizes replacement/deletion; only its hash is stored server-side. There is no account sync. Schedule renewals need network access; failure is visible and retries on foreground/online. Do not clear browser data before disabling a reminder. Records retire after 120 days without updates.
+
+The existing authenticated hourly `/api/notifications/send` cron also dispatches expiry reminders at 08:00 in the stored timezone, after the final valid day. One notification covers pending dates; successful dates are deduplicated, transient failures retry the following morning, 404/410 subscriptions are removed. Redis claims prevent concurrent sends; CAS prevents overwriting a renewal during delivery. Delivery is best effort, not exactly-once if the provider accepts a push and persistence subsequently fails. The OS may delay display. Daily motivation and expiry preferences are separate, sharing the browser subscription without unsubscribing each other.
+
+Use the existing VAPID, Redis and CRON_SECRET environment configuration. No secrets or production services were accessed in this implementation. The static localhost preview deliberately does not request permission or send real pushes. `npm test` uses fake Redis and push delivery to exercise dispatch, retries, renewal, validation and opt-out. Actual closed-app iPhone/Android delivery remains to be validated on an authorized HTTPS deployment. iPhone requires installation on the Home Screen and notification permission.

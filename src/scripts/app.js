@@ -494,12 +494,19 @@ function pushSubscriptionPayload(subscription) {
   };
 }
 
+function dailyReminderEnabled(subscription) {
+  const saved=localStorage.getItem("workout-daily-push-enabled");
+  if(saved!==null)return saved==="true";
+  let expiry=false;try{expiry=JSON.parse(localStorage.getItem("mt-expiry-push")||"null")?.enabled}catch{}
+  const enabled=Boolean(subscription)&&!expiry;localStorage.setItem("workout-daily-push-enabled",String(enabled));return enabled;
+}
 async function updateNotificationState() {
   const registration = await getPushRegistration();
   const subscription = await registration?.pushManager.getSubscription();
-  notificationButton.setAttribute("aria-pressed", String(Boolean(subscription)));
-  notificationLabel.textContent = subscription ? "ON" : "OFF";
-  if (subscription) {
+  const enabled=Boolean(subscription)&&dailyReminderEnabled(subscription);
+  notificationButton.setAttribute("aria-pressed", String(enabled));
+  notificationLabel.textContent = enabled ? "ON" : "OFF";
+  if (enabled) {
     await fetch("/api/notifications/subscribe", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -517,13 +524,14 @@ async function toggleNotifications() {
       return;
     }
     const existing = await registration.pushManager.getSubscription();
-    if (existing) {
-      await fetch("/api/notifications/subscribe", {
+    if (existing && dailyReminderEnabled(existing)) {
+      const response = await fetch("/api/notifications/subscribe", {
         method: "DELETE",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ endpoint: existing.endpoint })
       });
-      await existing.unsubscribe();
+      if(!response.ok)throw new Error("Could not disable daily reminder");
+      localStorage.setItem("workout-daily-push-enabled","false");
       showToast(localeData[currentLanguage].notificationsOff);
     } else {
       const permission = await Notification.requestPermission();
@@ -538,7 +546,7 @@ async function toggleNotifications() {
       }
       if (!keyResponse.ok) throw new Error("Could not load push configuration");
       const { publicKey } = await keyResponse.json();
-      const subscription = await registration.pushManager.subscribe({
+      const subscription = existing || await registration.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(publicKey)
       });
@@ -548,9 +556,10 @@ async function toggleNotifications() {
         body: JSON.stringify(pushSubscriptionPayload(subscription))
       });
       if (!response.ok) {
-        await subscription.unsubscribe();
+        if(!existing)await subscription.unsubscribe();
         throw new Error("Could not save push subscription");
       }
+      localStorage.setItem("workout-daily-push-enabled","true");
       showToast(localeData[currentLanguage].notificationsOn);
     }
   } catch (error) {

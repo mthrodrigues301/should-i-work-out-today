@@ -1,3 +1,4 @@
+import { dispatchExpiry } from "../_lib/expiry.mjs";
 import { createHash } from "node:crypto";
 import { configureWebPush, getRedis, json, SUBSCRIPTIONS_KEY } from "../_lib/push.mjs";
 import { getMotivations } from "../_lib/motivations.mjs";
@@ -61,6 +62,7 @@ export default async function handler(req, res) {
   try {
     configureWebPush();
     const redis = getRedis();
+    const expiry = await dispatchExpiry(redis, (...args) => webpush.sendNotification(...args));
     const motivations = await getMotivations();
     const records = await redis.hgetall(SUBSCRIPTIONS_KEY) || {};
     let sent = 0;
@@ -107,7 +109,7 @@ export default async function handler(req, res) {
         }
       }
     }
-    return json(res, { sent, skipped, removed, scheduledHour });
+    return json(res, { sent, skipped, removed, scheduledHour, expiry });
   } catch (error) {
     console.error("Daily push failed", error);
     return json(res, { error: "Could not send notifications" }, 500);
