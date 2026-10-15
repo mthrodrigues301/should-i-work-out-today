@@ -126,7 +126,7 @@ function applyLanguage(language, updateUrl = false) {
   const previousIndex = currentIndex;
   currentLanguage = localeData[language] ? language : "pt";
   const copy = localeData[currentLanguage];
-  window.workoutCheckIn.render(copy);
+  window.workoutCheckIn?.render(copy);
   document.documentElement.lang = copy.lang;
   document.title = copy.seoTitle;
   document.querySelector('meta[name="description"]').content = copy.seoDescription;

@@ -93,6 +93,7 @@
       </a>
 
       <div class="top-actions">
+        <button class="menu-toggle" id="menuOpen" type="button" aria-label="Abrir menu" aria-haspopup="dialog" aria-controls="navigationMenu">☰ <span>MENU</span></button>
         <label class="language-picker">
           <span class="sr-only">Idioma</span>
           <select id="languageSelect" aria-label="Selecionar idioma">
@@ -137,20 +138,15 @@
             <span class="share-channels" aria-hidden="true">X - WHATSAPP - INSTAGRAM - THREADS</span>
           </div>
         </div>
-        <a class="start-workout" href="/treino/">COMEÇAR MEU TREINO <span>→</span><small>Exercícios, séries e descanso · em português</small></a>
-        <section class="check-in" id="checkIn" aria-labelledby="checkInTitle">
-          <div class="check-in-heading"><h2 id="checkInTitle">SUA SEMANA</h2><p id="checkInCount" aria-live="polite"></p></div>
-          <ol class="check-in-days" id="checkInDays"></ol>
-          <div class="check-in-actions">
-            <button id="checkInButton" type="button">TREINEI HOJE</button>
-            <span id="checkInDone" hidden>TREINO REGISTRADO ✓</span>
-            <button id="checkInUndo" type="button" hidden>DESFAZER</button>
-          </div>
-          <p class="check-in-note" id="checkInNote">Salvo só neste navegador. Sem sincronização entre aparelhos.</p>
-        </section>
       </section>
     </main>
 
+    <dialog id="navigationMenu" class="navigation-menu" aria-labelledby="navigationTitle">
+      <div class="navigation-heading"><h2 id="navigationTitle">SEU PRÓXIMO PASSO</h2><button type="button" id="menuClose" aria-label="Fechar menu">×</button></div>
+      <nav aria-label="Navegação principal"><a href="/treino/"><span>Meu treino</span><span aria-hidden="true">↗</span><small>Exercícios, séries e descanso.</small></a></nav>
+      <p>Um dia de cada vez.</p>
+    </dialog>
+    <script src="navigation.js" defer></script>
     <footer>
       <p><span id="instructionText">CLIQUE OU APERTE</span> <kbd id="spaceText">ESPAÇO</kbd></p>
       <div class="footer-actions">
@@ -216,7 +212,7 @@
     <script src="locales/ko.js"></script>
     <script src="locales/zh.js"></script>
     <script src="workout-history.js"></script>
-    <script src="check-in.js"></script>
+
     <script src="script.js"></script>
     <script type="importmap">
       {
