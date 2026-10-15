@@ -22,7 +22,7 @@ const ExpiryPush=(()=>{
    await navigator.serviceWorker.register('/service-worker.js');const registration=await navigator.serviceWorker.ready;
    const existing=await registration.pushManager.getSubscription();if(localStorage.getItem('workout-daily-push-enabled')===null)localStorage.setItem('workout-daily-push-enabled',String(!!existing));
    const sub=existing||await registration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey});
-   const settings=payload(getPlan()),deviceToken=token();await request('POST',{token:deviceToken,subscription:sub.toJSON(),...settings});localStorage.setItem(KEY,JSON.stringify({token:deviceToken,enabled:true}));lastSynced=JSON.stringify(settings);status('Aviso ativo · às 8h após o vencimento.');buttons();
+   const settings=payload(getPlan()),deviceToken=token();await request('POST',{token:deviceToken,subscription:sub.toJSON(),...settings});localStorage.setItem(KEY,JSON.stringify({token:deviceToken,enabled:true}));lastSynced=JSON.stringify(settings);status('Aviso ativo · vencimento e fim de descanso.');buttons();window.dispatchEvent(new Event('workoutpushenabled'));
   }catch(e){status(e.message||'Não foi possível ativar o aviso.')}finally{element('expiry-enable').disabled=false}
  }
  async function disable(){element('expiry-disable').disabled=true;queue=queue.catch(()=>{}).then(async()=>{try{await request('DELETE',{token:token()});localStorage.setItem(KEY,JSON.stringify({token:token(),enabled:false}));lastSynced='';status('Aviso de vencimento desativado.');buttons()}catch(e){status('Não foi possível desativar. O aviso continua ativo; tente novamente com internet.')}finally{element('expiry-disable').disabled=false}});await queue}
