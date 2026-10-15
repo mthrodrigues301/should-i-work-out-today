@@ -21,7 +21,7 @@
     locale = copy;
     const text = copy.checkIn;
     let dates;
-    try { dates = readDates(); } catch { dates = new Set(); }
+    try { dates = new Set([...readDates(), ...WorkoutHistory.dates()]); } catch { dates = new Set(); }
     const now = new Date();
     const today = dateKey(now);
     const checked = dates.has(today);
@@ -56,7 +56,7 @@
     undo.textContent = text.undo;
     done.textContent = text.done;
     button.hidden = checked;
-    undo.hidden = !checked;
+    undo.hidden = !checked || WorkoutHistory.dates().includes(today);
     done.hidden = !checked;
     clearTimeout(rollover);
     const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
@@ -90,7 +90,7 @@
   button.addEventListener("click", () => save(false));
   undo.addEventListener("click", () => save(true));
   window.addEventListener("storage", event => {
-    if (event.key === KEY || event.key === null) render();
+    if (event.key === KEY || event.key === WorkoutHistory.KEY || event.key === null) render();
   });
   window.addEventListener("focus", () => render());
   document.addEventListener("visibilitychange", () => {

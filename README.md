@@ -140,3 +140,13 @@ Suggestions, translation improvements, and new motivational messages are welcome
 ## License
 
 The original source code is available under the [MIT License](LICENSE). Third-party names, quotations, film references, and attributed material are excluded from that license and remain the property of their respective rights holders. See [NOTICE](NOTICE) for details.
+
+## Local workout integration preview
+
+The `codex/integrate-meu-treino` branch adds `/treino/`, the workout executor, to the motivational site. Completion writes a local dated session summary shared with the weekly check-in; manual check-ins remain independent and do not invent exercise data. Both views must be opened in the same browser/storage context. No account or cloud synchronization is added.
+
+The existing root service worker retains its push handlers and caches workout assets for offline execution. The executor remains in Portuguese. Its Story includes workout name, elapsed time, a motivational line and the site attribution.
+
+To migrate an existing routine, export JSON from the old Meu Treino and import it in `/treino/`. This transfers the plan only, not previous sessions. The old production app is unchanged.
+
+Validation: `npm test` and `npm run build`; local browser flow from motivation to training completion to weekly attendance. No deployment or push is required for the preview.

@@ -497,3 +497,5 @@ main {
   .check-in { margin-top: 24px; }
   .check-in-days { gap: 4px; }
 }
+
+.start-workout{display:block;margin:24px auto;max-width:480px;padding:20px 24px;border:2px solid currentColor;color:inherit;text-decoration:none;text-align:left;font-weight:800;border-radius:4px}.start-workout span{float:right}.start-workout small{display:block;font-size:12px;font-weight:400;margin-top:8px}.start-workout:hover{transform:translateY(-2px)}

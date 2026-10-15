@@ -7,7 +7,7 @@
     "instagram:sync-assets": "node scripts/instagram/sync-public-assets.mjs",
     "start": "npm run build && npx serve dist",
     "preview": "npm run start",
-    "test": "node --test tests/check-in.cjs"
+    "test": "node --test tests/*.cjs"
   },
   "dependencies": {
     "@fontsource/anton": "^5.3.0",

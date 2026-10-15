@@ -9,8 +9,10 @@ function setup(now, stored = '[]', blocked = false) {
  const get = id => {if(!elements.has(id)) elements.set(id,make());return elements.get(id)};
  let value = stored, message, timer;
  class Clock extends Date {constructor(...args){super(...(args.length ? args : [now]));}}
- const context = vm.createContext({Date:Clock,Set,JSON,SyntaxError,document:{querySelector:get,createElement:make,addEventListener(){}},window:{addEventListener(){}},localStorage:{getItem(){return value},setItem(k,v){if(blocked)throw Error('blocked');value=v}},setTimeout(fn){timer=fn},clearTimeout(){},showToast(v){message=v}});
+ const context = vm.createContext({Date:Clock,Set,JSON,SyntaxError,document:{querySelector:get,createElement:make,addEventListener(){}},window:{addEventListener(){}},localStorage:{getItem(k){return k === "workout-check-ins-v1" ? value : "{}"},setItem(k,v){if(blocked)throw Error('blocked');value=v}},setTimeout(fn){timer=fn},clearTimeout(){},showToast(v){message=v}});
  vm.runInContext(fs.readFileSync('src/locales/pt.js','utf8'),context);
+ vm.runInContext(fs.readFileSync("public/workout-history.js","utf8"),context);
+ context.WorkoutHistory=context.window.WorkoutHistory;
  vm.runInContext(script,context);
  context.window.workoutCheckIn.render(context.window.WORKOUT_LOCALES.pt);
  return {get,value:()=>value,message:()=>message,advance(v){now=v;timer()}};
