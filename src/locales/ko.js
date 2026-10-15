@@ -1,5 +1,19 @@
 window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.ko = {
+  "checkIn": {
+    "action": "오늘 운동 완료",
+    "done": "운동이 기록되었어요 ✓",
+    "undo": "취소",
+    "week": "이번 주",
+    "one": "이번 주 운동 {count}회",
+    "many": "이번 주 운동 {count}회",
+    "local": "이 브라우저에만 저장돼요. 기기 간 동기화는 지원하지 않아요.",
+    "celebrate": "오늘도 해냈어요! ✓",
+    "removed": "기록을 취소했어요.",
+    "error": "저장할 수 없어요. 브라우저 저장 공간을 확인해 주세요.",
+    "logged": "운동 기록됨",
+    "empty": "기록 없음"
+  },
   "lang": "ko",
   "seoTitle": "Should I Work Out Today? 네 — 오늘의 운동 동기부여",
   "seoDescription": "운동할 동기가 필요하신가요? 오늘 몸을 움직이고 더 강해질 새로운 이유를 만나보세요.",

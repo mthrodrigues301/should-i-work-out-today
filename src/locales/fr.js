@@ -1,5 +1,19 @@
 window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.fr = {
+  "checkIn": {
+    "action": "JE ME SUIS ENTRAÎNÉ AUJOURD’HUI",
+    "done": "SÉANCE ENREGISTRÉE ✓",
+    "undo": "ANNULER",
+    "week": "VOTRE SEMAINE",
+    "one": "{count} séance cette semaine",
+    "many": "{count} séances cette semaine",
+    "local": "Enregistré uniquement dans ce navigateur. Aucune synchronisation entre appareils.",
+    "celebrate": "Une séance de plus. Bravo ! ✓",
+    "removed": "Séance supprimée.",
+    "error": "Enregistrement impossible. Vérifiez le stockage du navigateur.",
+    "logged": "Séance enregistrée",
+    "empty": "Aucune séance"
+  },
   "lang": "fr",
   "seoTitle": "Should I Work Out Today? Oui — Motivation pour s'entraîner",
   "seoDescription": "Besoin de motivation pour t'entraîner ? Découvre une nouvelle raison de bouger et de devenir plus fort aujourd'hui.",

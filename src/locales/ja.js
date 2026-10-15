@@ -1,5 +1,19 @@
 window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.ja = {
+  "checkIn": {
+    "action": "今日は運動した",
+    "done": "運動を記録しました ✓",
+    "undo": "取り消す",
+    "week": "今週の記録",
+    "one": "今週の運動：{count}回",
+    "many": "今週の運動：{count}回",
+    "local": "このブラウザにのみ保存されます。端末間の同期はありません。",
+    "celebrate": "今日も運動できました！ ✓",
+    "removed": "記録を取り消しました。",
+    "error": "保存できませんでした。ブラウザのストレージを確認してください。",
+    "logged": "運動を記録済み",
+    "empty": "記録なし"
+  },
   "lang": "ja",
   "seoTitle": "Should I Work Out Today? はい — 今日のトレーニング習慣",
   "seoDescription": "トレーニングのやる気が出ない日に、新しい理由を見つけて身体を動かそう。答えはいつも、はい。",

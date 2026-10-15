@@ -126,6 +126,7 @@ function applyLanguage(language, updateUrl = false) {
   const previousIndex = currentIndex;
   currentLanguage = localeData[language] ? language : "pt";
   const copy = localeData[currentLanguage];
+  window.workoutCheckIn.render(copy);
   document.documentElement.lang = copy.lang;
   document.title = copy.seoTitle;
   document.querySelector('meta[name="description"]').content = copy.seoDescription;
@@ -418,10 +419,10 @@ async function shareTextOnly() {
 
 nextButton.addEventListener("click", nextMotivation);
 hero.addEventListener("click", (event) => {
-  if (!event.target.closest("button, a")) nextMotivation();
+  if (!event.target.closest("button, a, .check-in")) nextMotivation();
 });
 document.addEventListener("keydown", (event) => {
-  if (event.code === "Space" && !event.repeat) {
+  if (event.code === "Space" && !event.repeat && !event.target.closest("button, a, input, select, textarea, [contenteditable]")) {
     event.preventDefault();
     nextMotivation();
   }

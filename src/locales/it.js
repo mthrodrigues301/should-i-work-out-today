@@ -1,5 +1,19 @@
 window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.it = {
+  "checkIn": {
+    "action": "MI SONO ALLENATO OGGI",
+    "done": "ALLENAMENTO REGISTRATO ✓",
+    "undo": "ANNULLA",
+    "week": "LA TUA SETTIMANA",
+    "one": "{count} allenamento questa settimana",
+    "many": "{count} allenamenti questa settimana",
+    "local": "Salvato solo in questo browser. Nessuna sincronizzazione tra dispositivi.",
+    "celebrate": "Un altro allenamento. Bravo! ✓",
+    "removed": "Registrazione rimossa.",
+    "error": "Impossibile salvare. Controlla lo spazio del browser.",
+    "logged": "Allenamento registrato",
+    "empty": "Nessuna registrazione"
+  },
   "lang": "it",
   "seoTitle": "Should I Work Out Today? Sì — Motivazione per allenarti",
   "seoDescription": "Ti serve motivazione per allenarti? Scopri un nuovo motivo per muoverti e diventare più forte oggi.",

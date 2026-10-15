@@ -1,5 +1,19 @@
 window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.pt = {
+  "checkIn": {
+    "action": "TREINEI HOJE",
+    "done": "TREINO REGISTRADO ✓",
+    "undo": "DESFAZER",
+    "week": "SUA SEMANA",
+    "one": "{count} treino nesta semana",
+    "many": "{count} treinos nesta semana",
+    "local": "Salvo só neste navegador. Sem sincronização entre aparelhos.",
+    "celebrate": "Mais um treino. Boa! ✓",
+    "removed": "Registro desfeito.",
+    "error": "Não foi possível salvar. Verifique o armazenamento do navegador.",
+    "logged": "Treino registrado",
+    "empty": "Sem registro"
+  },
   "lang": "pt-BR",
   "seoTitle": "Should I Work Out Today? Sim — Motivação para treinar",
   "seoDescription": "Está sem motivação para treinar? Receba um novo motivo, levante e comece. A resposta é sempre sim.",

@@ -1,5 +1,19 @@
 window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.de = {
+  "checkIn": {
+    "action": "HEUTE TRAINIERT",
+    "done": "TRAINING GESPEICHERT ✓",
+    "undo": "RÜCKGÄNGIG",
+    "week": "DEINE WOCHE",
+    "one": "{count} Training diese Woche",
+    "many": "{count} Trainings diese Woche",
+    "local": "Nur in diesem Browser gespeichert. Keine Synchronisierung zwischen Geräten.",
+    "celebrate": "Wieder trainiert. Gut gemacht! ✓",
+    "removed": "Eintrag entfernt.",
+    "error": "Speichern fehlgeschlagen. Prüfe den Browserspeicher.",
+    "logged": "Training gespeichert",
+    "empty": "Kein Eintrag"
+  },
   "lang": "de",
   "seoTitle": "Should I Work Out Today? Ja — Motivation fürs Training",
   "seoDescription": "Brauchst du Motivation fürs Training? Hol dir einen neuen Grund, dich zu bewegen und heute stärker zu werden.",

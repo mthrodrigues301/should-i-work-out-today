@@ -1,5 +1,19 @@
 window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.es = {
+  "checkIn": {
+    "action": "ENTRENÉ HOY",
+    "done": "ENTRENAMIENTO REGISTRADO ✓",
+    "undo": "DESHACER",
+    "week": "TU SEMANA",
+    "one": "{count} entrenamiento esta semana",
+    "many": "{count} entrenamientos esta semana",
+    "local": "Guardado solo en este navegador. Sin sincronización entre dispositivos.",
+    "celebrate": "¡Otro entrenamiento! ✓",
+    "removed": "Registro eliminado.",
+    "error": "No se pudo guardar. Revisa el almacenamiento del navegador.",
+    "logged": "Entrenamiento registrado",
+    "empty": "Sin registro"
+  },
   "lang": "es",
   "seoTitle": "Should I Work Out Today? Sí — Motivación para entrenar",
   "seoDescription": "¿Necesitas motivación para entrenar? Recibe una nueva razón para moverte y sentirte más fuerte. La respuesta siempre es sí.",

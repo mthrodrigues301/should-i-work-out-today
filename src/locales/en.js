@@ -1,5 +1,19 @@
 window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.en = {
+  "checkIn": {
+    "action": "I WORKED OUT TODAY",
+    "done": "WORKOUT LOGGED ✓",
+    "undo": "UNDO",
+    "week": "YOUR WEEK",
+    "one": "{count} workout this week",
+    "many": "{count} workouts this week",
+    "local": "Saved only in this browser. No syncing across devices.",
+    "celebrate": "Another workout. Well done! ✓",
+    "removed": "Check-in removed.",
+    "error": "Could not save. Check your browser storage.",
+    "logged": "Workout logged",
+    "empty": "No check-in"
+  },
   "lang": "en",
   "seoTitle": "Should I Work Out Today? Yes — Workout Motivation",
   "seoDescription": "Need motivation to work out? Get a fresh reason to move, train, and feel stronger today. The answer is always yes.",

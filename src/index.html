@@ -137,6 +137,16 @@
             <span class="share-channels" aria-hidden="true">X - WHATSAPP - INSTAGRAM - THREADS</span>
           </div>
         </div>
+        <section class="check-in" id="checkIn" aria-labelledby="checkInTitle">
+          <div class="check-in-heading"><h2 id="checkInTitle">SUA SEMANA</h2><p id="checkInCount" aria-live="polite"></p></div>
+          <ol class="check-in-days" id="checkInDays"></ol>
+          <div class="check-in-actions">
+            <button id="checkInButton" type="button">TREINEI HOJE</button>
+            <span id="checkInDone" hidden>TREINO REGISTRADO ✓</span>
+            <button id="checkInUndo" type="button" hidden>DESFAZER</button>
+          </div>
+          <p class="check-in-note" id="checkInNote">Salvo só neste navegador. Sem sincronização entre aparelhos.</p>
+        </section>
       </section>
     </main>
 
@@ -204,6 +214,7 @@
     <script src="locales/ja.js"></script>
     <script src="locales/ko.js"></script>
     <script src="locales/zh.js"></script>
+    <script src="check-in.js"></script>
     <script src="script.js"></script>
     <script type="importmap">
       {

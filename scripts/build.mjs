@@ -97,6 +97,7 @@ for (const language of languages) {
 await cp(publicDirectory, output, { recursive: true });
 await cp(path.join(source, "styles", "main.css"), path.join(output, "styles.css"));
 await cp(path.join(source, "scripts", "app.js"), path.join(output, "script.js"));
+await cp(path.join(source, "scripts", "check-in.js"), path.join(output, "check-in.js"));
 await cp(path.join(source, "service-worker.js"), path.join(output, "service-worker.js"));
 await mkdir(path.join(output, "assets", "fonts"), { recursive: true });
 await cp(

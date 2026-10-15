@@ -1,5 +1,19 @@
 window.WORKOUT_LOCALES = window.WORKOUT_LOCALES || {};
 window.WORKOUT_LOCALES.zh = {
+  "checkIn": {
+    "action": "今天锻炼了",
+    "done": "锻炼已记录 ✓",
+    "undo": "撤销",
+    "week": "本周记录",
+    "one": "本周锻炼 {count} 次",
+    "many": "本周锻炼 {count} 次",
+    "local": "仅保存在此浏览器中，不会在设备之间同步。",
+    "celebrate": "又完成一次锻炼，真棒！ ✓",
+    "removed": "记录已撤销。",
+    "error": "无法保存，请检查浏览器存储设置。",
+    "logged": "已记录锻炼",
+    "empty": "暂无记录"
+  },
   "lang": "zh-CN",
   "seoTitle": "Should I Work Out Today? 是 — 今天的健身动力",
   "seoDescription": "需要健身动力吗？获得一个全新的理由，今天就开始运动，让自己变得更强。",
