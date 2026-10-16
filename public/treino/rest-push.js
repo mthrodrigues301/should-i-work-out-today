@@ -1,20 +1,17 @@
 const RestPush=(()=>{
- const SETTINGS_KEY='mt-expiry-push',STATE_KEY='mt-rest-push';let currentRest=()=>null,queue=Promise.resolve();
- const read=key=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}};
- const enabled=()=>read(SETTINGS_KEY)?.enabled===true&&typeof Notification!=='undefined'&&Notification.permission==='granted';
- const token=()=>read(SETTINGS_KEY)?.token;
- const state=()=>read(STATE_KEY);
- const save=value=>localStorage.setItem(STATE_KEY,JSON.stringify(value));
+ const SETTINGS_KEY='mt-rest-push-settings',STATE_KEY='mt-rest-push',DEVICE_KEY='mt-push-device';let currentRest=()=>null,queue=Promise.resolve();
+ const element=id=>document.getElementById(id),read=key=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}},setting=()=>read(SETTINGS_KEY);
+ const status=text=>element('rest-push-status').textContent=text;
+ function token(){let device=read(DEVICE_KEY);if(!device?.token){const legacy=read('mt-expiry-push')?.token;device={token:/^[a-f0-9]{64}$/.test(legacy||'')?legacy:Array.from(crypto.getRandomValues(new Uint8Array(32)),n=>n.toString(16).padStart(2,'0')).join('')};localStorage.setItem(DEVICE_KEY,JSON.stringify(device))}return device.token}
+ const enabled=()=>setting()?.enabled===true&&typeof Notification!=='undefined'&&Notification.permission==='granted',state=()=>read(STATE_KEY),save=value=>localStorage.setItem(STATE_KEY,JSON.stringify(value));
+ function buttons(){const active=setting()?.enabled===true;element('rest-push-enable').hidden=active;element('rest-push-disable').hidden=!active}
  async function request(method,body){const response=await fetch('/api/notifications/rest',{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(12000)});if(!response.ok)throw Error('Não foi possível programar o aviso do descanso.');return response.json()}
  async function subscription(){const registration=await navigator.serviceWorker.getRegistration('/');return registration?.pushManager.getSubscription()}
- function cancel(){const previous=state();localStorage.removeItem(STATE_KEY);if(!previous?.token||location.hostname==='localhost'||location.hostname==='127.0.0.1')return;queue=queue.catch(()=>{}).then(()=>request('DELETE',{token:previous.token}).catch(()=>{}));}
- function sync(rest=currentRest()){
-  if(!rest?.end||rest.end<=Date.now()){cancel();return}
-  if(!enabled()||location.hostname==='localhost'||location.hostname==='127.0.0.1')return;
-  const previous=state();if(previous?.dueAt===rest.end&&previous?.token===token())return;
-  const next={token:token(),dueAt:rest.end,nonce:crypto.randomUUID()};save(next);
-  queue=queue.catch(()=>{}).then(async()=>{try{const sub=await subscription();if(!sub)throw Error('Inscrição de notificações indisponível.');await request('POST',{token:next.token,nonce:next.nonce,delaySeconds:Math.max(1,Math.ceil((next.dueAt-Date.now())/1000)),subscription:sub.toJSON()})}catch(error){localStorage.removeItem(STATE_KEY);console.warn('Rest reminder unavailable',error)}});
- }
- function init(provider){currentRest=provider;window.addEventListener('workoutpushenabled',()=>sync());window.addEventListener('workoutpushdisabled',()=>cancel());window.addEventListener('online',()=>sync());document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()});}
+ async function ensureSubscription(){if(!('Notification'in window)||!('PushManager'in window)||!('serviceWorker'in navigator))throw Error('Neste aparelho, instale o app na Tela de Início e abra por lá. No iPhone, é necessário iOS 16.4 ou superior.');if(await Notification.requestPermission()!=='granted')throw Error('Permissão não concedida. Você pode habilitá-la nas configurações do aparelho.');const response=await fetch('/api/notifications/public-key');if(!response.ok)throw Error('Serviço de notificações ainda não configurado.');const {publicKey}=await response.json(),padding='='.repeat((4-publicKey.length%4)%4),binary=atob((publicKey+padding).replace(/-/g,'+').replace(/_/g,'/')),applicationServerKey=Uint8Array.from(binary,c=>c.charCodeAt(0));await navigator.serviceWorker.register('/service-worker.js');const registration=await navigator.serviceWorker.ready;return await registration.pushManager.getSubscription()||registration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey})}
+ function cancel(){const previous=state();localStorage.removeItem(STATE_KEY);if(!previous?.token||location.hostname==='localhost'||location.hostname==='127.0.0.1')return;queue=queue.catch(()=>{}).then(()=>request('DELETE',{token:previous.token}).catch(()=>{}))}
+ function sync(rest=currentRest()){if(!rest?.end||rest.end<=Date.now()){cancel();return}if(!enabled()||location.hostname==='localhost'||location.hostname==='127.0.0.1')return;const previous=state();if(previous?.dueAt===rest.end&&previous?.token===token())return;const next={token:token(),dueAt:rest.end,nonce:crypto.randomUUID()};save(next);queue=queue.catch(()=>{}).then(async()=>{try{const sub=await subscription();if(!sub)throw Error('Inscrição de notificações indisponível.');await request('POST',{token:next.token,nonce:next.nonce,delaySeconds:Math.max(1,Math.ceil((next.dueAt-Date.now())/1000)),subscription:sub.toJSON()})}catch(error){localStorage.removeItem(STATE_KEY);console.warn('Rest reminder unavailable',error)}})}
+ async function enable(){if(location.hostname==='127.0.0.1'||location.hostname==='localhost'){status('Prévia local: a entrega real será habilitada após publicação com o serviço de notificações configurado.');return}element('rest-push-enable').disabled=true;try{await ensureSubscription();token();localStorage.setItem(SETTINGS_KEY,JSON.stringify({enabled:true}));status('Aviso de descanso ativo.');buttons();sync()}catch(error){status(error.message||'Não foi possível ativar o aviso.')}finally{element('rest-push-enable').disabled=false}}
+ function disable(){element('rest-push-disable').disabled=true;cancel();localStorage.setItem(SETTINGS_KEY,JSON.stringify({enabled:false}));status('Aviso de descanso desativado.');buttons();element('rest-push-disable').disabled=false}
+ function init(provider){currentRest=provider;buttons();element('rest-push-enable').onclick=enable;element('rest-push-disable').onclick=disable;window.addEventListener('online',()=>sync());document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()});}
  return {init,sync,cancel};
 })();

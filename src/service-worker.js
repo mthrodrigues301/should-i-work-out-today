@@ -20,7 +20,7 @@ self.addEventListener("notificationclick", (event) => {
   }));
 });
 
-const TRAINING_CACHE='siwt-training-v7';
+const TRAINING_CACHE='siwt-training-v8';
 const TRAINING_ASSETS=['/treino/','/treino/index.html','/treino/style.css','/treino/design.css','/treino/theme.js','/assets/fonts/anton-latin-400-normal.woff2','/treino/app.js','/treino/history.js','/treino/history-store.js','/treino/history.html','/treino/training.js','/treino/validity.js','/treino/expiry-push.js','/treino/rest-push.js','/treino/sound.js','/workout-history.js','/treino/icon-192.png','/treino/icon-512.png','/manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(TRAINING_CACHE).then(cache=>cache.addAll(TRAINING_ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('siwt-training-')&&key!==TRAINING_CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
