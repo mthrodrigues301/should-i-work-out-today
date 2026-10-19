@@ -11,7 +11,7 @@ const Training={
   const updated=t.sets[i]===total?[...done,i]:[...done];t.finished=updated.length===items.length;
   t.current=t.sets[i]===total?this.next(items,updated,i):i;
   t.rest=!t.finished&&t.sets[i]<total&&restSeconds>0?{end:now+restSeconds*1000,remaining:restSeconds*1000,exercise:i}:null;
-  if(t.finished){t.elapsed+=Math.max(0,now-t.startedAt);t.startedAt=null;t.completedAt=now;t.focus=false}
+  if(t.finished){t.elapsed+=Math.max(0,now-t.startedAt);t.startedAt=null;t.completedAt=now;t.outcome='complete';t.focus=false}
   return updated;
  }
 };
