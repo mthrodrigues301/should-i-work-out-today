@@ -25,3 +25,4 @@ input,textarea,select,#renew-months,#import-validity,#manual-validity,.rest-sett
 .notification-choice{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}.notification-choice>strong{font-size:13px}.notification-choice p{margin:6px 0 10px;font-size:12px}.notification-choice .secondary{min-height:44px;width:100%}.notification-choice .text-button{padding-left:0}.notification-choice [role=status]{min-height:0;margin:6px 0 0;font-size:11px}
 .history-back{min-height:44px;padding:10px 14px;display:inline-flex;align-items:center;text-decoration:none}
 .workout-menu nav a{border-bottom:0}
+.menu-glyph{display:grid;gap:4px;width:18px}.menu-glyph i{display:block;height:2px;border-radius:2px;background:currentColor}
