@@ -2,7 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/treino", "destination": "/treino/index.html" }],
+  "redirects": [{ "source": "/treino/:path*", "destination": "/my-workout/:path*", "permanent": true }],
+  "rewrites": [{ "source": "/my-workout", "destination": "/my-workout/index.html" }],
   "cleanUrls": true,
   "trailingSlash": false,
   "crons": [
@@ -57,7 +58,7 @@
       ]
     },
     {
-      "source": "/treino/manifest.webmanifest",
+      "source": "/my-workout/manifest.webmanifest",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]

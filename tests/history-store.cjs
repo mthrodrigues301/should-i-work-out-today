@@ -2,7 +2,7 @@ const {test}=require('node:test');
 const assert=require('node:assert/strict');
 let database={};
 global.localStorage={getItem:key=>database[key]||null,setItem:(key,value)=>database[key]=value};
-const history=require('../public/treino/history-store.js');
+const history=require('../public/my-workout/history-store.js');
 
 test('a completed workout stores its completed date, duration and exercise snapshot',()=>{
  database={};

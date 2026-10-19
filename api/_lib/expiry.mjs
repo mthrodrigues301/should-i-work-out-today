@@ -21,7 +21,7 @@ export async function dispatchExpiry(redis,send,now=new Date()){
   const pending=r.dates.filter(d=>d<slot.date&&!r.sentDates?.includes(d));if(!pending.length)continue;
   lock=`workout:expiry-lock:${id}:${digest(pending.join(','))}`;if(!await redis.set(lock,'1',{nx:true,ex:300}))continue;
   const rawFresh=await redis.hget(EXPIRY_KEY,id),fresh=typeof rawFresh==='string'?JSON.parse(rawFresh):rawFresh;if(!fresh||fresh.revision!==r.revision){await redis.del(lock);continue}
-  try{await send(r.subscription,JSON.stringify({title:'Hora de renovar seu treino',body:'A validade da sua ficha terminou. Renove o treino ou cadastre um novo.',url:'/treino/?expired=1',tag:'workout-expiry'}),{TTL:86400})}catch(e){if([404,410].includes(e.statusCode)){await redis.hdel(EXPIRY_KEY,id);result.removed++}else result.failed++;await redis.del(lock);continue}
+  try{await send(r.subscription,JSON.stringify({title:'Hora de renovar seu treino',body:'A validade da sua ficha terminou. Renove o treino ou cadastre um novo.',url:'/my-workout/?expired=1',tag:'workout-expiry'}),{TTL:86400})}catch(e){if([404,410].includes(e.statusCode)){await redis.hdel(EXPIRY_KEY,id);result.removed++}else result.failed++;await redis.del(lock);continue}
   const next={...r,sentDates:[...new Set([...(r.sentDates||[]),...pending])]};
   await redis.eval("local v=redis.call('HGET',KEYS[1],ARGV[1]); if v and cjson.decode(v).revision == ARGV[2] then redis.call('HSET',KEYS[1],ARGV[1],ARGV[3]); return 1 end; return 0",[EXPIRY_KEY],[id,r.revision,JSON.stringify(next)]);
   result.sent++;await redis.del(lock);
