@@ -4,7 +4,7 @@ import sharp from "sharp";
 
 const root = process.cwd();
 const dir = path.join(root, "marketing", "instagram-feed");
-const keyArt = path.join(root, "marketing", "carousels", "my-workout-key-art.png");
+const keyArt = path.join(root, "marketing", "instagram-feed", "my-workout-key-art.png");
 const W = 1080;
 const H = 1350;
 const PAPER = "#F4F2EB";
