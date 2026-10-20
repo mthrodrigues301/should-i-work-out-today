@@ -26,7 +26,7 @@ window.WORKOUT_LOCALES.en = {
   "saveChoices": "SAVE CHOICES",
   "analyticsLabel": "Analytics",
   "adsLabel": "Personalized advertising",
-  "policyLabel": "PRIVACY POLICY ↗",
+  "policyLabel": "PRIVACY POLICY",
   "necessaryLabel": "Necessary",
   "necessaryDescription": "Language, theme, and consent",
   "analyticsDescription": "Anonymous usage measurement",

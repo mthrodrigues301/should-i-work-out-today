@@ -26,7 +26,7 @@ window.WORKOUT_LOCALES.es = {
   "saveChoices": "GUARDAR OPCIONES",
   "analyticsLabel": "Analytics",
   "adsLabel": "Publicidad personalizada",
-  "policyLabel": "POLÍTICA DE PRIVACIDAD ↗",
+  "policyLabel": "POLÍTICA DE PRIVACIDAD",
   "necessaryLabel": "Necesarios",
   "necessaryDescription": "Idioma, tema y consentimiento",
   "analyticsDescription": "Medición anónima de uso",

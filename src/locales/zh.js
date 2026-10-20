@@ -26,7 +26,7 @@ window.WORKOUT_LOCALES.zh = {
   "saveChoices": "保存选择",
   "analyticsLabel": "访问分析",
   "adsLabel": "个性化广告",
-  "policyLabel": "隐私政策 ↗",
+  "policyLabel": "隐私政策",
   "necessaryLabel": "必要",
   "necessaryDescription": "语言、主题和同意设置",
   "analyticsDescription": "匿名使用情况分析",

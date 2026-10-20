@@ -26,7 +26,7 @@ window.WORKOUT_LOCALES.it = {
   "saveChoices": "SALVA SCELTE",
   "analyticsLabel": "Analytics",
   "adsLabel": "Pubblicità personalizzata",
-  "policyLabel": "INFORMATIVA SULLA PRIVACY ↗",
+  "policyLabel": "INFORMATIVA SULLA PRIVACY",
   "necessaryLabel": "Necessari",
   "necessaryDescription": "Lingua, tema e consenso",
   "analyticsDescription": "Misurazione anonima dell'uso",

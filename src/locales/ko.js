@@ -26,7 +26,7 @@ window.WORKOUT_LOCALES.ko = {
   "saveChoices": "선택 저장",
   "analyticsLabel": "분석",
   "adsLabel": "맞춤 광고",
-  "policyLabel": "개인정보 처리방침 ↗",
+  "policyLabel": "개인정보 처리방침",
   "necessaryLabel": "필수",
   "necessaryDescription": "언어, 테마, 동의 설정",
   "analyticsDescription": "익명 사용량 측정",

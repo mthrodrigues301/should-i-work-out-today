@@ -26,7 +26,7 @@ window.WORKOUT_LOCALES.fr = {
   "saveChoices": "ENREGISTRER",
   "analyticsLabel": "Analytics",
   "adsLabel": "Publicité personnalisée",
-  "policyLabel": "POLITIQUE DE CONFIDENTIALITÉ ↗",
+  "policyLabel": "POLITIQUE DE CONFIDENTIALITÉ",
   "necessaryLabel": "Nécessaires",
   "necessaryDescription": "Langue, thème et consentement",
   "analyticsDescription": "Mesure anonyme de l'utilisation",

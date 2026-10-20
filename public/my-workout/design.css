@@ -25,4 +25,12 @@ input,textarea,select,#renew-months,#import-validity,#manual-validity,.rest-sett
 .notification-choice{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}.notification-choice>strong{font-size:13px}.notification-choice p{margin:6px 0 10px;font-size:12px}.notification-choice .secondary{min-height:44px;width:100%}.notification-choice .text-button{padding-left:0}.notification-choice [role=status]{min-height:0;margin:6px 0 0;font-size:11px}
 .history-back{min-height:44px;padding:10px 14px;display:inline-flex;align-items:center;text-decoration:none}
 .workout-menu nav a{border-bottom:0}
-.menu-glyph{display:grid;gap:4px;width:18px}.menu-glyph i{display:block;height:2px;border-radius:2px;background:currentColor}
+/* Lucide inline icon alignment and consistent button centering. */
+.ui-icon{display:block;flex:0 0 auto;vertical-align:middle}
+.ui-icon-inline{display:inline-block;vertical-align:middle}
+.icon-button{display:inline-flex;align-items:center;justify-content:center;padding:0;line-height:0;font-size:inherit}
+.icon-button .ui-icon{width:20px;height:20px}
+.primary,.secondary,.card-link,.text-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;line-height:1.2}
+#mark-set,#train{width:100%;text-align:center}
+.workout-menu nav strong .ui-icon{display:inline-block;vertical-align:middle;margin-left:4px}
+.preference-link>.ui-icon{grid-column:2;grid-row:1 / span 2;align-self:center}

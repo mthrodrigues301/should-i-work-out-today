@@ -26,7 +26,7 @@ window.WORKOUT_LOCALES.de = {
   "saveChoices": "AUSWAHL SPEICHERN",
   "analyticsLabel": "Analyse",
   "adsLabel": "Personalisierte Werbung",
-  "policyLabel": "DATENSCHUTZERKLÄRUNG ↗",
+  "policyLabel": "DATENSCHUTZERKLÄRUNG",
   "necessaryLabel": "Notwendig",
   "necessaryDescription": "Sprache, Design und Einwilligung",
   "analyticsDescription": "Anonyme Nutzungsmessung",

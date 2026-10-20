@@ -26,7 +26,7 @@ window.WORKOUT_LOCALES.ja = {
   "saveChoices": "選択を保存",
   "analyticsLabel": "アクセス解析",
   "adsLabel": "パーソナライズ広告",
-  "policyLabel": "プライバシーポリシー ↗",
+  "policyLabel": "プライバシーポリシー",
   "necessaryLabel": "必要",
   "necessaryDescription": "言語、テーマ、同意設定",
   "analyticsDescription": "匿名の利用状況測定",
