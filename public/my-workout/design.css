@@ -28,7 +28,7 @@ input,textarea,select,#renew-months,#import-validity,#manual-validity,.rest-sett
 /* Lucide inline icon alignment and consistent button centering. */
 .ui-icon{display:block;flex:0 0 auto;vertical-align:middle}
 .ui-icon-inline{display:inline-block;vertical-align:middle}
-.icon-button{display:inline-flex;align-items:center;justify-content:center;padding:0;line-height:0;font-size:inherit}
+.icon-button{display:inline-grid;place-items:center;padding:0;line-height:0;font-size:inherit}
 .icon-button .ui-icon{width:20px;height:20px}
 .primary,.secondary,.card-link,.text-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;line-height:1.2}
 #mark-set,#train{width:100%;text-align:center}
