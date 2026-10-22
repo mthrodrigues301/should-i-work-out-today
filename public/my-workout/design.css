@@ -30,6 +30,9 @@ input,textarea,select,#renew-months,#import-validity,#manual-validity,.rest-sett
 .ui-icon-inline{display:inline-block;vertical-align:middle}
 .icon-button{display:inline-grid;place-items:center;padding:0;line-height:0;font-size:inherit}
 .icon-button .ui-icon{width:20px;height:20px}
+.training-active header,.training-active #days,.training-active .session-actions #choose-workout{display:none}
+.training-active main{padding-top:max(18px,env(safe-area-inset-top))}
+.training-active .session{margin-top:10px}
 .primary,.secondary,.card-link,.text-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;line-height:1.2}
 #mark-set,#train{width:100%;text-align:center}
 .workout-menu nav strong .ui-icon{display:inline-block;vertical-align:middle;margin-left:4px}
