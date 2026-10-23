@@ -144,21 +144,18 @@
     <dialog id="navigationMenu" class="navigation-menu" aria-labelledby="navigationTitle">
       <div class="navigation-heading"><h2 id="navigationTitle">Menu</h2><button type="button" id="menuClose" aria-label="Fechar menu"><svg class="ui-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m18 6-12 12M6 6l12 12"/></svg></button></div>
       <nav aria-label="Navegação principal"><a href="/my-workout/"><span>Meu treino</span><svg class="ui-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg><small>Exercícios, séries e descanso.</small></a></nav>
-      <p>Um dia de cada vez.</p>
-    </dialog>
-    <script src="navigation.js" defer></script>
-    <footer>
-      <p><span id="instructionText">CLIQUE OU APERTE</span> <kbd id="spaceText">ESPAÇO</kbd></p>
-      <div class="footer-actions">
-        <button id="notificationButton" type="button" aria-pressed="false">
-          <span id="notificationText">LEMBRETE DIÁRIO</span> <span id="notificationLabel">OFF</span>
-        </button>
+      <section class="navigation-menu-settings" aria-label="Preferências">
+        <button id="notificationButton" type="button" aria-pressed="false"><span id="notificationText">LEMBRETE DIÁRIO</span><span id="notificationLabel">OFF</span></button>
         <button id="privacyButton" type="button">PRIVACIDADE</button>
         <div class="theme-switch" role="group" aria-label="Tema">
           <button id="lightThemeButton" type="button" aria-pressed="true">LIGHT</button>
           <button id="darkThemeButton" type="button" aria-pressed="false">DARK</button>
         </div>
-      </div>
+      </section>
+    </dialog>
+    <script src="navigation.js" defer></script>
+    <footer>
+      <p><span id="instructionText">CLIQUE OU APERTE</span> <kbd id="spaceText">ESPAÇO</kbd></p>
     </footer>
 
     <section class="share-panel" id="sharePanel" aria-labelledby="sharePanelTitle" hidden>
