@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-23",
+  "account": "shouldiworkout.today",
+  "status": "prepared",
+  "publishing": "not_connected",
+  "posts": [
+    {
+      "language": "en",
+      "sequence": 1,
+      "coverColor": "#f1efe8",
+      "time": "12:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "en/01.jpg",
+        "en/02.jpg",
+        "en/03.jpg",
+        "en/04.jpg"
+      ],
+      "caption": "A full day does not have to cancel your movement. Make the plan smaller: choose a short walk, a few minutes of mobility, or simply the next easy step.\n\nConsistency can be flexible. What is one realistic way you can move today? Save this for the busy days.\n\nMore motivation: shouldiworkout.today/en — link in bio.\n\n#WorkoutMotivation #FitnessHabits #MoveYourBody #ConsistencyOverPerfection"
+    },
+    {
+      "language": "bi",
+      "sequence": 2,
+      "coverColor": "#eaff38",
+      "time": "15:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "bi/01.jpg",
+        "bi/02.jpg",
+        "bi/03.jpg",
+        "bi/04.jpg"
+      ],
+      "caption": "Make the plan smaller. Deixe o plano menor.\n\nEN: A full day does not need to cancel your movement. Choose one realistic next step.\n\nPT: Um dia cheio não precisa cancelar seu movimento. Escolha um próximo passo que caiba no dia.\n\nHow can you make it easier today? Como você pode facilitar hoje?\n\n#WorkoutMotivation #MotivaçãoParaTreinar #FitnessHabits #ConstânciaNoTreino"
+    },
+    {
+      "language": "pt",
+      "sequence": 3,
+      "coverColor": "#11110f",
+      "time": "18:00",
+      "timezone": "America/Sao_Paulo",
+      "timingBasis": "initial_test_without_insights",
+      "files": [
+        "pt/01.jpg",
+        "pt/02.jpg",
+        "pt/03.jpg",
+        "pt/04.jpg"
+      ],
+      "caption": "Um dia cheio não precisa cancelar o seu movimento. Deixe o plano menor: escolha uma caminhada curta, alguns minutos de mobilidade ou apenas o próximo passo mais fácil.\n\nA constância pode ser flexível. Qual é uma forma realista de se movimentar hoje? Salve este post para os dias mais corridos.\n\nMais motivação: shouldiworkout.today/pt — link na bio.\n\n#MotivaçãoParaTreinar #RotinaDeTreino #ConstânciaNoTreino #MovimentoÉSaúde"
+    }
+  ]
+}
