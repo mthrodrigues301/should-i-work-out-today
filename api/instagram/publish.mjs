@@ -2,6 +2,9 @@ import { getRedis, json } from "../_lib/push.mjs";
 
 const accountId = process.env.INSTAGRAM_ACCOUNT_ID || "17841426213015781";
 const graphVersion = process.env.INSTAGRAM_GRAPH_API_VERSION || "v25.0";
+// Facebook Login tokens must use the Facebook Graph host. Instagram Login is a
+// different product and its tokens are not interchangeable with this flow.
+const graphHost = (process.env.INSTAGRAM_GRAPH_HOST || "https://graph.facebook.com").replace(/\/$/, "");
 const slots = new Set(["en", "bi", "pt"]);
 const lockSeconds = 60 * 60 * 24 * 30;
 
@@ -33,7 +36,7 @@ function configured() {
 }
 
 async function graph(path, params, token) {
-  const response = await fetch(`https://graph.instagram.com/${graphVersion}/${path}`, {
+  const response = await fetch(`${graphHost}/${graphVersion}/${path}`, {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({ ...params, access_token: token })
@@ -47,7 +50,7 @@ async function graph(path, params, token) {
 }
 
 async function graphGet(path, params, token) {
-  const url = new URL(`https://graph.instagram.com/${graphVersion}/${path}`);
+  const url = new URL(`${graphHost}/${graphVersion}/${path}`);
   for (const [key, value] of Object.entries({ ...params, access_token: token })) url.searchParams.set(key, value);
   const response = await fetch(url);
   const body = await response.json().catch(() => ({}));
