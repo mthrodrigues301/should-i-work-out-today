@@ -2,7 +2,7 @@
 (function (root) {
   const KEY = 'mt-profile-v1';
   const MOODS = Object.freeze(['great', 'good', 'neutral', 'tired', 'low']);
-  const PAIN_AREAS = Object.freeze(['head-neck', 'shoulder', 'arm-wrist', 'chest', 'back', 'abdomen', 'hip', 'thigh', 'knee', 'calf', 'ankle-foot', 'multiple', 'other']);
+  const PAIN_AREAS = Object.freeze(['head-neck', 'shoulder', 'arm-wrist', 'chest', 'back', 'abdomen', 'hip', 'thigh', 'knee', 'calf', 'ankle-foot', 'other']);
   const validDate = (value) => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
     const date = new Date(`${value}T12:00:00`);
@@ -18,16 +18,26 @@
       return {};
     }
   };
-  const get = (date) => validDate(date) ? read()[date] || null : null;
-  const save = (date, weightKg, mood, painStatus = 'no', painArea = '', painLevel = '', updatedAt = Date.now()) => {
+  const normalize = (value) => {
+    if (!value || typeof value !== 'object') return value;
+    const pains = Array.isArray(value.painEntries)
+      ? value.painEntries
+      : value.painStatus === 'yes' && value.painArea ? [{ area: value.painArea, level: value.painLevel }] : [];
+    return { ...value, painEntries: pains };
+  };
+  const get = (date) => validDate(date) ? normalize(read()[date] || null) : null;
+  const save = (date, weightKg, mood, painStatus = 'no', painInput = '', painLevel = '', updatedAt = Date.now()) => {
     const weight = Number(weightKg);
-    const level = painLevel === '' || painLevel === null ? null : Number(painLevel);
+    const pains = Array.isArray(painInput) ? painInput.map(({ area, level }) => ({ area, level: Number(level) }))
+      : painStatus === 'yes' && painInput ? [{ area: painInput, level: Number(painLevel) }] : [];
+    const validPains = pains.length > 0 && pains.every(({ area, level }) => PAIN_AREAS.includes(area) && Number.isInteger(level) && level >= 1 && level <= 10)
+      && new Set(pains.map(({ area }) => area)).size === pains.length;
     if (!validDate(date) || !Number.isFinite(weight) || weight < 1 || weight > 500 || !MOODS.includes(mood)
       || !['yes', 'no'].includes(painStatus)
-      || (painStatus === 'yes' && (!PAIN_AREAS.includes(painArea) || !Number.isInteger(level) || level < 1 || level > 10))) {
+      || (painStatus === 'yes' && !validPains)) {
       throw new Error('Confira a data, o peso, o sentimento e as informações sobre dor.');
     }
-    const value = { weightKg: Math.round(weight * 10) / 10, mood, painStatus, painArea: painStatus === 'yes' ? painArea : '', painLevel: painStatus === 'yes' ? level : null, updatedAt };
+    const value = { weightKg: Math.round(weight * 10) / 10, mood, painStatus, painEntries: painStatus === 'yes' ? pains : [], painArea: painStatus === 'yes' ? pains[0].area : '', painLevel: painStatus === 'yes' ? pains[0].level : null, updatedAt };
     const all = read();
     all[date] = value;
     root.localStorage.setItem(KEY, JSON.stringify(all));
