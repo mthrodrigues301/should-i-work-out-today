@@ -80,7 +80,7 @@ async function loadPost(assetBaseUrl, date, slot) {
   if (!post || !Array.isArray(post.files) || post.files.length < 2 || !post.caption) {
     throw new Error(`Prepared ${slot} carousel for ${date} is invalid`);
   }
-  return post;
+  return { post, manuallyApproved: manifest?.manualApproval?.[slot] === true };
 }
 
 export const config = { maxDuration: 60 };
@@ -102,7 +102,11 @@ export default async function handler(req, res) {
     if (!acquired) return json(res, { status: "skipped", date, slot, reason: "already_started_or_published" });
 
     try {
-      const post = await loadPost(assetBaseUrl, date, slot);
+      const { post, manuallyApproved } = await loadPost(assetBaseUrl, date, slot);
+      if (!manuallyApproved) {
+        await redis.del(key);
+        return json(res, { status: "skipped", date, slot, reason: "awaiting_manual_approval" });
+      }
       const children = [];
       for (const file of post.files) {
         const child = await graph(accountId, {

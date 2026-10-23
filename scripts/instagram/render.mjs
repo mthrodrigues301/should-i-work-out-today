@@ -29,7 +29,14 @@ for (const lang of ['en', 'bi', 'pt']) {
 try { await access(path.join(out, 'manifest.json')); throw new Error('This date already has a finished batch. Use a new date; never overwrite queued posts.'); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
 await mkdir(out, { recursive: true });
-const manifest = { date: content.date, account: 'shouldiworkout.today', status: 'prepared', publishing: 'not_connected', posts: [] };
+const manifest = {
+  date: content.date,
+  account: 'shouldiworkout.today',
+  status: 'prepared',
+  publishing: 'manual_approval_required',
+  manualApproval: { en: false, bi: false, pt: false },
+  posts: []
+};
 const thumbnails = [];
 for (const [row, lang] of ['en', 'bi', 'pt'].entries()) {
   const post = content[lang];

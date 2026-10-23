@@ -40,17 +40,17 @@ The app source takes priority for brand changes. Existing social assets remain t
 6. Commit and deploy that prepared batch before its first publication slot. Batch creation and QA are not proof of publishing.
 7. Report completed assets with a preview link; notify failures or required action. Do not repeat unchanged connection warnings every day.
 
-## Initial publishing slots — hypotheses, not measured optima
+## Manual publishing only
 
-- Superseding the former two-post schedule: English 12:00, bilingual 15:00, Portuguese 18:00, all America/Sao_Paulo. These provisional slots preserve the requested publication order. They are NOT active publishing jobs or Insights-derived optimal times. Reassess using audience data before activating publishing.
-- These slots prioritize the requested markets; no single time serves all English-speaking countries.
-- After connecting Insights, compare reach, saves, shares and follows per reach after 24 and 72 hours, separately by language. Compare consistent content types and rotate nearby slots over several weeks. Insufficient data must not be labeled as an optimum.
+- Every manifest begins with `manualApproval.en`, `manualApproval.bi` and `manualApproval.pt` set to `false`. A Vercel invocation returns `awaiting_manual_approval` and cannot publish until the requested language is explicitly approved in the asset manifest.
+- When the account owner asks to publish, approve only the requested language in the remote `instagram-assets` manifest, then use **Run** for that language in Vercel Project Settings → Cron Jobs. This sends the request through Vercel with `CRON_SECRET`; neither the browser nor chat receives the Meta token.
+- The configured times remain useful publishing windows (English 12:00, bilingual 15:00, Portuguese 18:00 America/Sao_Paulo), but they do not create a post without the manual approval flag. Reassess them from account Insights after enough data exists.
 
 ## Deployment and connection still needed
 
 Configure the Meta application with **Facebook Login + Instagram Graph API**. Link @shouldiworkout.today to a Facebook Page, then generate a Facebook user token with `instagram_basic`, `instagram_content_publish`, `pages_show_list` and `pages_read_engagement`. Exchange it for a long-lived token and discover the Instagram account ID through `me/accounts?fields=name,instagram_business_account`. Keep credentials in a secret store, never in this document, captions or chat.
 
-The project contains `api/instagram/publish.mjs`, with three Vercel scheduled calls at 12:00, 15:00 and 18:00 America/Sao_Paulo (15:00, 18:00 and 21:00 UTC). It loads the prepared public manifest, creates Instagram carousel containers, waits for processing, publishes them, and uses Redis keys per date/language to prevent duplicates. An uncertain response after the final publish call remains locked for manual reconciliation; it is never blindly retried.
+The project contains `api/instagram/publish.mjs`, with three Vercel entries that are used as authenticated manual triggers. It loads the prepared public manifest only after an explicit language approval, creates Instagram carousel containers, waits for processing, publishes them, and uses Redis keys per date/language to prevent duplicates. An uncertain response after the final publish call remains locked for manual reconciliation; it is never blindly retried.
 
 In Vercel Project Settings → Environment Variables, add `INSTAGRAM_ACCESS_TOKEN` by typing the long-lived Facebook token directly, `INSTAGRAM_ACCOUNT_ID` from `instagram_business_account.id`, `INSTAGRAM_GRAPH_HOST=https://graph.facebook.com`, `INSTAGRAM_PUBLIC_BASE_URL=https://www.shouldiworkout.today`, and an existing or new `CRON_SECRET`. Add them to Production. The access token must never be copied into chat or source control. Deploy the project, then use the authenticated `/api/instagram/connection` endpoint to verify the username, account type and quota before one controlled publication. Store the resulting Instagram media ID/permalink after confirmed success. On the Hobby plan, Vercel starts a daily cron within its scheduled UTC hour, so the posts are scheduled in the 12h, 15h and 18h São Paulo windows rather than at an exact minute.
 
