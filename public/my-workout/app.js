@@ -55,7 +55,8 @@ $('reset').onclick=()=>{if(confirm('Recomeçar este treino? O tempo e as marcaç
 $('skip-training').onclick=()=>{$('skip-error').textContent='';$('skip-reason').value='';$('skip-dialog').showModal()};
 $('skip-close').onclick=()=>$('skip-dialog').close();
 $('skip-form').onsubmit=event=>{event.preventDefault();try{const reason=$('skip-reason').value.trim();WorkoutHistoryStore.logAbsence(WorkoutHistoryStore.dateKey(Date.now()),reason,plan[day],day);progress[key()]=[];delete sessions[key()];selected=null;persist();render();$('skip-dialog').close()}catch{$('skip-error').textContent='Escreva um motivo para salvar este dia.'}};
-setInterval(tick,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){tick();renderValidity();syncWake()}});
+function resumeApp(){if(document.hidden)return;tick();renderValidity();syncWake()}
+setInterval(tick,1000);document.addEventListener('visibilitychange',resumeApp);
 $('import-open').onclick=()=>{manualDrafts={};manualEditingDay=day;loadManualDay(day);setEntryMode('import');$('import-validity').value='';$('manual-validity').value='';$('import-dialog').showModal()};$('import-close').onclick=()=>$('import-dialog').close();
 const aiWorkoutPrompt=`Organize meu treino para importação no app My Workout. Preserve os dias, nomes, séries, repetições, duração e descansos que eu informar. Não invente nem deduza dados. Se faltar ou estiver ambíguo o dia, nome da rotina, séries ou repetições/duração, pergunte antes de formatar.
 
@@ -98,7 +99,7 @@ $('story-close').onclick=()=>$('story-dialog').close();$('story-download').oncli
 const standaloneMode=window.matchMedia('(display-mode: standalone)');
 function updateInstallVisibility(){const installed=standaloneMode.matches||navigator.standalone===true;$('install').hidden=installed;if(installed&&$('install-dialog').open)$('install-dialog').close()}
 standaloneMode.addEventListener('change',updateInstallVisibility);
-window.addEventListener('pageshow',updateInstallVisibility);
+window.addEventListener('pageshow',()=>{updateInstallVisibility();resumeApp()});
 updateInstallVisibility();
 let installPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e});$('install').onclick=async()=>{if(installPrompt){await installPrompt.prompt();installPrompt=null}else $('install-dialog').showModal()};$('install-close').onclick=()=>$('install-dialog').close();render();syncWake();if(!hasSavedPlan){setEntryMode('manual');manualDrafts[day]={title:'',items:[]};loadManualDay(day);$('import-dialog').showModal()}if('serviceWorker'in navigator)navigator.serviceWorker.register('/service-worker.js').catch(()=>{$('save-status').textContent='Offline indisponível · progresso local'});
 
