@@ -17,7 +17,10 @@
         ...item,
         name: strip(item.name) || "Exercício",
         sets: strip(item.sets) || "1",
-        reps: strip(item.reps) || "Conforme seu plano"
+        reps: strip(item.reps) || "Conforme seu plano",
+        ...(item.machine ? { machine: strip(item.machine) } : {}),
+        ...(item.cycle ? { cycle: strip(item.cycle) } : {}),
+        ...(item.image ? { image: strip(item.image) } : {})
       }))
     }]));
   }

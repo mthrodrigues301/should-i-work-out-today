@@ -20,7 +20,7 @@ self.addEventListener("notificationclick", (event) => {
   }));
 });
 
-const TRAINING_CACHE='siwt-training-v17';
+const TRAINING_CACHE='siwt-training-v18';
 const TRAINING_CORE_ASSETS=['/my-workout','/my-workout/style.css','/my-workout/design.css','/my-workout/theme.js','/my-workout/icons.js','/my-workout/text.js','/my-workout/workout-plan.js','/my-workout/share-format.js','/my-workout/app.js','/my-workout/history.js','/my-workout/history-store.js','/my-workout/profile-store.js','/my-workout/history','/my-workout/training.js','/my-workout/validity.js','/my-workout/expiry-push.js','/my-workout/rest-push.js','/my-workout/sound.js','/workout-history.js'];
 const TRAINING_OPTIONAL_ASSETS=['/assets/fonts/anton-latin-400-normal.woff2','/assets/images/favicon.svg','/my-workout/icon-192.png','/my-workout/icon-512.png','/my-workout/manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil((async()=>{const cache=await caches.open(TRAINING_CACHE);const save=async asset=>{const response=await fetch(asset);if(!response.ok)throw new Error(`Unable to cache ${asset}: ${response.status}`);await cache.put(asset,withoutRedirect(response))};await Promise.all(TRAINING_CORE_ASSETS.map(save));await Promise.all(TRAINING_OPTIONAL_ASSETS.map(asset=>save(asset).catch(()=>{})));await self.skipWaiting()})()));

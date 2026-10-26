@@ -45,3 +45,5 @@ body:has(dialog[open]){overflow:hidden;overscroll-behavior:none}dialog[open]{ove
 .workout-menu nav strong .ui-icon{display:inline-block;vertical-align:middle;margin-left:4px}
 .preference-link>.ui-icon{grid-column:2;grid-row:1 / span 2;align-self:center}
 .profile-pain-entry{display:grid;gap:8px;margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:4px}.profile-pain-entry legend{padding:0 6px;font-size:12px;font-weight:700;color:var(--muted)}.profile-pain-entry label{margin:0}.profile-pain-entry select{margin-top:6px}.profile-pain-entry .text-button{width:100%;margin-top:2px}
+
+.manual-extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.manual-extra-grid label{margin-top:16px!important}.exercise-meta{margin:-16px 0 16px;color:var(--muted);font-size:12px}.exercise-image{display:block;max-width:100%;width:100%;max-height:300px;object-fit:contain;margin:8px 0 22px;border:1px solid var(--line);background:var(--surface);border-radius:4px}.dark .exercise-image{background:var(--surface)}@media(max-width:380px){.manual-extra-grid{grid-template-columns:1fr}}
