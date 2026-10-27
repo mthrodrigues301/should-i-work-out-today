@@ -6,6 +6,12 @@ const vm = require('node:vm');
 function setupServiceWorker({ fetchImpl } = {}) {
   const listeners = {};
   const entries = new Map();
+  const notifications = [];
+  let visibleWindows = [];
+  const registration = {
+    async showNotification(title, options) { notifications.push({ title, ...options }); },
+    async getNotifications({ tag } = {}) { return notifications.filter((item) => !tag || item.tag === tag); }
+  };
   let skippedWaiting = false;
   const pathOf = (value) => {
     const url = new URL(typeof value === 'string' ? value : value.url, 'https://app.example');
@@ -28,7 +34,8 @@ function setupServiceWorker({ fetchImpl } = {}) {
     Response,
     self: {
       location: { origin: 'https://app.example' },
-      clients: { claim: async () => {} },
+      clients: { claim: async () => {}, matchAll: async () => visibleWindows },
+      registration,
       skipWaiting: async () => { skippedWaiting = true; },
       addEventListener(name, handler) { listeners[name] = handler; }
     },
@@ -41,7 +48,8 @@ function setupServiceWorker({ fetchImpl } = {}) {
   };
   vm.runInNewContext(fs.readFileSync('src/service-worker.js', 'utf8'), context);
   return {
-    listeners, entries,
+    listeners, entries, notifications,
+    setVisibleWindows(value) { visibleWindows = value; },
     setFetchImpl(value) { currentFetch = value; },
     get skippedWaiting() { return skippedWaiting; }
   };
@@ -83,6 +91,26 @@ test('installs the full My Workout shell, including every script linked by its p
     }
   }
   assert.equal(worker.skippedWaiting, true);
+});
+
+test('shows rest push notifications only when app is hidden and avoids duplicates', async () => {
+  const worker = setupServiceWorker();
+  const visibleClient = { visibilityState: 'visible' };
+  worker.setVisibleWindows([visibleClient]);
+  const visibleEvent = { data: { json: () => ({ title: 'Descanso concluído', tag: 'workout-rest-123' }) }, waits: [], waitUntil(promise) { this.waits.push(promise); } };
+  worker.listeners.push(visibleEvent);
+  await Promise.all(visibleEvent.waits);
+  assert.equal(worker.notifications.length, 0);
+
+  worker.setVisibleWindows([]);
+  const hiddenEvent = { data: { json: () => ({ title: 'Descanso concluído', tag: 'workout-rest-123' }) }, waits: [], waitUntil(promise) { this.waits.push(promise); } };
+  worker.listeners.push(hiddenEvent);
+  await Promise.all(hiddenEvent.waits);
+  assert.equal(worker.notifications.length, 1);
+  const duplicateEvent = { data: { json: () => ({ title: 'Descanso concluído', tag: 'workout-rest-123' }) }, waits: [], waitUntil(promise) { this.waits.push(promise); } };
+  worker.listeners.push(duplicateEvent);
+  await Promise.all(duplicateEvent.waits);
+  assert.equal(worker.notifications.length, 1);
 });
 
 test('serves cached app immediately while refreshing it in the background', async () => {

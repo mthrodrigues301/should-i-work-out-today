@@ -2,6 +2,34 @@ const test=require('node:test');
 const assert=require('node:assert/strict');
 const Training=require('../public/my-workout/training.js');
 
+test('recognizes timed exercises, uses the upper end of ranges, and ignores repetition counts',()=>{
+  assert.equal(Training.durationSeconds('30–45 s'),45);
+  assert.equal(Training.durationSeconds('1-2 min'),120);
+  assert.equal(Training.durationSeconds('30 segundos'),30);
+  assert.equal(Training.durationSeconds('8–12'),0);
+  assert.equal(Training.durationSeconds('90 min'),0);
+});
+
+test('counts down an exercise timer and preserves remaining time while paused',()=>{
+  const timer={end:16000,remaining:10000};
+  assert.equal(Training.exerciseTimeLeft(timer,11000),5000);
+  timer.end=null;
+  timer.remaining=5000;
+  assert.equal(Training.exerciseTimeLeft(timer,20000),5000);
+});
+
+test('starts a timed series, freezes it on pause, and resumes the remaining time',()=>{
+  const session={startedAt:1000,rest:null};
+  const plank={reps:'30–45 s'};
+  Training.syncExerciseTimer(session,plank,2,1000);
+  assert.equal(session.exerciseTimer.end,46000);
+  Training.pauseExerciseTimer(session,11000);
+  assert.equal(session.exerciseTimer.remaining,35000);
+  session.startedAt=20000;
+  Training.syncExerciseTimer(session,plank,2,20000);
+  assert.equal(session.exerciseTimer.end,55000);
+});
+
 test('restores the most recently used unfinished workout from this week',()=>{
   const sessions={
     '2026-10-26:1':{current:2,startedAt:null,elapsed:30000,updatedAt:10},
